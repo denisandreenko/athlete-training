@@ -224,7 +224,11 @@ async function fetchFile() {
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
   const d = await res.json();
   logSha = d.sha;
-  return atob(d.content.replace(/\n/g, ''));
+  // Properly decode UTF-8 (atob gives raw bytes, TextDecoder interprets them correctly)
+  const binary = atob(d.content.replace(/\n/g, ''));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
 }
 
 async function commitFile(content) {
@@ -262,21 +266,22 @@ function parseNutritionMd(content) {
       continue;
     }
 
-    if (line.trim() === '## Daily supplements') {
+    // Any ## header that is NOT a meal header: finalise current meal and switch mode
+    if (/^## /.test(line) && !/^## Meal \d/.test(line)) {
       if (currentMeal) { meals.push(currentMeal); currentMeal = null; }
-      mode = 'supp';
-      continue;
-    }
-
-    if (/^## /.test(line) && mode === 'supp') {
-      mode = null;
+      if (line.trim() === '## Daily supplements') {
+        mode = 'supp';
+      } else {
+        mode = null;
+      }
       continue;
     }
 
     if (mode === 'meal' && currentMeal) {
       if (line.startsWith('|')) {
         const cols = line.split('|').map(s => s.trim()).filter(Boolean);
-        if (cols[0] === 'Item' || cols[0] === '---') continue; // header / separator
+        // Skip header row and separator rows (any number of dashes)
+        if (cols[0] === 'Item' || cols[0].replace(/-/g, '') === '') continue;
         if (cols[0].startsWith('**Meal total')) continue;
         if (cols.length >= 6) {
           const name = cols[0];
@@ -318,7 +323,8 @@ function parseF(s) { return parseFloat(s.replace(/[^\d.-]/g, '')) || 0; }
 
 function guessAmount(name) {
   // "Egg 55g × 4" → 220, "Butter 120g" → 120, "Ground pork (cooked) 300g" → 300
-  const multMatch = name.match(/(\d+(?:\.\d+)?)\s*g\s*[×x]\s*(\d+)/i);
+  // Match × (U+00D7), x, X, *, or the word "x" as a multiplier
+  const multMatch = name.match(/(\d+(?:\.\d+)?)\s*g\s*[×xX*]\s*(\d+)/);
   if (multMatch) return parseFloat(multMatch[1]) * parseFloat(multMatch[2]);
   const singleMatch = name.match(/(\d+(?:\.\d+)?)\s*(?:g|ml)/i);
   if (singleMatch) return parseFloat(singleMatch[1]);
