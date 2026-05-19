@@ -10,4 +10,678 @@
     --text: #e8e8e8; --muted: #777; --accent: #22c55e; --danger: #ef4444;
     --warn: #f59e0b; --blue: #3b82f6; --radius: 10px;
     --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+<<<<<<< HEAD
   }
+=======
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; padding-bottom: 60px; }
+
+  /* Header */
+  #header { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+  #header h1 { font-size: 17px; font-weight: 700; }
+  #header .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .header-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 13px; padding: 6px 12px; border-radius: 7px; cursor: pointer; }
+  .header-btn:active { opacity: 0.7; }
+
+  /* Macro bar */
+  #macro-bar { padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .macro-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .macro-cell { text-align: center; }
+  .macro-cell .val { font-size: 17px; font-weight: 700; }
+  .macro-cell .lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); margin-top: 2px; }
+  .macro-cell .bar { height: 3px; border-radius: 2px; margin-top: 4px; background: var(--border); overflow: hidden; }
+  .macro-cell .bar-fill { height: 100%; border-radius: 2px; transition: width .3s; }
+  .m-prot .val { color: #60a5fa; } .m-prot .bar-fill { background: #60a5fa; }
+  .m-carb .val { color: #f59e0b; } .m-carb .bar-fill { background: #f59e0b; }
+  .m-fat  .val { color: #c084fc; } .m-fat .bar-fill  { background: #c084fc; }
+  .m-kcal .val { color: #22c55e; } .m-kcal .bar-fill { background: #22c55e; }
+  .over { color: var(--danger) !important; }
+
+  /* Cards */
+  main { padding: 0 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-top: 14px; overflow: hidden; }
+  .card-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 10px; border-bottom: 1px solid var(--border); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .card-header h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+  .card-header .meal-total { font-size: 12px; color: var(--muted); }
+  .chevron { font-size: 12px; color: var(--muted); transition: transform .2s; }
+  .chevron.open { transform: rotate(180deg); }
+  .card-body { padding: 0 14px 14px; }
+  .card-body.hidden { display: none; }
+
+  /* Food table */
+  .food-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  .food-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); padding: 0 4px 7px; text-align: right; border-bottom: 1px solid var(--border); }
+  .food-table th:first-child { text-align: left; }
+  .food-table td { padding: 6px 4px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .food-table tr:last-child td { border-bottom: none; }
+  .food-table .name-cell { font-weight: 500; min-width: 120px; }
+  .food-table .macro-num { text-align: right; color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .food-table input[type="text"], .food-table input[type="number"] {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 5px;
+    color: var(--text); font-family: var(--font); font-size: 13px; padding: 5px 7px;
+    outline: none; width: 100%;
+  }
+  .food-table input[type="number"] { text-align: right; -moz-appearance: textfield; width: 70px; }
+  .food-table input[type="number"]::-webkit-inner-spin-button { display: none; }
+  .food-table input:focus { border-color: var(--accent); }
+  .del-btn { background: none; border: none; color: #444; font-size: 16px; cursor: pointer; padding: 4px; line-height: 1; -webkit-tap-highlight-color: transparent; }
+  .del-btn:active { color: var(--danger); }
+  .ref-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-left: 4px; vertical-align: middle; title: "linked to reference"; }
+
+  /* Meal totals row */
+  .total-row td { font-weight: 700; font-size: 12px; color: var(--text); border-top: 1px solid var(--border); padding-top: 8px; }
+  .total-row td:first-child { color: var(--muted); font-size: 11px; }
+
+  /* Add food */
+  .add-food-bar { margin-top: 10px; display: flex; gap: 8px; }
+  .add-food-bar select { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; color: var(--text); font-family: var(--font); font-size: 13px; padding: 8px 10px; outline: none; -webkit-appearance: none; }
+  .add-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; color: var(--accent); font-size: 22px; font-weight: 300; padding: 0 14px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+  /* Supplements */
+  .supp-list { margin-top: 10px; }
+  .supp-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .supp-row:last-child { border-bottom: none; }
+  .supp-name { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-family: var(--font); font-size: 13px; padding: 6px 8px; outline: none; }
+  .supp-name:focus { border-color: var(--accent); }
+
+  /* Save / status */
+  #save-btn { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; font-size: 15px; font-weight: 700; border: none; border-radius: 30px; padding: 14px 40px; cursor: pointer; box-shadow: 0 4px 20px rgba(34,197,94,.3); -webkit-tap-highlight-color: transparent; transition: opacity .15s; white-space: nowrap; }
+  #save-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  #save-btn:active { opacity: 0.8; }
+
+  /* Toast */
+  #toast { position: fixed; bottom: 72px; left: 50%; transform: translateX(-50%) translateY(40px); background: var(--surface2); border: 1px solid var(--border); border-radius: 30px; padding: 10px 20px; font-size: 13px; font-weight: 600; white-space: nowrap; transition: transform .3s, opacity .3s; opacity: 0; pointer-events: none; z-index: 999; }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  #toast.success { background: rgba(34,197,94,.15); border-color: var(--accent); color: var(--accent); }
+  #toast.error { background: rgba(239,68,68,.15); border-color: var(--danger); color: var(--danger); }
+
+  /* Token modal */
+  #token-modal { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 24px; }
+  #token-modal.hidden { display: none; }
+  .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; width: 100%; max-width: 360px; }
+  .modal-box h3 { font-size: 18px; margin-bottom: 8px; }
+  .modal-box p { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+  .modal-box input { width: 100%; margin-bottom: 14px; font-size: 13px; font-family: monospace; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; color: var(--text); padding: 10px 12px; outline: none; }
+  .modal-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; font-size: 15px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; }
+
+  #loader { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
+  .section-note { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div id="token-modal" class="hidden">
+  <div class="modal-box">
+    <h3>🔑 GitHub Token</h3>
+    <p>Same token as the training dashboard. Stored locally, never sent anywhere except GitHub's API.</p>
+    <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false">
+    <button class="modal-btn" onclick="saveToken()">Save &amp; Continue</button>
+  </div>
+</div>
+
+<div id="header">
+  <div>
+    <h1>Nutrition Editor</h1>
+    <div class="sub" id="last-saved">Loading…</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <button class="header-btn" onclick="reloadFromGithub()">↺ Reload</button>
+    <button class="header-btn" onclick="showTokenModal()" style="padding:6px 8px;">⚙</button>
+  </div>
+</div>
+
+<div id="macro-bar">
+  <div class="macro-grid">
+    <div class="macro-cell m-prot">
+      <div class="val" id="tot-prot">—</div>
+      <div class="lbl">Protein g</div>
+      <div class="bar"><div class="bar-fill" id="bar-prot" style="width:0%"></div></div>
+    </div>
+    <div class="macro-cell m-carb">
+      <div class="val" id="tot-carb">—</div>
+      <div class="lbl">Carbs g</div>
+      <div class="bar"><div class="bar-fill" id="bar-carb" style="width:0%"></div></div>
+    </div>
+    <div class="macro-cell m-fat">
+      <div class="val" id="tot-fat">—</div>
+      <div class="lbl">Fat g</div>
+      <div class="bar"><div class="bar-fill" id="bar-fat" style="width:0%"></div></div>
+    </div>
+    <div class="macro-cell m-kcal">
+      <div class="val" id="tot-kcal">—</div>
+      <div class="lbl">kcal</div>
+      <div class="bar"><div class="bar-fill" id="bar-kcal" style="width:0%"></div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div id="loader">Loading nutrition data…</div>
+  <div id="content" style="display:none;"></div>
+</main>
+
+<button id="save-btn" onclick="saveToGithub()" disabled>Save to GitHub</button>
+<div id="toast"></div>
+
+<script>
+// ── Config ──────────────────────────────────────────────────────────────────
+const REPO = 'denisandreenko/athlete-training';
+const FILE = 'nutrition.md';
+
+// Targets
+const TARGETS = { protein: 214, carbs: 37, fat: 279, kcal: 3740 };
+
+// Reference table per 100g — mirrors nutrition.md reference section
+const REFS = {
+  'Egg':                   { protein: 12.6, carbs: 0.7,  fat: 9.5,  fiber: 0,    kcal: 143 },
+  'Frozen veggies':        { protein: 0,    carbs: 2.9,  fat: 0.7,  fiber: 2,    kcal: 36  },
+  'Milk 3.2%':             { protein: 3,    carbs: 4.7,  fat: 3,    fiber: 0,    kcal: 60  },
+  'Yogurt L-reuteri':      { protein: 3.2,  carbs: 0.5,  fat: 3.2,  fiber: 2,    kcal: 43  },
+  'Cottage cheese 9%':     { protein: 17,   carbs: 3.4,  fat: 9,    fiber: 0,    kcal: 163 },
+  'Whey protein':          { protein: 78,   carbs: 6.8,  fat: 7.3,  fiber: 0,    kcal: 405 },
+  'Meat organs':           { protein: 26.8, carbs: 0,    fat: 6.3,  fiber: 0,    kcal: 177 },
+  'Meat (cooked)':         { protein: 27,   carbs: 0,    fat: 15,   fiber: 0,    kcal: 243 },
+  'Ground pork (cooked)':  { protein: 28,   carbs: 0,    fat: 9.2,  fiber: 0,    kcal: 213 },
+  'Sardines':              { protein: 25.9, carbs: 0,    fat: 7.2,  fiber: 0,    kcal: 168 },
+  'Cocoa powder':          { protein: 21,   carbs: 16,   fat: 11,   fiber: 32,   kcal: 307 },
+  'Nutritional yeast':     { protein: 45,   carbs: 7.5,  fat: 5,    fiber: 20,   kcal: 335 },
+  'Cheese (Gouda)':        { protein: 25,   carbs: 0,    fat: 26,   fiber: 0,    kcal: 334 },
+  'Olive oil':             { protein: 0,    carbs: 0,    fat: 100,  fiber: 0,    kcal: 900 },
+  'Coconut oil':           { protein: 0,    carbs: 0,    fat: 100,  fiber: 0,    kcal: 900 },
+  'Ghee':                  { protein: 0,    carbs: 0,    fat: 100,  fiber: 0,    kcal: 900 },
+  'Butter':                { protein: 1,    carbs: 1,    fat: 82,   fiber: 0,    kcal: 746 },
+  'Chia seeds':            { protein: 16.5, carbs: 7.7,  fat: 30.7, fiber: 34.4, kcal: 443 },
+  'Avocado':               { protein: 2,    carbs: 1.8,  fat: 14.7, fiber: 6.7,  kcal: 160 },
+  'Sunflower seeds':       { protein: 28.8, carbs: 18.6, fat: 43.7, fiber: 6,    kcal: 595 },
+  'Pumpkin seeds':         { protein: 25,   carbs: 13,   fat: 46,   fiber: 5.3,  kcal: 577 },
+  'Sauerkraut / kimchi':   { protein: 0.9,  carbs: 1.5,  fat: 0.1,  fiber: 2,    kcal: 11  },
+};
+
+// ── State ────────────────────────────────────────────────────────────────────
+let meals = [];       // [{name, items:[{name,amount,protein,carbs,fat,fiber,kcal,ref}]}]
+let supplements = []; // string[]
+let logSha = '';
+let rawContent = '';
+let staticSections = {}; // parts of the file we don't touch
+
+// ── Token ────────────────────────────────────────────────────────────────────
+function getToken() { return localStorage.getItem('gh_token') || ''; }
+function saveToken() {
+  const v = document.getElementById('token-input').value.trim();
+  if (!v) return;
+  localStorage.setItem('gh_token', v);
+  document.getElementById('token-modal').classList.add('hidden');
+  init();
+}
+function showTokenModal() {
+  document.getElementById('token-input').value = getToken();
+  document.getElementById('token-modal').classList.remove('hidden');
+}
+
+// ── GitHub API ───────────────────────────────────────────────────────────────
+async function fetchFile() {
+  const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+    headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  if (!res.ok) throw new Error(`GitHub ${res.status}`);
+  const d = await res.json();
+  logSha = d.sha;
+  return atob(d.content.replace(/\n/g, ''));
+}
+
+async function commitFile(content) {
+  const encoded = btoa(unescape(encodeURIComponent(content)));
+  const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: 'nutrition: update meal data', content: encoded, sha: logSha })
+  });
+  if (!res.ok) { const d = await res.json(); throw new Error(d.message || `GitHub ${res.status}`); }
+  const d = await res.json();
+  logSha = d.content.sha;
+}
+
+// ── Markdown parser ──────────────────────────────────────────────────────────
+function parseNutritionMd(content) {
+  rawContent = content;
+  meals = [];
+  supplements = [];
+
+  const lines = content.split('\n');
+  let mode = null; // 'meal' | 'supp' | null
+  let currentMeal = null;
+  let headerParsed = false;
+  let suppStarted = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (/^## Meal \d/.test(line)) {
+      if (currentMeal) meals.push(currentMeal);
+      currentMeal = { name: line.replace('## ', '').trim(), items: [] };
+      mode = 'meal';
+      headerParsed = false;
+      continue;
+    }
+
+    if (line.trim() === '## Daily supplements') {
+      if (currentMeal) { meals.push(currentMeal); currentMeal = null; }
+      mode = 'supp';
+      continue;
+    }
+
+    if (/^## /.test(line) && mode === 'supp') {
+      mode = null;
+      continue;
+    }
+
+    if (mode === 'meal' && currentMeal) {
+      if (line.startsWith('|')) {
+        const cols = line.split('|').map(s => s.trim()).filter(Boolean);
+        if (cols[0] === 'Item' || cols[0] === '---') continue; // header / separator
+        if (cols[0].startsWith('**Meal total')) continue;
+        if (cols.length >= 6) {
+          const name = cols[0];
+          // Try to guess amount from name (e.g. "Egg 55g × 4" → 55*4=220, "Butter 120g" → 120)
+          let amount = guessAmount(name);
+          // Try to find reference key
+          let ref = guessRefKey(name);
+          currentMeal.items.push({
+            name,
+            amount,
+            protein: parseF(cols[1]),
+            carbs:   parseF(cols[2]),
+            fat:     parseF(cols[3]),
+            fiber:   parseF(cols[4]),
+            kcal:    parseF(cols[5]),
+            ref
+          });
+        }
+      }
+    }
+
+    if (mode === 'supp' && line.startsWith('* ')) {
+      supplements.push(line.replace(/^\* \*\*/, '').replace(/\*\*.*/, '').trim() + (line.includes(':**') ? ':' + line.split(':**')[1].trim() : ''));
+    }
+  }
+  if (currentMeal) meals.push(currentMeal);
+
+  // Fallback: if parsing failed, create empty structure
+  if (meals.length === 0) {
+    meals = [
+      { name: 'Meal 1', items: [] },
+      { name: 'Meal 2', items: [] },
+      { name: 'Meal 3', items: [] },
+    ];
+  }
+}
+
+function parseF(s) { return parseFloat(s.replace(/[^\d.-]/g, '')) || 0; }
+
+function guessAmount(name) {
+  // "Egg 55g × 4" → 220, "Butter 120g" → 120, "Ground pork (cooked) 300g" → 300
+  const multMatch = name.match(/(\d+(?:\.\d+)?)\s*g\s*[×x]\s*(\d+)/i);
+  if (multMatch) return parseFloat(multMatch[1]) * parseFloat(multMatch[2]);
+  const singleMatch = name.match(/(\d+(?:\.\d+)?)\s*(?:g|ml)/i);
+  if (singleMatch) return parseFloat(singleMatch[1]);
+  return 100;
+}
+
+function guessRefKey(name) {
+  const n = name.toLowerCase();
+  for (const key of Object.keys(REFS)) {
+    if (n.includes(key.toLowerCase().split(' ')[0])) return key;
+  }
+  return null;
+}
+
+// ── Macro calculation ────────────────────────────────────────────────────────
+function r1(n) { return Math.round(n * 10) / 10; }
+
+function recalcItem(item) {
+  if (!item.ref || !REFS[item.ref] || !item.amount) return;
+  const ref = REFS[item.ref];
+  const ratio = item.amount / 100;
+  item.protein = r1(ref.protein * ratio);
+  item.carbs   = r1(ref.carbs   * ratio);
+  item.fat     = r1(ref.fat     * ratio);
+  item.fiber   = r1(ref.fiber   * ratio);
+  item.kcal    = r1(ref.kcal    * ratio);
+}
+
+function mealTotals(meal) {
+  return meal.items.reduce((t, i) => ({
+    protein: r1(t.protein + i.protein),
+    carbs:   r1(t.carbs   + i.carbs),
+    fat:     r1(t.fat     + i.fat),
+    fiber:   r1(t.fiber   + i.fiber),
+    kcal:    r1(t.kcal    + i.kcal),
+  }), { protein: 0, carbs: 0, fat: 0, fiber: 0, kcal: 0 });
+}
+
+function updateMacroBars() {
+  const tot = meals.reduce((t, m) => {
+    const mt = mealTotals(m);
+    return { protein: r1(t.protein+mt.protein), carbs: r1(t.carbs+mt.carbs), fat: r1(t.fat+mt.fat), kcal: r1(t.kcal+mt.kcal) };
+  }, { protein: 0, carbs: 0, fat: 0, kcal: 0 });
+
+  const fields = [
+    ['prot', tot.protein, TARGETS.protein],
+    ['carb', tot.carbs,   TARGETS.carbs],
+    ['fat',  tot.fat,     TARGETS.fat],
+    ['kcal', tot.kcal,    TARGETS.kcal],
+  ];
+  for (const [key, val, target] of fields) {
+    const el = document.getElementById(`tot-${key}`);
+    const bar = document.getElementById(`bar-${key}`);
+    el.textContent = Math.round(val);
+    const pct = Math.min(100, (val / target) * 100);
+    bar.style.width = pct + '%';
+    el.classList.toggle('over', val > target * 1.15);
+  }
+}
+
+// ── Renderer ─────────────────────────────────────────────────────────────────
+function render() {
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+
+  meals.forEach((meal, mi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    const mt = mealTotals(meal);
+
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard('meal-body-${mi}','meal-chev-${mi}')">
+        <h2>${meal.name}</h2>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="meal-total" id="meal-total-${mi}">${Math.round(mt.kcal)} kcal · P ${mt.protein}g</span>
+          <span class="chevron open" id="meal-chev-${mi}">▼</span>
+        </div>
+      </div>
+      <div class="card-body" id="meal-body-${mi}">
+        <table class="food-table">
+          <thead><tr>
+            <th>Food</th>
+            <th style="text-align:right;width:60px;">g/ml</th>
+            <th style="text-align:right;width:42px;">P</th>
+            <th style="text-align:right;width:42px;">C</th>
+            <th style="text-align:right;width:42px;">F</th>
+            <th style="text-align:right;width:50px;">kcal</th>
+            <th style="width:28px;"></th>
+          </tr></thead>
+          <tbody id="food-tbody-${mi}"></tbody>
+        </table>
+        <div class="add-food-bar">
+          <select id="add-select-${mi}">
+            <option value="">＋ Add food…</option>
+            <option value="__manual__">── Enter manually ──</option>
+            ${Object.keys(REFS).map(k => `<option value="${k}">${k}</option>`).join('')}
+          </select>
+          <button class="add-btn" onclick="addFood(${mi})">＋</button>
+        </div>
+      </div>`;
+    content.appendChild(card);
+    renderMealRows(mi);
+  });
+
+  // Supplements card
+  const suppCard = document.createElement('div');
+  suppCard.className = 'card';
+  suppCard.innerHTML = `
+    <div class="card-header" onclick="toggleCard('supp-body','supp-chev')">
+      <h2>Supplements</h2>
+      <span class="chevron open" id="supp-chev">▼</span>
+    </div>
+    <div class="card-body" id="supp-body">
+      <div class="supp-list" id="supp-list"></div>
+      <button onclick="addSupp()" style="margin-top:10px;width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:7px;color:var(--accent);font-size:14px;padding:10px;cursor:pointer;">＋ Add supplement</button>
+      <p class="section-note">Changes here update the supplements list in nutrition.md.</p>
+    </div>`;
+  content.appendChild(suppCard);
+  renderSupplements();
+
+  updateMacroBars();
+  document.getElementById('save-btn').disabled = false;
+}
+
+function renderMealRows(mi) {
+  const tbody = document.getElementById(`food-tbody-${mi}`);
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  const meal = meals[mi];
+  meal.items.forEach((item, ii) => {
+    const tr = document.createElement('tr');
+    const refDot = item.ref ? `<span class="ref-dot" title="Auto-calculated from reference"></span>` : '';
+    tr.innerHTML = `
+      <td class="name-cell">
+        <input type="text" value="${escHtml(item.name)}" oninput="updateItemName(${mi},${ii},this.value)">
+        ${refDot}
+      </td>
+      <td><input type="number" value="${item.amount || ''}" min="0" step="1" style="width:68px;" oninput="updateAmount(${mi},${ii},this.value)"></td>
+      <td class="macro-num" id="prot-${mi}-${ii}">${item.protein}</td>
+      <td class="macro-num" id="carb-${mi}-${ii}">${item.carbs}</td>
+      <td class="macro-num" id="fat-${mi}-${ii}">${item.fat}</td>
+      <td class="macro-num" id="kcal-${mi}-${ii}">${Math.round(item.kcal)}</td>
+      <td><button class="del-btn" onclick="deleteItem(${mi},${ii})">×</button></td>`;
+    tbody.appendChild(tr);
+  });
+  // Totals row
+  const mt = mealTotals(meal);
+  const tr2 = document.createElement('tr');
+  tr2.className = 'total-row';
+  tr2.id = `total-row-${mi}`;
+  tr2.innerHTML = `<td>Total</td><td></td><td class="macro-num">${mt.protein}</td><td class="macro-num">${mt.carbs}</td><td class="macro-num">${mt.fat}</td><td class="macro-num">${Math.round(mt.kcal)}</td><td></td>`;
+  tbody.appendChild(tr2);
+}
+
+function renderSupplements() {
+  const list = document.getElementById('supp-list');
+  if (!list) return;
+  list.innerHTML = '';
+  supplements.forEach((s, i) => {
+    const row = document.createElement('div');
+    row.className = 'supp-row';
+    row.innerHTML = `
+      <input class="supp-name" type="text" value="${escHtml(s)}" oninput="supplements[${i}]=this.value">
+      <button class="del-btn" onclick="supplements.splice(${i},1);renderSupplements()">×</button>`;
+    list.appendChild(row);
+  });
+}
+
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ── Interactions ─────────────────────────────────────────────────────────────
+function toggleCard(bodyId, chevId) {
+  document.getElementById(bodyId)?.classList.toggle('hidden');
+  document.getElementById(chevId)?.classList.toggle('open');
+}
+
+function updateItemName(mi, ii, val) {
+  meals[mi].items[ii].name = val;
+  const newRef = guessRefKey(val);
+  if (newRef && newRef !== meals[mi].items[ii].ref) {
+    meals[mi].items[ii].ref = newRef;
+    recalcItem(meals[mi].items[ii]);
+    refreshItemMacros(mi, ii);
+  }
+}
+
+function updateAmount(mi, ii, val) {
+  meals[mi].items[ii].amount = parseFloat(val) || 0;
+  recalcItem(meals[mi].items[ii]);
+  refreshItemMacros(mi, ii);
+  updateMealTotal(mi);
+  updateMacroBars();
+}
+
+function refreshItemMacros(mi, ii) {
+  const item = meals[mi].items[ii];
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  s(`prot-${mi}-${ii}`, item.protein);
+  s(`carb-${mi}-${ii}`, item.carbs);
+  s(`fat-${mi}-${ii}`,  item.fat);
+  s(`kcal-${mi}-${ii}`, Math.round(item.kcal));
+}
+
+function updateMealTotal(mi) {
+  const mt = mealTotals(meals[mi]);
+  const el = document.getElementById(`total-row-${mi}`);
+  if (el) {
+    const cells = el.querySelectorAll('.macro-num');
+    if (cells[0]) cells[0].textContent = mt.protein;
+    if (cells[1]) cells[1].textContent = mt.carbs;
+    if (cells[2]) cells[2].textContent = mt.fat;
+    if (cells[3]) cells[3].textContent = Math.round(mt.kcal);
+  }
+  const header = document.getElementById(`meal-total-${mi}`);
+  if (header) header.textContent = `${Math.round(mt.kcal)} kcal · P ${mt.protein}g`;
+}
+
+function deleteItem(mi, ii) {
+  meals[mi].items.splice(ii, 1);
+  renderMealRows(mi);
+  updateMacroBars();
+}
+
+function addFood(mi) {
+  const sel = document.getElementById(`add-select-${mi}`);
+  const key = sel.value;
+  if (!key) return;
+  if (key === '__manual__') {
+    meals[mi].items.push({ name: 'New food', amount: 100, protein: 0, carbs: 0, fat: 0, fiber: 0, kcal: 0, ref: null });
+  } else {
+    const ref = REFS[key];
+    meals[mi].items.push({ name: `${key} 100g`, amount: 100, protein: ref.protein, carbs: ref.carbs, fat: ref.fat, fiber: ref.fiber, kcal: ref.kcal, ref: key });
+  }
+  sel.value = '';
+  renderMealRows(mi);
+  updateMacroBars();
+}
+
+function addSupp() {
+  supplements.push('New supplement: dose');
+  renderSupplements();
+}
+
+// ── Markdown builder ─────────────────────────────────────────────────────────
+function buildNutritionMd() {
+  // Calculate totals
+  const tot = meals.reduce((t, m) => {
+    const mt = mealTotals(m);
+    return { protein: r1(t.protein+mt.protein), carbs: r1(t.carbs+mt.carbs), fat: r1(t.fat+mt.fat), fiber: r1((t.fiber||0)+(mt.fiber||0)), kcal: r1(t.kcal+mt.kcal) };
+  }, { protein: 0, carbs: 0, fat: 0, fiber: 0, kcal: 0 });
+
+  let md = `# Nutrition (Ketogenic)\n\nDiet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 meals/day.\n\n`;
+  md += `| Metric | Daily total |\n|--------|-------------|\n`;
+  md += `| Protein | ${tot.protein} g |\n`;
+  md += `| Carbs | ${tot.carbs} g |\n`;
+  md += `| Fat | ${tot.fat} g |\n`;
+  md += `| Fiber | ${tot.fiber} g |\n`;
+  md += `| Calories | ${Math.round(tot.kcal)} kcal |\n\n---\n\n`;
+
+  for (const meal of meals) {
+    const mt = mealTotals(meal);
+    md += `## ${meal.name}\n\n`;
+    md += `| Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |\n`;
+    md += `|------|-------------|-----------|---------|-----------|------|\n`;
+    for (const item of meal.items) {
+      md += `| ${item.name} | ${item.protein} | ${item.carbs} | ${item.fat} | ${item.fiber} | ${r1(item.kcal)} |\n`;
+    }
+    md += `| **Meal total** | **${mt.protein}** | **${mt.carbs}** | **${mt.fat}** | **${mt.fiber||0}** | **${Math.round(mt.kcal)}** |\n\n`;
+  }
+
+  // Reference table — preserved verbatim from original
+  const refStart = rawContent.indexOf('## Reference (per 100g)');
+  const suppStart = rawContent.indexOf('## Daily supplements');
+  if (refStart !== -1) {
+    md += '---\n\n';
+    md += rawContent.slice(refStart, suppStart !== -1 ? suppStart : undefined);
+  }
+
+  // Supplements
+  md += `## Daily supplements\n\n`;
+  for (const s of supplements) {
+    // Try to preserve ** formatting
+    if (s.includes(':')) {
+      const [name, ...rest] = s.split(':');
+      md += `* **${name.trim()}:** ${rest.join(':').trim()}\n`;
+    } else {
+      md += `* ${s}\n`;
+    }
+  }
+  md += '\n';
+
+  // Everything after supplements (timing, TKD, electrolytes, body comp) — preserved verbatim
+  const afterSupp = rawContent.indexOf('\n## Supplement timing');
+  if (afterSupp !== -1) {
+    md += rawContent.slice(afterSupp + 1);
+  }
+
+  return md;
+}
+
+// ── Save ─────────────────────────────────────────────────────────────────────
+async function saveToGithub() {
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  try {
+    // Re-fetch SHA first
+    const fresh = await fetchFile();
+    parseNutritionMd(fresh); // update sha only, don't re-render
+    const newContent = buildNutritionMd();
+    await commitFile(newContent);
+    rawContent = newContent;
+    document.getElementById('last-saved').textContent = 'Saved ' + new Date().toLocaleTimeString();
+    showToast('✓ Saved to GitHub', 'success');
+  } catch (err) {
+    showToast('Error: ' + err.message, 'error');
+    console.error(err);
+  }
+  btn.disabled = false;
+  btn.textContent = 'Save to GitHub';
+}
+
+async function reloadFromGithub() {
+  document.getElementById('content').style.display = 'none';
+  document.getElementById('loader').style.display = 'block';
+  document.getElementById('loader').textContent = 'Reloading…';
+  await init();
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.className = '', 3000);
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+async function init() {
+  if (!getToken()) { showTokenModal(); return; }
+  document.getElementById('loader').style.display = 'block';
+  document.getElementById('content').style.display = 'none';
+  try {
+    const content = await fetchFile();
+    parseNutritionMd(content);
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    document.getElementById('last-saved').textContent = 'Loaded from GitHub';
+    render();
+  } catch (err) {
+    document.getElementById('loader').innerHTML =
+      `<div style="color:var(--danger)">Failed to load: ${err.message}</div>
+       <button onclick="showTokenModal()" style="margin-top:16px;padding:10px 20px;background:var(--surface2);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:14px;cursor:pointer;">Check Token</button>`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
+>>>>>>> 0d99494 (feat: add nutrition editor with live macro calculation)
