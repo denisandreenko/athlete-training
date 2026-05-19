@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-05-18 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - TT: Zwift TT Club Racing - Island Outskirts (C)" · 23.0km · 184m gain · avg HR 133 · max HR 144
+
+### Endurance
+- duration: 41min
+- avg_power_or_pace: 228W
+- terrain: trainer
+
+---
+
+
 ## 2026-05-16 | GYM_A
 - fatigue_before: 2/5
 - sleep: 4/5
