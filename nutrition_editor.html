@@ -62,10 +62,7 @@
   .food-table input[type="number"] { text-align: right; -moz-appearance: textfield; width: 70px; }
   .food-table input[type="number"]::-webkit-inner-spin-button { display: none; }
   .food-table input:focus { border-color: var(--accent); }
-  .macro-input { width: 46px; background: var(--surface2); border: 1px solid transparent; border-radius: 4px; color: var(--muted); font-family: var(--font); font-size: 12px; padding: 4px 4px; text-align: right; -moz-appearance: textfield; outline: none; }
-  .macro-input::-webkit-inner-spin-button { display: none; }
-  .macro-input:hover { border-color: var(--border); }
-  .macro-input:focus { border-color: var(--accent); color: var(--text); }
+  .macro-num { text-align: right; color: var(--muted); font-size: 12px; white-space: nowrap; padding: 6px 4px; }
   .del-btn { background: none; border: none; color: #444; font-size: 16px; cursor: pointer; padding: 4px; line-height: 1; -webkit-tap-highlight-color: transparent; }
   .del-btn:active { color: var(--danger); }
   .ref-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-left: 4px; vertical-align: middle; title: "linked to reference"; }
@@ -108,6 +105,11 @@
 
   #loader { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
   .section-note { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+
+  /* ── Nav bar ── */
+  #nav-bar { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .nav-link { flex: 1; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 600; text-decoration: none; color: var(--muted); border-bottom: 2px solid transparent; letter-spacing: 0.2px; -webkit-tap-highlight-color: transparent; }
+  .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
 </style>
 </head>
 <body>
@@ -131,6 +133,10 @@
     <button class="header-btn" onclick="showTokenModal()" style="padding:6px 8px;">⚙</button>
   </div>
 </div>
+<nav id="nav-bar">
+  <a class="nav-link" href="dashboard.html">🏋 Training</a>
+  <a class="nav-link active" href="nutrition_editor.html">🥩 Nutrition</a>
+</nav>
 
 <div id="macro-bar">
   <div class="macro-grid">
@@ -470,10 +476,10 @@ function renderMealRows(mi) {
         ${refDot}
       </td>
       <td><input type="number" value="${item.amount || ''}" min="0" step="1" style="width:68px;" oninput="updateAmount(${mi},${ii},this.value)"></td>
-      <td><input type="number" class="macro-input" id="prot-${mi}-${ii}" value="${item.protein}" step="0.1" oninput="updateMacro(${mi},${ii},'protein',this.value)"></td>
-      <td><input type="number" class="macro-input" id="carb-${mi}-${ii}" value="${item.carbs}" step="0.1" oninput="updateMacro(${mi},${ii},'carbs',this.value)"></td>
-      <td><input type="number" class="macro-input" id="fat-${mi}-${ii}" value="${item.fat}" step="0.1" oninput="updateMacro(${mi},${ii},'fat',this.value)"></td>
-      <td><input type="number" class="macro-input" id="kcal-${mi}-${ii}" value="${Math.round(item.kcal)}" step="1" oninput="updateMacro(${mi},${ii},'kcal',this.value)"></td>
+      <td class="macro-num" id="prot-${mi}-${ii}">${item.protein}</td>
+      <td class="macro-num" id="carb-${mi}-${ii}">${item.carbs}</td>
+      <td class="macro-num" id="fat-${mi}-${ii}">${item.fat}</td>
+      <td class="macro-num" id="kcal-${mi}-${ii}">${Math.round(item.kcal)}</td>
       <td><button class="del-btn" onclick="deleteItem(${mi},${ii})">×</button></td>`;
     tbody.appendChild(tr);
   });
@@ -528,19 +534,11 @@ function updateAmount(mi, ii, val) {
 
 function refreshItemMacros(mi, ii) {
   const item = meals[mi].items[ii];
-  const s = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   s(`prot-${mi}-${ii}`, item.protein);
   s(`carb-${mi}-${ii}`, item.carbs);
   s(`fat-${mi}-${ii}`,  item.fat);
   s(`kcal-${mi}-${ii}`, Math.round(item.kcal));
-}
-
-function updateMacro(mi, ii, field, val) {
-  meals[mi].items[ii][field] = parseFloat(val) || 0;
-  // Manual macro edit breaks the reference link (user is overriding)
-  if (field !== 'kcal') meals[mi].items[ii].ref = null;
-  updateMealTotal(mi);
-  updateMacroBars();
 }
 
 function updateMealTotal(mi) {

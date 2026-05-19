@@ -63,6 +63,11 @@
   .badge-cycle  { background: rgba(59,130,246,.15); color: var(--cycling-accent); border: 1px solid rgba(59,130,246,.3); }
   .badge-rest   { background: rgba(34,197,94,.12); color: var(--rest-accent); border: 1px solid rgba(34,197,94,.25); }
 
+  /* ── Nav bar ── */
+  #nav-bar { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .nav-link { flex: 1; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 600; text-decoration: none; color: var(--muted); border-bottom: 2px solid transparent; letter-spacing: 0.2px; -webkit-tap-highlight-color: transparent; }
+  .nav-link.active { color: var(--gym-accent); border-bottom-color: var(--gym-accent); }
+
   /* ── Main layout ── */
   main { padding: 0 16px; }
 
@@ -410,6 +415,10 @@
     <button id="settings-btn" onclick="showTokenModal()" title="Change GitHub token">⚙</button>
   </div>
 </div>
+<nav id="nav-bar">
+  <a class="nav-link active" href="dashboard.html">🏋 Training</a>
+  <a class="nav-link" href="nutrition_editor.html">🥩 Nutrition</a>
+</nav>
 
 <main>
   <div id="loader">Loading workout log…</div>
