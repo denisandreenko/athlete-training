@@ -1,0 +1,43 @@
+name: Strava Auto-Log
+
+on:
+  schedule:
+    - cron: '0 21 * * *'   # 21:00 UTC = midnight EEST (UTC+3)
+  workflow_dispatch:         # Manual trigger from GitHub UI → Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync Strava activities to workout log
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+        run: python .github/scripts/strava_sync.py
+
+      - name: Commit if workout log changed
+        run: |
+          git config user.name "Strava Auto-Log"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add workout_log.md
+          if git diff --staged --quiet; then
+            echo "No new activities to log."
+          else
+            git commit -m "auto: sync Strava activity $(date -u +%Y-%m-%d)"
+            git push
+          fi
