@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Training Dashboard</title>
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --surface: #1a1a1a;
+    --surface2: #242424;
+    --border: #2e2e2e;
+    --text: #e8e8e8;
+    --muted: #888;
+    --gym-accent: #f59e0b;
+    --cycling-accent: #3b82f6;
+    --rest-accent: #22c55e;
+    --danger: #ef4444;
+    --radius: 10px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+  /* ── Header ── */
+  #header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #header-left h1 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  #header-left .date-line {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+  #session-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-gym    { background: rgba(245,158,11,.15); color: var(--gym-accent); border: 1px solid rgba(245,158,11,.3); }
+  .badge-cycle  { background: rgba(59,130,246,.15); color: var(--cycling-accent); border: 1px solid rgba(59,130,246,.3); }
+  .badge-rest   { background: rgba(34,197,94,.12); color: var(--rest-accent); border: 1px solid rgba(34,197,94,.25); }
+
+  /* ── Main layout ── */
+  main { padding: 0 16px; }
+
+  /* ── Card ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-top: 14px;
+    overflow: hidden;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .card-header h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+  }
+  .chevron {
+    font-size: 12px;
+    color: var(--muted);
+    transition: transform .2s;
+  }
+  .chevron.open { transform: rotate(180deg); }
+  .card-body { padding: 12px 14px 14px; }
+  .card-body.hidden { display: none; }
+
+  /* ── Plan table ── */
+  .plan-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .plan-table th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 0 6px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-table td {
+    padding: 8px 6px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-table tr:last-child td { border-bottom: none; }
+  .plan-table .exname { font-weight: 600; color: var(--text); }
+  .plan-table .target { color: var(--muted); font-size: 12px; }
+  .plan-table .last-load {
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .load-stub { color: var(--muted); }
+  .load-val  { color: var(--gym-accent); }
+
+  /* ── Cycling plan ── */
+  .cycling-block { font-size: 14px; }
+  .cycling-block .cy-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .cycling-block .cy-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .cycling-block .cy-value:last-child { margin-bottom: 0; }
+  .cy-interval-list {
+    list-style: none;
+    padding: 0;
+  }
+  .cy-interval-list li {
+    padding: 7px 10px;
+    margin-bottom: 6px;
+    background: var(--surface2);
+    border-radius: 7px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .fueling-tip {
+    background: rgba(59,130,246,.1);
+    border: 1px solid rgba(59,130,246,.25);
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 13px;
+    color: #93c5fd;
+    margin-top: 12px;
+  }
+  .fueling-tip strong { color: var(--cycling-accent); }
+
+  /* ── Log form ── */
+  .form-row {
+    margin-bottom: 14px;
+  }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .score-row {
+    display: flex;
+    gap: 8px;
+  }
+  .score-btn {
+    flex: 1;
+    padding: 10px 0;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .score-btn.selected-gym   { background: rgba(245,158,11,.2); border-color: var(--gym-accent); color: var(--gym-accent); }
+  .score-btn.selected-cycle { background: rgba(59,130,246,.2); border-color: var(--cycling-accent); color: var(--cycling-accent); }
+  .score-btn.selected-rest  { background: rgba(34,197,94,.15); border-color: var(--rest-accent); color: var(--rest-accent); }
+
+  input[type="text"], input[type="number"], textarea, select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    padding: 10px 12px;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  input[type="number"] { -moz-appearance: textfield; }
+  input[type="number"]::-webkit-inner-spin-button { display: none; }
+  textarea { resize: vertical; min-height: 80px; }
+  input:focus, textarea:focus { border-color: var(--gym-accent); }
+
+  /* ── Lifts log table ── */
+  .lifts-log-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .lifts-log-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--muted);
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .lifts-log-table td {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .lifts-log-table tr:last-child td { border-bottom: none; }
+  .lifts-log-table .lift-name { font-size: 13px; font-weight: 600; padding-right: 8px; }
+  .lifts-log-table .lift-name span { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 1px; }
+  .lifts-log-table .load-input {
+    width: 80px;
+    padding: 7px 8px;
+    text-align: center;
+  }
+  .lifts-log-table .rpe-input {
+    width: 60px;
+    padding: 7px 8px;
+    text-align: center;
+  }
+
+  /* ── Endurance log ── */
+  .endu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* ── Submit btn ── */
+  #submit-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-top: 6px;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity .15s;
+  }
+  #submit-btn:active { opacity: 0.8; }
+  #submit-btn.gym-btn   { background: var(--gym-accent); color: #000; }
+  #submit-btn.cycle-btn { background: var(--cycling-accent); color: #fff; }
+  #submit-btn.rest-btn  { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  #submit-btn:disabled  { opacity: 0.45; cursor: not-allowed; }
+
+  /* ── Status / toast ── */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    padding: 11px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: transform .3s cubic-bezier(.175,.885,.32,1.275), opacity .3s;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  #toast.success { background: rgba(34,197,94,.15); border-color: var(--rest-accent); color: var(--rest-accent); }
+  #toast.error   { background: rgba(239,68,68,.15); border-color: var(--danger); color: var(--danger); }
+
+  /* ── Token modal ── */
+  #token-modal {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.85);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    padding: 24px;
+  }
+  #token-modal.hidden { display: none; }
+  .modal-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    width: 100%;
+    max-width: 360px;
+  }
+  .modal-box h3 { font-size: 18px; margin-bottom: 8px; }
+  .modal-box p  { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+  .modal-box input {
+    width: 100%;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-family: monospace;
+  }
+  .modal-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--gym-accent);
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  /* ── Settings gear ── */
+  #settings-btn {
+    background: none; border: none; color: var(--muted);
+    font-size: 20px; cursor: pointer; padding: 4px; line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ── Loader ── */
+  #loader {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* ── Divider ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2px 0; }
+
+  /* ── Mobility reminder ── */
+  .mobility-tip {
+    background: rgba(245,158,11,.08);
+    border: 1px solid rgba(245,158,11,.2);
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 13px;
+    color: #fcd34d;
+    margin-top: 12px;
+  }
+
+  /* ── Section title inline ── */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+    margin: 14px 0 8px;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f5f5f5;
+      --surface: #fff;
+      --surface2: #f0f0f0;
+      --border: #e0e0e0;
+      --text: #111;
+      --muted: #666;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Token modal -->
+<div id="token-modal" class="hidden">
+  <div class="modal-box">
+    <h3>🔑 GitHub Token</h3>
+    <p>Enter your GitHub Personal Access Token (repo Contents: read &amp; write). Stored locally in your browser — never sent anywhere except GitHub's API.</p>
+    <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" autocorrect="off" spellcheck="false">
+    <button class="modal-btn" onclick="saveToken()">Save &amp; Continue</button>
+  </div>
+</div>
+
+<!-- Header -->
+<div id="header">
+  <div id="header-left">
+    <h1>Training Dashboard</h1>
+    <div class="date-line" id="date-line">Loading…</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span id="session-badge" class="session-badge">—</span>
+    <button id="settings-btn" onclick="showTokenModal()" title="Change GitHub token">⚙</button>
+  </div>
+</div>
+
+<main>
+  <div id="loader">Loading workout log…</div>
+  <div id="content" style="display:none;">
+
+    <!-- Today's Plan -->
+    <div class="card" id="plan-card">
+      <div class="card-header" onclick="toggleCard('plan-body','plan-chevron')">
+        <h2>Today's Plan</h2>
+        <span class="chevron open" id="plan-chevron">▼</span>
+      </div>
+      <div class="card-body" id="plan-body">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Log Form -->
+    <div class="card" id="log-card">
+      <div class="card-header" onclick="toggleCard('log-body','log-chevron')">
+        <h2>Log This Session</h2>
+        <span class="chevron open" id="log-chevron">▼</span>
+      </div>
+      <div class="card-body" id="log-body">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<script>
+// ─────────────────────────────────────────────
+// CONFIG
+// ─────────────────────────────────────────────
+const REPO  = 'denisandreenko/athlete-training';
+const OWNER = 'denisandreenko';
+const FILE  = 'workout_log.md';
+
+// ─────────────────────────────────────────────
+// SESSION DEFINITIONS
+// ─────────────────────────────────────────────
+// dayOfWeek: 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
+const DAY_SESSION = {
+  0: 'REST',
+  1: 'GYM_A',
+  2: 'CYCLING_VO2MAX',
+  3: 'GYM_B',
+  4: 'CYCLING_THRESHOLD',
+  5: 'GYM_C',
+  6: 'CYCLING_LONG'
+};
+
+const SESSION_LABELS = {
+  GYM_A:             'Gym A — Squat / Push / Pull',
+  GYM_B:             'Gym B — Pull / Press / Arms',
+  GYM_C:             'Gym C — Hinge / Incline / Single-leg',
+  CYCLING_VO2MAX:    'Cycling — VO₂max / Hill Repeats',
+  CYCLING_THRESHOLD: 'Cycling — Threshold / Sweet Spot',
+  CYCLING_LONG:      'Long Gravel Ride',
+  REST:              'Recovery Day'
+};
+
+const SESSION_TYPES = ['GYM_A','GYM_B','GYM_C',
+  'CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG',
+  'RUN_THRESHOLD','RUN_VO2MAX','RUN_LONG','SWIM','CALISTHENICS','REST'];
+
+// Gym plan: sets×reps target, plan stub load (kg or 'BW')
+const GYM_PLAN = {
+  GYM_A: [
+    { name: 'Hack squat',            target: '3×6–8',      stub: '75'  },
+    { name: 'Bench press',           target: '3×5–6',      stub: '77.5'},
+    { name: 'Single-leg hip thrust', target: '3×10–12/leg', stub: 'BW' },
+    { name: 'Chin-ups',              target: '3×6–8',      stub: 'BW'  },
+    { name: 'Seated leg curl',       target: '2×12–15',    stub: '40'  },
+    { name: 'Cable lateral raises',  target: '2×12–15',    stub: '—'   },
+    { name: 'Standing calf raise',   target: '2×10–12',    stub: '—'   },
+    { name: 'Pallof press',          target: '2×10/side',  stub: '—'   },
+  ],
+  GYM_B: [
+    { name: 'Weighted pull-ups',         target: '3×5–6',  stub: '+20' },
+    { name: 'Chest-supported row',       target: '3×8–10', stub: '60'  },
+    { name: 'Seated DB OHP',             target: '2×8–10', stub: '20'  },
+    { name: 'Cable hip abduction',       target: '2×12–15/side', stub: '—' },
+    { name: 'Face pulls',                target: '2×12–15', stub: '—'  },
+    { name: 'Cable lateral raises',      target: '2×12–15', stub: '—'  },
+    { name: 'Incline DB curl',           target: '2×10–12', stub: '—'  },
+    { name: 'Overhead tricep ext.',      target: '2×10–12', stub: '—'  },
+    { name: 'Ab wheel rollout',          target: '2×8–10',  stub: 'BW' },
+  ],
+  GYM_C: [
+    { name: 'Trap bar deadlift',         target: '3×4–5',   stub: '100' },
+    { name: 'Incline DB press',          target: '3×8–10',  stub: '28'  },
+    { name: 'Bulgarian split squats',    target: '3×8–10/leg', stub: '20' },
+    { name: 'Nordic hamstring curl',     target: '2×5–8',   stub: 'BW'  },
+    { name: 'Dips',                      target: '2×8–12',  stub: 'BW'  },
+    { name: 'Leg extension',             target: '2×12–15', stub: '45'  },
+    { name: 'DB lateral raises',         target: '2×12–15', stub: '—'   },
+    { name: 'Seated calf raise',         target: '2×12–15', stub: '—'   },
+    { name: 'Cable crunch',              target: '2×15–20', stub: '—'   },
+  ]
+};
+
+const CYCLING_PLANS = {
+  CYCLING_VO2MAX: {
+    purpose: 'Improve ability to handle steep climbs, surges, and repeated hard gravel efforts.',
+    options: [
+      '5 × 3 min hard / 3 min easy',
+      '6 × 4 min hard / 4 min easy',
+      '8–10 × 60–90 sec uphill hard',
+      '3 × 10 min: 30 sec hard / 90 sec moderate',
+    ],
+    fueling: 'TKD: 15–25 g maltodextrin in water 15–30 min before hard block.'
+  },
+  CYCLING_THRESHOLD: {
+    purpose: 'Improve sustained gravel pace and climbing power.',
+    options: [
+      '3 × 12–15 min sweet spot',
+      '4 × 8 min threshold',
+      '2 × 20 min controlled threshold',
+      '4 × 8 min low-cadence strength endurance @ 60–70 rpm',
+    ],
+    fueling: 'TKD: 15–25 g maltodextrin in water 15–30 min before.'
+  },
+  CYCLING_LONG: {
+    purpose: 'Aerobic durability, fat oxidation, technical handling, fueling practice.',
+    options: [
+      '3–5 hours mostly Z1–Z2',
+      'Optional: tempo finish or climb blocks in final hour',
+      'Optional: rough terrain / gravel handling drills',
+      'Electrolytes: 500–700 mg sodium/hr on top of baseline',
+    ],
+    fueling: 'No TKD needed for Z2. Add maltodextrin : fructose 2:1 @ 60–80 g/hr if pushing high intensity (>90 min at effort).'
+  }
+};
+
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let logContent = '';
+let logSha     = '';
+let lastLoads  = {}; // { exerciseName: 'load string' }
+let todayType  = '';
+let accentClass = '';
+
+// ─────────────────────────────────────────────
+// TOKEN MANAGEMENT
+// ─────────────────────────────────────────────
+function getToken() { return localStorage.getItem('gh_token') || ''; }
+
+function saveToken() {
+  const v = document.getElementById('token-input').value.trim();
+  if (!v) { showToast('Enter a token first', 'error'); return; }
+  localStorage.setItem('gh_token', v);
+  document.getElementById('token-modal').classList.add('hidden');
+  init();
+}
+
+function showTokenModal() {
+  document.getElementById('token-input').value = getToken();
+  document.getElementById('token-modal').classList.remove('hidden');
+}
+
+// ─────────────────────────────────────────────
+// CARD TOGGLE
+// ─────────────────────────────────────────────
+function toggleCard(bodyId, chevId) {
+  const b = document.getElementById(bodyId);
+  const c = document.getElementById(chevId);
+  b.classList.toggle('hidden');
+  c.classList.toggle('open');
+}
+
+// ─────────────────────────────────────────────
+// GITHUB API
+// ─────────────────────────────────────────────
+async function ghFetch(path, opts = {}) {
+  const token = getToken();
+  const res = await fetch(`https://api.github.com/repos/${REPO}/${path}`, {
+    headers: {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      ...opts.headers
+    },
+    ...opts
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `GitHub API ${res.status}`);
+  }
+  return res.json();
+}
+
+async function fetchLog() {
+  const data = await ghFetch(`contents/${FILE}`);
+  logSha     = data.sha;
+  logContent = atob(data.content.replace(/\n/g, ''));
+  return logContent;
+}
+
+async function commitLog(newContent) {
+  const encoded = btoa(unescape(encodeURIComponent(newContent)));
+  await ghFetch(`contents/${FILE}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: `log: add session ${todayISODate()}`,
+      content: encoded,
+      sha: logSha
+    })
+  });
+}
+
+// ─────────────────────────────────────────────
+// LOG PARSING — extract last known loads
+// ─────────────────────────────────────────────
+function parseLastLoads(content, sessionType) {
+  const loads = {};
+  // Find the most-recent entry of this session type
+  // Entries start with: ## YYYY-MM-DD | SESSION_TYPE
+  const entries = content.split(/\n(?=## \d{4}-\d{2}-\d{2})/);
+  // Walk entries from newest (top of file after header) to find sessionType
+  let found = null;
+  for (const entry of entries) {
+    const headerMatch = entry.match(/^## (\d{4}-\d{2}-\d{2})\s*\|\s*(\w+)/);
+    if (headerMatch && headerMatch[2] === sessionType) {
+      found = entry;
+      break;
+    }
+  }
+  if (!found) return loads;
+
+  // Parse the key lifts table
+  const tableSection = found.match(/### Key lifts[\s\S]*?(?=\n###|\n---|\n## |$)/);
+  if (!tableSection) return loads;
+
+  const lines = tableSection[0].split('\n');
+  for (const line of lines) {
+    // | Exercise name | Sets×Reps | Load (kg) | Notes |
+    const cols = line.split('|').map(s => s.trim()).filter(Boolean);
+    if (cols.length >= 3 && !cols[0].startsWith('---') && cols[0] !== 'Exercise') {
+      loads[cols[0].toLowerCase()] = cols[2]; // load column
+    }
+  }
+  return loads;
+}
+
+function getLoad(exerciseName) {
+  const key = exerciseName.toLowerCase();
+  if (lastLoads[key] && lastLoads[key] !== '—') return lastLoads[key];
+  // Try partial match
+  for (const [k, v] of Object.entries(lastLoads)) {
+    if (k.includes(key.split(' ')[0]) || key.includes(k.split(' ')[0])) {
+      if (v && v !== '—') return v;
+    }
+  }
+  return null;
+}
+
+// ─────────────────────────────────────────────
+// DATE HELPERS
+// ─────────────────────────────────────────────
+function todayISODate() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const dd= String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${dd}`;
+}
+
+function formatDisplayDate(date) {
+  return date.toLocaleDateString('en-GB', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+}
+
+// ─────────────────────────────────────────────
+// RENDER: TODAY'S PLAN
+// ─────────────────────────────────────────────
+function renderPlan() {
+  const body = document.getElementById('plan-body');
+  const isGym = ['GYM_A','GYM_B','GYM_C'].includes(todayType);
+  const isCycling = ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
+
+  if (isGym) {
+    const exercises = GYM_PLAN[todayType];
+    let html = `<table class="plan-table">
+      <thead><tr>
+        <th>Exercise</th>
+        <th>Target</th>
+        <th>Last</th>
+      </tr></thead><tbody>`;
+    for (const ex of exercises) {
+      const load = getLoad(ex.name);
+      const loadHtml = load
+        ? `<span class="last-load load-val">${load}</span>`
+        : `<span class="last-load load-stub">${ex.stub}</span>`;
+      html += `<tr>
+        <td class="exname">${ex.name}</td>
+        <td class="target">${ex.target}</td>
+        <td>${loadHtml}</td>
+      </tr>`;
+    }
+    html += `</tbody></table>`;
+    html += `<div class="mobility-tip">🧘 10 min mobility after: hip flexors · pigeon/90-90 · couch stretch · thoracic open book · cat-cow</div>`;
+    if (todayType === 'GYM_A' || todayType === 'GYM_C') {
+      html += `<div class="mobility-tip" style="margin-top:8px;background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);color:#86efac;">⚡ Activation first: single-leg glute bridge 10/side · Copenhagen side plank 20–30 s/side</div>`;
+    }
+    body.innerHTML = html;
+  } else if (isCycling) {
+    const plan = CYCLING_PLANS[todayType];
+    let html = `<div class="cycling-block">
+      <div class="cy-label">Purpose</div>
+      <div class="cy-value">${plan.purpose}</div>
+      <div class="cy-label">Workout Options</div>
+      <ul class="cy-interval-list">`;
+    for (const opt of plan.options) {
+      html += `<li>${opt}</li>`;
+    }
+    html += `</ul>
+      <div class="fueling-tip">⚡ <strong>Fueling</strong> — ${plan.fueling}</div>
+    </div>`;
+    body.innerHTML = html;
+  } else {
+    // REST
+    body.innerHTML = `<div class="cycling-block">
+      <div class="cy-label">Today</div>
+      <div class="cy-value">Recovery — mobility, easy spin, walk, or full rest.</div>
+      <ul class="cy-interval-list">
+        <li>Easy aerobic: 20–40 min Z1 spin or walk</li>
+        <li>Mobility: full 10-min routine</li>
+        <li>Optional easy swim: 20–30 min technique</li>
+        <li>Extra sleep if fatigue is elevated</li>
+      </ul>
+    </div>`;
+  }
+}
+
+// ─────────────────────────────────────────────
+// RENDER: LOG FORM
+// ─────────────────────────────────────────────
+function renderLogForm() {
+  const body = document.getElementById('log-body');
+  const isGym     = ['GYM_A','GYM_B','GYM_C'].includes(todayType);
+  const isCycling = ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
+
+  const accentSel = isGym ? 'selected-gym' : isCycling ? 'selected-cycle' : 'selected-rest';
+
+  // Session-type picker (allows logging a different type if needed)
+  let html = `
+    <div class="form-row">
+      <label class="form-label">Session Type</label>
+      <select id="log-session-type">`;
+  for (const t of SESSION_TYPES) {
+    html += `<option value="${t}" ${t === todayType ? 'selected' : ''}>${t.replace(/_/g,' ')}</option>`;
+  }
+  html += `</select>
+    </div>`;
+
+  // Fatigue score
+  html += `<div class="form-row">
+    <label class="form-label">Fatigue Before (1=fresh → 5=very tired)</label>
+    <div class="score-row" id="fatigue-row">`;
+  for (let i=1;i<=5;i++) {
+    html += `<button class="score-btn" data-group="fatigue" data-val="${i}" onclick="selectScore(this,'${accentSel}')">${i}</button>`;
+  }
+  html += `</div></div>`;
+
+  // Sleep score
+  html += `<div class="form-row">
+    <label class="form-label">Sleep Quality (1=poor → 5=excellent)</label>
+    <div class="score-row" id="sleep-row">`;
+  for (let i=1;i<=5;i++) {
+    html += `<button class="score-btn" data-group="sleep" data-val="${i}" onclick="selectScore(this,'${accentSel}')">${i}</button>`;
+  }
+  html += `</div></div>`;
+
+  // RPE
+  html += `<div class="form-row">
+    <label class="form-label">Session RPE (1–10)</label>
+    <div class="score-row" id="rpe-row" style="flex-wrap:wrap;gap:6px;">`;
+  for (let i=1;i<=10;i++) {
+    html += `<button class="score-btn" data-group="rpe" data-val="${i}" onclick="selectScore(this,'${accentSel}')" style="min-width:42px;flex:none;">${i}</button>`;
+  }
+  html += `</div></div>`;
+
+  // Notes
+  html += `<div class="form-row">
+    <label class="form-label">Notes</label>
+    <textarea id="log-notes" placeholder="What felt hard, what moved well, any pain/discomfort…"></textarea>
+  </div>`;
+
+  // Gym-specific lifts table
+  if (isGym) {
+    const exercises = GYM_PLAN[todayType];
+    html += `<div class="section-title">Key Lifts</div>
+    <table class="lifts-log-table">
+      <thead><tr>
+        <th>Exercise</th>
+        <th>Sets×Reps</th>
+        <th>Load (kg)</th>
+      </tr></thead><tbody>`;
+    for (const ex of exercises) {
+      const load = getLoad(ex.name) || ex.stub;
+      const safeName = ex.name.replace(/[^a-z0-9]/gi,'_');
+      html += `<tr>
+        <td class="lift-name">${ex.name}<span>${ex.target}</span></td>
+        <td style="width:90px;padding-right:6px;">
+          <input type="text" class="lift-sets-input" id="sets_${safeName}" value="${ex.target}" style="width:100%;padding:7px 6px;font-size:12px;">
+        </td>
+        <td style="width:90px;">
+          <input type="text" class="load-input lift-load-input" id="load_${safeName}"
+            data-exercise="${ex.name}" value="${load !== '—' ? load : ''}" placeholder="—">
+        </td>
+      </tr>`;
+    }
+    html += `</tbody></table>`;
+  }
+
+  // Cycling-specific fields
+  if (isCycling) {
+    html += `<div class="section-title">Endurance Data</div>
+    <div class="endu-grid">
+      <div>
+        <label class="form-label">Duration (min)</label>
+        <input type="number" id="endu-duration" placeholder="90">
+      </div>
+      <div>
+        <label class="form-label">Avg Power (W) or Pace</label>
+        <input type="text" id="endu-power" placeholder="220W or 4:30/km">
+      </div>
+      <div>
+        <label class="form-label">Intervals Done</label>
+        <input type="text" id="endu-intervals" placeholder="4/5">
+      </div>
+      <div>
+        <label class="form-label">Terrain</label>
+        <select id="endu-terrain">
+          <option value="gravel">Gravel</option>
+          <option value="road">Road</option>
+          <option value="mixed">Mixed</option>
+          <option value="trainer">Trainer</option>
+          <option value="treadmill">Treadmill</option>
+          <option value="track">Track</option>
+        </select>
+      </div>
+    </div>`;
+  }
+
+  // Submit
+  const btnClass = isGym ? 'gym-btn' : isCycling ? 'cycle-btn' : 'rest-btn';
+  html += `<div style="margin-top:20px;">
+    <button id="submit-btn" class="${btnClass}" onclick="submitLog()">
+      Commit to Workout Log
+    </button>
+    <div id="submit-status" style="text-align:center;margin-top:10px;font-size:13px;color:var(--muted);min-height:20px;"></div>
+  </div>`;
+
+  body.innerHTML = html;
+}
+
+// Score selector
+function selectScore(btn, accentClass) {
+  const group = btn.dataset.group;
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(b => {
+    b.classList.remove('selected-gym','selected-cycle','selected-rest');
+  });
+  btn.classList.add(accentClass);
+}
+
+function getScore(group) {
+  const el = document.querySelector(`[data-group="${group}"].selected-gym, [data-group="${group}"].selected-cycle, [data-group="${group}"].selected-rest`);
+  return el ? el.dataset.val : null;
+}
+
+// ─────────────────────────────────────────────
+// BUILD MARKDOWN ENTRY
+// ─────────────────────────────────────────────
+function buildEntry() {
+  const sessionType = document.getElementById('log-session-type').value;
+  const fatigue  = getScore('fatigue') || '?';
+  const sleep    = getScore('sleep')   || '?';
+  const rpe      = getScore('rpe')     || '?';
+  const notes    = (document.getElementById('log-notes').value || '').trim();
+  const isGym    = ['GYM_A','GYM_B','GYM_C'].includes(sessionType);
+  const isCycling= ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(sessionType);
+
+  let md = `## ${todayISODate()} | ${sessionType}\n`;
+  md += `- fatigue_before: ${fatigue}/5\n`;
+  md += `- sleep: ${sleep}/5\n`;
+  md += `- rpe: ${rpe}/10\n`;
+  if (notes) md += `- notes: ${notes}\n`;
+
+  if (isGym) {
+    const exercises = GYM_PLAN[sessionType];
+    md += `\n### Key lifts\n`;
+    md += `| Exercise | Sets×Reps | Load (kg) | Notes |\n`;
+    md += `|---|---|---|---|\n`;
+    for (const ex of exercises) {
+      const safeName = ex.name.replace(/[^a-z0-9]/gi,'_');
+      const loadEl = document.getElementById(`load_${safeName}`);
+      const setsEl = document.getElementById(`sets_${safeName}`);
+      const load = loadEl ? (loadEl.value.trim() || '—') : '—';
+      const sets = setsEl ? (setsEl.value.trim() || ex.target) : ex.target;
+      md += `| ${ex.name} | ${sets} | ${load} | |\n`;
+    }
+  }
+
+  if (isCycling) {
+    const dur      = document.getElementById('endu-duration')?.value.trim()   || '';
+    const power    = document.getElementById('endu-power')?.value.trim()      || '';
+    const ints     = document.getElementById('endu-intervals')?.value.trim()  || '';
+    const terrain  = document.getElementById('endu-terrain')?.value           || '';
+    md += `\n### Endurance\n`;
+    if (dur)     md += `- duration: ${dur}min\n`;
+    if (power)   md += `- avg_power_or_pace: ${power}\n`;
+    if (ints)    md += `- intervals_completed: ${ints}\n`;
+    if (terrain) md += `- terrain: ${terrain}\n`;
+  }
+
+  return md;
+}
+
+// ─────────────────────────────────────────────
+// SUBMIT LOG
+// ─────────────────────────────────────────────
+async function submitLog() {
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true;
+  btn.textContent = 'Committing…';
+  status.textContent = '';
+
+  try {
+    // Re-fetch to get latest SHA before committing
+    await fetchLog();
+
+    const newEntry = buildEntry();
+    // Prepend: insert after the first `---` separator (after format spec)
+    // The file structure is: header comment → template comment → --- separator → entries
+    const insertPoint = logContent.indexOf('\n---\n');
+    let newContent;
+    if (insertPoint !== -1) {
+      const before = logContent.slice(0, insertPoint + 5); // include the \n---\n
+      const after  = logContent.slice(insertPoint + 5);
+      newContent = before + '\n' + newEntry + '\n---\n\n' + after;
+    } else {
+      newContent = logContent + '\n---\n\n' + newEntry + '\n---\n';
+    }
+
+    await commitLog(newContent);
+
+    // Update local state
+    logContent = newContent;
+    lastLoads  = parseLastLoads(logContent, todayType);
+
+    showToast('✓ Logged & committed', 'success');
+    btn.textContent = '✓ Committed!';
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = 'Commit to Workout Log';
+    }, 3000);
+  } catch (err) {
+    console.error(err);
+    status.textContent = err.message;
+    showToast('Error: ' + err.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Commit to Workout Log';
+  }
+}
+
+// ─────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = ''; }, 3000);
+}
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+async function init() {
+  const today = new Date();
+  const dow   = today.getDay();
+  todayType   = DAY_SESSION[dow] || 'REST';
+
+  const isGym    = ['GYM_A','GYM_B','GYM_C'].includes(todayType);
+  const isCycling= ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
+  accentClass    = isGym ? 'selected-gym' : isCycling ? 'selected-cycle' : 'selected-rest';
+
+  // Header
+  document.getElementById('date-line').textContent = formatDisplayDate(today);
+  const badge = document.getElementById('session-badge');
+  badge.textContent = todayType.replace(/_/g,' ');
+  badge.className = 'session-badge ' + (isGym ? 'badge-gym' : isCycling ? 'badge-cycle' : 'badge-rest');
+
+  document.title = `${todayType.replace(/_/g,' ')} — Training Dashboard`;
+
+  // Check token
+  if (!getToken()) {
+    document.getElementById('loader').style.display = 'none';
+    showTokenModal();
+    return;
+  }
+
+  try {
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('content').style.display = 'none';
+
+    await fetchLog();
+    lastLoads = parseLastLoads(logContent, todayType);
+
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+
+    renderPlan();
+    renderLogForm();
+  } catch (err) {
+    document.getElementById('loader').innerHTML =
+      `<div style="color:var(--danger)">Failed to load log: ${err.message}</div>
+       <div style="margin-top:12px;color:var(--muted);font-size:13px;">Check your GitHub token and try again.</div>
+       <button onclick="showTokenModal()" style="margin-top:16px;padding:10px 20px;background:var(--surface2);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:14px;cursor:pointer;">Update Token</button>`;
+  }
+}
+
+// Start
+init();
+</script>
+</body>
+</html>
