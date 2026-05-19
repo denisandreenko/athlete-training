@@ -65,7 +65,6 @@
   .macro-num { text-align: right; color: var(--muted); font-size: 12px; white-space: nowrap; padding: 6px 4px; }
   .del-btn { background: none; border: none; color: #444; font-size: 16px; cursor: pointer; padding: 4px; line-height: 1; -webkit-tap-highlight-color: transparent; }
   .del-btn:active { color: var(--danger); }
-  .ref-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-left: 4px; vertical-align: middle; title: "linked to reference"; }
 
   /* Meal totals row */
   .total-row td { font-weight: 700; font-size: 12px; color: var(--text); border-top: 1px solid var(--border); padding-top: 8px; }
@@ -469,11 +468,9 @@ function renderMealRows(mi) {
   const meal = meals[mi];
   meal.items.forEach((item, ii) => {
     const tr = document.createElement('tr');
-    const refDot = item.ref ? `<span class="ref-dot" title="Auto-calculated from reference"></span>` : '';
     tr.innerHTML = `
       <td class="name-cell">
         <input type="text" value="${escHtml(item.name)}" oninput="updateItemName(${mi},${ii},this.value)">
-        ${refDot}
       </td>
       <td><input type="number" value="${item.amount || ''}" min="0" step="1" style="width:68px;" oninput="updateAmount(${mi},${ii},this.value)"></td>
       <td class="macro-num" id="prot-${mi}-${ii}">${item.protein}</td>
