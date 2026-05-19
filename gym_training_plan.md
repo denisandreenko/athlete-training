@@ -1,8 +1,8 @@
-# Gym Training Plan (Triathlon + Strength / Hypertrophy)
+# Gym Training Plan (Strength / Hypertrophy)
 
 **Split:** Mon **Day A** (squat / horizontal push / vertical pull), Wed **Day B** (pull / overhead press / arms / core), Fri **Day C** (hinge / incline push / single-leg). **~61 working sets/week** across three ~50–55 min sessions (including short activation + mobility). Squat pattern and hinge pattern on **different days** to limit lumbar stress.
 
-**Progress:** log loads in [Routine - Training.csv](Routine%20-%20Training.csv).
+**Progress:** log loads in `workout_log.md`.
 
 ---
 
@@ -61,7 +61,7 @@
 
 **Before Day A and Day C (gym):** ~3 min total — single-leg glute bridge 10/side (3 s hold at top); Copenhagen side plank (bent knee) 1 × 20–30 s/side.
 
-**Before weekday cycling (Tue, Thu — start of swim + bike/run block):** hip flexor stretch **30 s/side** + leg swings **10/side** (~2 min). See [schedule.md](schedule.md).
+**Before weekday cycling (Tue, Thu):** hip flexor stretch **30 s/side** + leg swings **10/side** (~2 min).
 
 **Before Saturday long ride:** hip flexor stretch 30 s/side; leg swings front/back + lateral 10/side; deep squat hold **60 s**; single-leg glute bridge **10/side** (~4 min).
 
@@ -76,17 +76,10 @@
 
 ---
 
-## Run warmup (before running quality sessions)
-
-* 5–10 min easy jog  
-* 5 min A-skips, B-skips, high knees  
-
----
-
 ## General guidelines
 
 * No supersets in the written plan — full rest between exercises as prescribed.  
-* **Weeks 1–6 (endurance A/B block):** Friday after gym = **REST** (no PM endurance). See [schedule.md](schedule.md).  
+* **Weeks 1–6 (initial block):** Friday after gym = **REST** (no PM endurance).  
 * **Compounds (hack squat, bench, trap bar deadlift, pull-ups):** hit the prescribed **RPE** each session; add weight when all sets reach the **top of the rep range** at that RPE.  
 * **Accessories:** double progression — add reps within the prescribed range on all sets, then increase load.  
 * **Deload:** every **4th week**, reduce compound loads ~**20%** or remove **1 set** per exercise for that week.

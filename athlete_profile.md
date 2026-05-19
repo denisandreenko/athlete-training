@@ -6,17 +6,9 @@ Body fat: ~11%
 Diet: ketogenic  
 Primary goal: balanced hypertrophy, strength, mobility, gravel cycling performance, and calisthenics skills.
 
-# Previous Training Background
-
-I previously trained like a triathlete:
-- Gym 3x/week
-- Running VO2max and threshold
-- Cycling VO2max and threshold
-- Long cycling on Saturday
-- Long running on Sunday
-- Swimming 2–3x/week
-
 # Current Transition
+
+*Previously a triathlete (3× gym, VO2max/threshold run+cycle, long ride Saturdays, 2–3× swim/week). Now transitioning away from triathlon.*
 
 I am moving away from triathlon and toward:
 1. Gravel cycling as the main endurance sport
@@ -43,10 +35,31 @@ Current gym frequency:
 - Wednesday
 - Friday
 
-# Key Preferences
+# Calisthenics Skill Level (as of 2026-05)
 
-- I like structured plans.
-- I want efficient training.
-- I do not want junk volume.
-- I want clear guidance on what to stop, replace, or prioritize.
-- I want training and nutrition to work together.
+| Skill | Current level |
+|-------|--------------|
+| Handstand | Wall holds comfortable; working toward kick-up/balance |
+| Muscle-up | Explosive pull-ups; attempting bar muscle-up transition |
+| L-sit | Tuck L-sit; progressing to single-leg extension |
+| Front lever | Not yet started |
+| Planche | Not yet started |
+
+Progressions to focus on:
+- **Handstand:** kick-up consistency → freestanding balance drills → wall-facing holds
+- **Muscle-up:** high pull-up + transition drill → bar MU negatives → clean reps
+- **L-sit:** tuck hold duration → single-leg → full extension
+- **Planche lean:** intro after L-sit progresses
+
+# Cycling Setup
+
+- **Indoor:** full metrics — power (smart trainer / ERG), heart rate, GPS
+- **Outdoor (Saturday long rides):** heart rate + GPS only, no power meter
+- Training data syncs to Garmin and Strava (no API connector currently available)
+
+# Training Block Status
+
+- Structured program not yet started (will notify when ready to begin)
+- No races or events planned — training for general performance
+- Post-recovery reintroductions (plyos, bilateral hip thrust, back squat) available — no active injuries
+

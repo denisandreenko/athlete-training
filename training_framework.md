@@ -145,10 +145,25 @@ Every 4th week:
 
 ## Fatigue Rules
 
-If fatigue is high:
-1. Remove optional running first.
-2. Remove swimming intensity.
-3. Reduce gym leg accessories.
-4. Keep cycling quality but reduce interval count.
-5. Keep skill work technical, not fatiguing.
-6. Do not remove all easy aerobic work unless needed.
+**Removal order when overloaded:**
+1. Optional run
+2. Optional swim
+3. Extra skill volume
+4. Gym accessory volume
+5. Cycling interval volume
+6. Long ride duration
+7. Main strength compounds (last resort)
+
+**Physical warning signs to watch for:**
+Poor sleep · elevated resting HR · reduced libido · persistent soreness · loss of motivation · declining interval power · heavy legs for multiple days · irritability · reduced grip strength · poor gym performance
+
+---
+
+## Do Not Do By Default
+
+* Do not add more endurance volume just because capacity exists.
+* Do not keep triathlon running intensity unless specifically requested.
+* Do not make every ride hard.
+* Do not turn calisthenics skill practice into failure training.
+* Do not combine hard leg gym, VO2max cycling, and long ride too close together without recovery.
+* Do not recommend strict keto during race simulation if performance fueling is the priority.
