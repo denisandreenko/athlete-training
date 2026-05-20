@@ -33,6 +33,34 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-05-20 | SWIM
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Полуденный заплыв" · 0.6km · avg HR 119 · max HR 158
+
+### Endurance
+- duration: 11min
+- avg_power_or_pace: 1:51/100m
+- terrain: trainer
+
+---
+
+
+## 2026-05-20 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Climb Portal: Cote de Domancy at 50% Elevation in France" · 4.8km · 128m gain · avg HR 121 · max HR 133
+
+### Endurance
+- duration: 13min
+- avg_power_or_pace: 193W
+- terrain: trainer
+
+---
+
+
 ## 2026-05-18 | CYCLING_THRESHOLD
 - fatigue_before: ?
 - sleep: ?
