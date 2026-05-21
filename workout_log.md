@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-05-21 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Step-Down Intervals" · 31.9km · 374m gain · avg HR 128 · max HR 152
+
+### Endurance
+- duration: 61min
+- avg_power_or_pace: 215W
+- terrain: trainer
+
+---
+
+
 ## 2026-05-20 | SWIM
 - fatigue_before: ?
 - sleep: ?
