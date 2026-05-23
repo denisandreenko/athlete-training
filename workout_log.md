@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-05-23 | CYCLING_LONG
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Гравийный велозаезд (утро)" · 51.6km · 369m gain · avg HR 120 · max HR 150
+
+### Endurance
+- duration: 126min
+- avg_power_or_pace: 124W
+- terrain: road
+
+---
+
+
 ## 2026-05-21 | CYCLING_THRESHOLD
 - fatigue_before: ?
 - sleep: ?
