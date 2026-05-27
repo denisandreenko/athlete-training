@@ -33,6 +33,34 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-05-27 | SWIM
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Afternoon Swim" · 0.5km · avg HR 110 · max HR 139
+
+### Endurance
+- duration: 11min
+- avg_power_or_pace: 2:23/100m
+- terrain: trainer
+
+---
+
+
+## 2026-05-27 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Low-Cadence Intervals" · 28.4km · 156m gain · avg HR 127 · max HR 145
+
+### Endurance
+- duration: 50min
+- avg_power_or_pace: 207W
+- terrain: trainer
+
+---
+
+
 ## 2026-05-23 | CYCLING_LONG
 - fatigue_before: ?
 - sleep: ?
