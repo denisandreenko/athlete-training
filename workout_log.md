@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-05-30 | CYCLING_LONG
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - The Long Ride" · 53.6km · 440m gain · avg HR 131 · max HR 147
+
+### Endurance
+- duration: 100min
+- avg_power_or_pace: 210W
+- terrain: trainer
+
+---
+
+
 ## 2026-05-27 | SWIM
 - fatigue_before: ?
 - sleep: ?
