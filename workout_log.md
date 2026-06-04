@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-06-04 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Race: Stage 1: Level Up Racing: Sprinter's Playground" · 25.2km · 135m gain · avg HR 135 · max HR 147
+
+### Endurance
+- duration: 43min
+- avg_power_or_pace: 224W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-01 | CYCLING_THRESHOLD
 - fatigue_before: ?
 - sleep: ?
