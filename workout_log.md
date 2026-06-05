@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-06-05 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Final Sharpen" · 16.9km · 90m gain · avg HR 123 · max HR 142
+
+### Endurance
+- duration: 30min
+- avg_power_or_pace: 207W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-04 | CYCLING_THRESHOLD
 - fatigue_before: ?
 - sleep: ?
