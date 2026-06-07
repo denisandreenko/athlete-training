@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-06-06 | CYCLING_LONG
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Taper Steady" · 27.5km · 227m gain · avg HR 130 · max HR 151
+
+### Endurance
+- duration: 50min
+- avg_power_or_pace: 216W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-05 | CYCLING_THRESHOLD
 - fatigue_before: ?
 - sleep: ?
