@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-06-08 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Aurora" · 14.5km · 187m gain · avg HR 126 · max HR 139
+
+### Endurance
+- duration: 30min
+- avg_power_or_pace: 198W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-06 | CYCLING_LONG
 - fatigue_before: ?
 - sleep: ?
