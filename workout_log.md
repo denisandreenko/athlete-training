@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-06-10 | CYCLING_LONG
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Evening Ride" · 19.8km · 146m gain · avg HR 107 · max HR 134
+
+### Endurance
+- duration: 51min
+- avg_power_or_pace: 115W
+- terrain: road
+
+---
+
+
 ## 2026-06-08 | CYCLING_THRESHOLD
 - fatigue_before: ?
 - sleep: ?
