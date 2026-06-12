@@ -3,6 +3,8 @@
 Height: 191 cm  
 Weight: 87 kg  
 Body fat: ~11%  
+Inseam (inner leg): 91 cm  
+Foot size: 305 mm (~EU 48)  
 Diet: ketogenic  
 Primary goal: balanced hypertrophy, strength, mobility, gravel cycling performance, and calisthenics skills.
 
@@ -53,6 +55,7 @@ Progressions to focus on:
 
 # Cycling Setup
 
+- **Pedals:** Shimano SPD (2-bolt) on both gravel and road bikes
 - **Indoor:** full metrics — power (smart trainer / ERG), heart rate, GPS
 - **Outdoor (Saturday long rides):** heart rate + GPS only, no power meter
 - Training data syncs to Garmin and Strava (no API connector currently available)
