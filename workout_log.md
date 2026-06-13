@@ -33,6 +33,20 @@ RPE: 1–10 (Rate of Perceived Exertion for the session overall)
 
 ---
 
+## 2026-06-13 | CYCLING_LONG
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Ghost Pepper" · 19.9km · 32m gain · avg HR 141 · max HR 161
+
+### Endurance
+- duration: 31min
+- avg_power_or_pace: 244W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-10 | CYCLING_LONG
 - fatigue_before: ?
 - sleep: ?
