@@ -44,6 +44,20 @@ READINESS RULE (assistant applies this):
 
 ---
 
+## 2026-06-14 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Spark Plug" · 16.5km · 108m gain · avg HR 128 · max HR 150
+
+### Endurance
+- duration: 30min
+- avg_power_or_pace: 216W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-13 | CYCLING_LONG
 - fatigue_before: ?
 - sleep: ?
