@@ -15,6 +15,10 @@
     --gym-accent: #f59e0b;
     --cycling-accent: #3b82f6;
     --rest-accent: #22c55e;
+    --skill-accent: #a78bfa;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --red: #ef4444;
     --danger: #ef4444;
     --radius: 10px;
     --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -27,198 +31,100 @@
     font-size: 15px;
     line-height: 1.5;
     min-height: 100vh;
-    padding-bottom: 40px;
+    padding-bottom: 48px;
   }
   /* ── Header ── */
   #header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
     padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
   }
-  #header-left h1 {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-  }
-  #header-left .date-line {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 1px;
-  }
-  #session-badge {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+  #header-left h1 { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
+  #header-left .date-line { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  #session-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
   .badge-gym    { background: rgba(245,158,11,.15); color: var(--gym-accent); border: 1px solid rgba(245,158,11,.3); }
   .badge-cycle  { background: rgba(59,130,246,.15); color: var(--cycling-accent); border: 1px solid rgba(59,130,246,.3); }
   .badge-rest   { background: rgba(34,197,94,.12); color: var(--rest-accent); border: 1px solid rgba(34,197,94,.25); }
 
   /* ── Nav bar ── */
-  #nav-bar { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); }
-  .nav-link { flex: 1; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 600; text-decoration: none; color: var(--muted); border-bottom: 2px solid transparent; letter-spacing: 0.2px; -webkit-tap-highlight-color: transparent; }
-  .nav-link.active { color: var(--gym-accent); border-bottom-color: var(--gym-accent); }
+  #nav-bar { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 57px; z-index: 99; }
+  .nav-link { flex: 1; text-align: center; padding: 11px 0; font-size: 13px; font-weight: 600; text-decoration: none; color: var(--muted); border-bottom: 2px solid transparent; letter-spacing: 0.2px; -webkit-tap-highlight-color: transparent; background: none; cursor: pointer; font-family: var(--font); }
+  .nav-link.active { color: var(--text); border-bottom-color: var(--gym-accent); }
 
-  /* ── Main layout ── */
   main { padding: 0 16px; }
 
   /* ── Card ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-top: 14px;
-    overflow: hidden;
-  }
-  .card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 14px 10px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .card-header h2 {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--muted);
-  }
-  .chevron {
-    font-size: 12px;
-    color: var(--muted);
-    transition: transform .2s;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-top: 14px; overflow: hidden; }
+  .card-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 10px; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .card-header h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); }
+  .chevron { font-size: 12px; color: var(--muted); transition: transform .2s; }
   .chevron.open { transform: rotate(180deg); }
   .card-body { padding: 12px 14px 14px; }
   .card-body.hidden { display: none; }
 
+  /* ── Readiness ── */
+  .readiness-banner { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 9px; margin-bottom: 6px; }
+  .readiness-banner.green { background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.3); }
+  .readiness-banner.amber { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3); }
+  .readiness-banner.red   { background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.3); }
+  .readiness-banner.neutral { background: var(--surface2); border: 1px solid var(--border); }
+  .readiness-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .green .readiness-dot { background: var(--green); }
+  .amber .readiness-dot { background: var(--amber); }
+  .red   .readiness-dot { background: var(--red); }
+  .neutral .readiness-dot { background: var(--muted); }
+  .readiness-text strong { font-size: 14px; display: block; }
+  .green .readiness-text strong { color: var(--green); }
+  .amber .readiness-text strong { color: var(--amber); }
+  .red   .readiness-text strong { color: var(--red); }
+  .readiness-text span { font-size: 12px; color: var(--muted); }
+  .recovery-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .recovery-inputs .full { grid-column: 1 / -1; }
+  .hrv-row { display: flex; gap: 6px; }
+  .hrv-btn { flex: 1; padding: 9px 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; color: var(--muted); font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
+  .hrv-btn.sel-balanced  { background: rgba(34,197,94,.2);  border-color: var(--green); color: var(--green); }
+  .hrv-btn.sel-unbalanced{ background: rgba(245,158,11,.2); border-color: var(--amber); color: var(--amber); }
+  .hrv-btn.sel-low, .hrv-btn.sel-poor { background: rgba(239,68,68,.2); border-color: var(--red); color: var(--red); }
+
   /* ── Plan table ── */
   .plan-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .plan-table th {
-    text-align: left;
-    color: var(--muted);
-    font-weight: 600;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    padding: 0 6px 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .plan-table td {
-    padding: 8px 6px;
-    vertical-align: top;
-    border-bottom: 1px solid var(--border);
-  }
+  .plan-table th { text-align: left; color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 0 6px 8px; border-bottom: 1px solid var(--border); }
+  .plan-table td { padding: 8px 6px; vertical-align: top; border-bottom: 1px solid var(--border); }
   .plan-table tr:last-child td { border-bottom: none; }
   .plan-table .exname { font-weight: 600; color: var(--text); }
   .plan-table .target { color: var(--muted); font-size: 12px; }
-  .plan-table .last-load {
-    font-weight: 700;
-    font-size: 13px;
-    white-space: nowrap;
-  }
+  .plan-table .last-load { font-weight: 700; font-size: 13px; white-space: nowrap; }
   .load-stub { color: var(--muted); }
   .load-val  { color: var(--gym-accent); }
 
   /* ── Cycling plan ── */
   .cycling-block { font-size: 14px; }
-  .cycling-block .cy-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-  .cycling-block .cy-value {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 14px;
-  }
+  .cycling-block .cy-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+  .cycling-block .cy-value { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; }
   .cycling-block .cy-value:last-child { margin-bottom: 0; }
-  .cy-interval-list {
-    list-style: none;
-    padding: 0;
-  }
-  .cy-interval-list li {
-    padding: 7px 10px;
-    margin-bottom: 6px;
-    background: var(--surface2);
-    border-radius: 7px;
-    font-size: 14px;
-    color: var(--text);
-  }
-  .fueling-tip {
-    background: rgba(59,130,246,.1);
-    border: 1px solid rgba(59,130,246,.25);
-    border-radius: 7px;
-    padding: 9px 12px;
-    font-size: 13px;
-    color: #93c5fd;
-    margin-top: 12px;
-  }
+  .cy-interval-list { list-style: none; padding: 0; }
+  .cy-interval-list li { padding: 7px 10px; margin-bottom: 6px; background: var(--surface2); border-radius: 7px; font-size: 14px; color: var(--text); }
+  .fueling-tip { background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.25); border-radius: 7px; padding: 9px 12px; font-size: 13px; color: #93c5fd; margin-top: 12px; }
   .fueling-tip strong { color: var(--cycling-accent); }
 
+  /* ── Calisthenics add-on tip ── */
+  .skill-tip { background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.28); border-radius: 7px; padding: 9px 12px; font-size: 13px; color: #c4b5fd; margin-top: 12px; }
+  .skill-tip strong { color: var(--skill-accent); }
+
   /* ── Log form ── */
-  .form-row {
-    margin-bottom: 14px;
-  }
-  .form-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .score-row {
-    display: flex;
-    gap: 8px;
-  }
-  .score-btn {
-    flex: 1;
-    padding: 10px 0;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    color: var(--muted);
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: center;
-    -webkit-tap-highlight-color: transparent;
-    transition: background .15s, color .15s, border-color .15s;
-  }
+  .form-row { margin-bottom: 14px; }
+  .form-label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+  .score-row { display: flex; gap: 8px; }
+  .score-btn { flex: 1; padding: 10px 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; color: var(--muted); font-size: 16px; font-weight: 700; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; transition: background .15s, color .15s, border-color .15s; }
   .score-btn.selected-gym   { background: rgba(245,158,11,.2); border-color: var(--gym-accent); color: var(--gym-accent); }
   .score-btn.selected-cycle { background: rgba(59,130,246,.2); border-color: var(--cycling-accent); color: var(--cycling-accent); }
   .score-btn.selected-rest  { background: rgba(34,197,94,.15); border-color: var(--rest-accent); color: var(--rest-accent); }
 
   input[type="text"], input[type="number"], textarea, select {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    color: var(--text);
-    font-family: var(--font);
-    font-size: 15px;
-    padding: 10px 12px;
-    outline: none;
-    -webkit-appearance: none;
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px;
+    color: var(--text); font-family: var(--font); font-size: 15px; padding: 10px 12px; outline: none; -webkit-appearance: none;
   }
   input[type="number"] { -moz-appearance: textfield; }
   input[type="number"]::-webkit-inner-spin-button { display: none; }
@@ -227,168 +133,70 @@
 
   /* ── Lifts log table ── */
   .lifts-log-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .lifts-log-table th {
-    text-align: left;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    color: var(--muted);
-    padding: 0 0 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .lifts-log-table td {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
+  .lifts-log-table th { text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); padding: 0 0 8px; border-bottom: 1px solid var(--border); }
+  .lifts-log-table td { padding: 8px 0; border-bottom: 1px solid var(--border); vertical-align: middle; }
   .lifts-log-table tr:last-child td { border-bottom: none; }
   .lifts-log-table .lift-name { font-size: 13px; font-weight: 600; padding-right: 8px; }
   .lifts-log-table .lift-name span { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 1px; }
-  .lifts-log-table .load-input {
-    width: 80px;
-    padding: 7px 8px;
-    text-align: center;
-  }
-  .lifts-log-table .rpe-input {
-    width: 60px;
-    padding: 7px 8px;
-    text-align: center;
-  }
+  .lifts-log-table .load-input { width: 80px; padding: 7px 8px; text-align: center; }
 
-  /* ── Endurance log ── */
-  .endu-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+  .endu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
   /* ── Submit btn ── */
-  #submit-btn {
-    width: 100%;
-    padding: 16px;
-    font-size: 16px;
-    font-weight: 700;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    margin-top: 6px;
-    -webkit-tap-highlight-color: transparent;
-    transition: opacity .15s;
-  }
+  #submit-btn { width: 100%; padding: 16px; font-size: 16px; font-weight: 700; border: none; border-radius: var(--radius); cursor: pointer; margin-top: 6px; -webkit-tap-highlight-color: transparent; transition: opacity .15s; }
   #submit-btn:active { opacity: 0.8; }
   #submit-btn.gym-btn   { background: var(--gym-accent); color: #000; }
   #submit-btn.cycle-btn { background: var(--cycling-accent); color: #fff; }
   #submit-btn.rest-btn  { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
   #submit-btn:disabled  { opacity: 0.45; cursor: not-allowed; }
 
-  /* ── Status / toast ── */
-  #toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    padding: 11px 22px;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: transform .3s cubic-bezier(.175,.885,.32,1.275), opacity .3s;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 999;
-  }
+  /* ── Recent trend ── */
+  .trend-list { display: flex; flex-direction: column; gap: 7px; }
+  .trend-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--surface2); border-radius: 7px; font-size: 13px; }
+  .trend-date { color: var(--muted); font-size: 12px; width: 44px; flex-shrink: 0; }
+  .trend-type { font-weight: 600; flex: 1; }
+  .trend-metrics { display: flex; gap: 8px; font-size: 12px; color: var(--muted); }
+  .trend-chip { padding: 1px 7px; border-radius: 10px; background: rgba(255,255,255,.05); white-space: nowrap; }
+  .chip-green { color: var(--green); } .chip-amber { color: var(--amber); } .chip-red { color: var(--red); }
+
+  /* ── Skills view ── */
+  .skill-cat { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--skill-accent); margin: 18px 0 10px; padding-bottom: 5px; border-bottom: 1px solid var(--border); }
+  .skill-cat:first-child { margin-top: 2px; }
+  .skill-block { margin-bottom: 18px; }
+  .skill-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
+  .skill-head .sk-name { font-size: 15px; font-weight: 700; }
+  .skill-head .sk-lvl { font-size: 12px; color: var(--skill-accent); font-weight: 700; }
+  .skill-goal { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .progress-track { height: 8px; background: var(--surface2); border-radius: 5px; overflow: hidden; margin-bottom: 10px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #8b5cf6, var(--skill-accent)); border-radius: 5px; }
+  .ladder { list-style: none; padding: 0; }
+  .ladder li { display: flex; align-items: flex-start; gap: 9px; padding: 5px 0; font-size: 13px; color: var(--muted); }
+  .ladder li .dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; margin-top: 2px; font-size: 10px; text-align: center; line-height: 12px; }
+  .ladder li.done { color: var(--text); }
+  .ladder li.done .dot { background: var(--skill-accent); border-color: var(--skill-accent); color: #000; }
+  .ladder li.current { color: var(--text); font-weight: 700; }
+  .ladder li.current .dot { border-color: var(--skill-accent); box-shadow: 0 0 0 3px rgba(167,139,250,.2); }
+  .ladder li.current .lab::after { content: ' ← now'; color: var(--skill-accent); font-size: 11px; font-weight: 700; }
+
+  /* ── Toast / modal / misc (unchanged) ── */
+  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface2); border: 1px solid var(--border); border-radius: 30px; padding: 11px 22px; font-size: 14px; font-weight: 600; white-space: nowrap; transition: transform .3s cubic-bezier(.175,.885,.32,1.275), opacity .3s; opacity: 0; pointer-events: none; z-index: 999; }
   #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
   #toast.success { background: rgba(34,197,94,.15); border-color: var(--rest-accent); color: var(--rest-accent); }
   #toast.error   { background: rgba(239,68,68,.15); border-color: var(--danger); color: var(--danger); }
-
-  /* ── Token modal ── */
-  #token-modal {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.85);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 200;
-    padding: 24px;
-  }
+  #token-modal { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 24px; }
   #token-modal.hidden { display: none; }
-  .modal-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    width: 100%;
-    max-width: 360px;
-  }
+  .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; width: 100%; max-width: 360px; }
   .modal-box h3 { font-size: 18px; margin-bottom: 8px; }
   .modal-box p  { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
-  .modal-box input {
-    width: 100%;
-    margin-bottom: 14px;
-    font-size: 13px;
-    font-family: monospace;
-  }
-  .modal-btn {
-    width: 100%;
-    padding: 14px;
-    background: var(--gym-accent);
-    color: #000;
-    font-size: 15px;
-    font-weight: 700;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-
-  /* ── Settings gear ── */
-  #settings-btn {
-    background: none; border: none; color: var(--muted);
-    font-size: 20px; cursor: pointer; padding: 4px; line-height: 1;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* ── Loader ── */
-  #loader {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  /* ── Divider ── */
-  .divider { border: none; border-top: 1px solid var(--border); margin: 2px 0; }
-
-  /* ── Mobility reminder ── */
-  .mobility-tip {
-    background: rgba(245,158,11,.08);
-    border: 1px solid rgba(245,158,11,.2);
-    border-radius: 7px;
-    padding: 9px 12px;
-    font-size: 13px;
-    color: #fcd34d;
-    margin-top: 12px;
-  }
-
-  /* ── Section title inline ── */
-  .section-title {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--muted);
-    margin: 14px 0 8px;
-  }
+  .modal-box input { width: 100%; margin-bottom: 14px; font-size: 13px; font-family: monospace; }
+  .modal-btn { width: 100%; padding: 14px; background: var(--gym-accent); color: #000; font-size: 15px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; }
+  #settings-btn { background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; padding: 4px; line-height: 1; -webkit-tap-highlight-color: transparent; }
+  #loader { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 14px; }
+  .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin: 14px 0 8px; }
+  .mobility-tip { background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.2); border-radius: 7px; padding: 9px 12px; font-size: 13px; color: #fcd34d; margin-top: 12px; }
 
   @media (prefers-color-scheme: light) {
-    :root {
-      --bg: #f5f5f5;
-      --surface: #fff;
-      --surface2: #f0f0f0;
-      --border: #e0e0e0;
-      --text: #111;
-      --muted: #666;
-    }
+    :root { --bg: #f5f5f5; --surface: #fff; --surface2: #f0f0f0; --border: #e0e0e0; --text: #111; --muted: #666; }
   }
 </style>
 </head>
@@ -416,13 +224,25 @@
   </div>
 </div>
 <nav id="nav-bar">
-  <a class="nav-link active" href="dashboard.html">🏋 Training</a>
+  <button class="nav-link active" id="tab-training" onclick="showView('training')">🏋 Training</button>
+  <button class="nav-link" id="tab-skills" onclick="showView('skills')">🤸 Skills</button>
   <a class="nav-link" href="nutrition_editor.html">🥩 Nutrition</a>
 </nav>
 
 <main>
   <div id="loader">Loading workout log…</div>
-  <div id="content" style="display:none;">
+
+  <!-- TRAINING VIEW -->
+  <div id="view-training" style="display:none;">
+
+    <!-- Recovery -->
+    <div class="card" id="recovery-card">
+      <div class="card-header" onclick="toggleCard('recovery-body','recovery-chevron')">
+        <h2>Morning Recovery</h2>
+        <span class="chevron open" id="recovery-chevron">▼</span>
+      </div>
+      <div class="card-body" id="recovery-body"><!-- JS --></div>
+    </div>
 
     <!-- Today's Plan -->
     <div class="card" id="plan-card">
@@ -430,9 +250,7 @@
         <h2>Today's Plan</h2>
         <span class="chevron open" id="plan-chevron">▼</span>
       </div>
-      <div class="card-body" id="plan-body">
-        <!-- Populated by JS -->
-      </div>
+      <div class="card-body" id="plan-body"><!-- JS --></div>
     </div>
 
     <!-- Log Form -->
@@ -441,11 +259,27 @@
         <h2>Log This Session</h2>
         <span class="chevron open" id="log-chevron">▼</span>
       </div>
-      <div class="card-body" id="log-body">
-        <!-- Populated by JS -->
-      </div>
+      <div class="card-body" id="log-body"><!-- JS --></div>
     </div>
 
+    <!-- Recent -->
+    <div class="card" id="recent-card">
+      <div class="card-header" onclick="toggleCard('recent-body','recent-chevron')">
+        <h2>Last 6 Sessions</h2>
+        <span class="chevron" id="recent-chevron">▼</span>
+      </div>
+      <div class="card-body hidden" id="recent-body"><!-- JS --></div>
+    </div>
+  </div>
+
+  <!-- SKILLS VIEW -->
+  <div id="view-skills" style="display:none;">
+    <div class="card">
+      <div class="card-header" style="cursor:default;">
+        <h2>Calisthenics Progress</h2>
+      </div>
+      <div class="card-body" id="skills-body"><!-- JS --></div>
+    </div>
   </div>
 </main>
 
@@ -456,120 +290,126 @@
 // CONFIG
 // ─────────────────────────────────────────────
 const REPO  = 'denisandreenko/athlete-training';
-const OWNER = 'denisandreenko';
 const FILE  = 'workout_log.md';
+const SKILL_FILE = 'calisthenics_progressions.md';
 
-// ─────────────────────────────────────────────
-// SESSION DEFINITIONS
-// ─────────────────────────────────────────────
 // dayOfWeek: 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
 const DAY_SESSION = {
-  0: 'REST',
-  1: 'GYM_A',
-  2: 'CYCLING_VO2MAX',
-  3: 'GYM_B',
-  4: 'CYCLING_THRESHOLD',
-  5: 'GYM_C',
-  6: 'CYCLING_LONG'
-};
-
-const SESSION_LABELS = {
-  GYM_A:             'Gym A — Squat / Push / Pull',
-  GYM_B:             'Gym B — Pull / Press / Arms',
-  GYM_C:             'Gym C — Hinge / Incline / Single-leg',
-  CYCLING_VO2MAX:    'Cycling — VO₂max / Hill Repeats',
-  CYCLING_THRESHOLD: 'Cycling — Threshold / Sweet Spot',
-  CYCLING_LONG:      'Long Gravel Ride',
-  REST:              'Recovery Day'
+  0: 'REST', 1: 'GYM_A', 2: 'CYCLING_VO2MAX', 3: 'GYM_B',
+  4: 'CYCLING_THRESHOLD', 5: 'GYM_C', 6: 'CYCLING_LONG'
 };
 
 const SESSION_TYPES = ['GYM_A','GYM_B','GYM_C',
   'CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG',
   'RUN_THRESHOLD','RUN_VO2MAX','RUN_LONG','SWIM','CALISTHENICS','REST'];
 
-// Gym plan: sets×reps target, plan stub load (kg or 'BW')
 const GYM_PLAN = {
   GYM_A: [
-    { name: 'Hack squat',            target: '3×6–8',      stub: '75'  },
-    { name: 'Bench press',           target: '3×5–6',      stub: '77.5'},
-    { name: 'Single-leg hip thrust', target: '3×10–12/leg', stub: 'BW' },
-    { name: 'Chin-ups',              target: '3×6–8',      stub: 'BW'  },
-    { name: 'Seated leg curl',       target: '2×12–15',    stub: '40'  },
-    { name: 'Cable lateral raises',  target: '2×12–15',    stub: '—'   },
-    { name: 'Standing calf raise',   target: '2×10–12',    stub: '—'   },
-    { name: 'Pallof press',          target: '2×10/side',  stub: '—'   },
+    { name: 'Hack squat',            target: '3×6–8',       stub: '75'  },
+    { name: 'Bench press',           target: '3×5–6',       stub: '77.5'},
+    { name: 'Single-leg hip thrust', target: '3×10–12/leg', stub: 'BW'  },
+    { name: 'Chin-ups',              target: '3×6–8',       stub: 'BW'  },
+    { name: 'Seated leg curl',       target: '2×12–15',     stub: '40'  },
+    { name: 'Cable lateral raises',  target: '2×12–15',     stub: '—'   },
+    { name: 'Standing calf raise',   target: '2×10–12',     stub: '—'   },
+    { name: 'Pallof press',          target: '2×10/side',   stub: '—'   },
   ],
   GYM_B: [
-    { name: 'Weighted pull-ups',         target: '3×5–6',  stub: '+20' },
-    { name: 'Chest-supported row',       target: '3×8–10', stub: '60'  },
-    { name: 'Seated DB OHP',             target: '2×8–10', stub: '20'  },
-    { name: 'Cable hip abduction',       target: '2×12–15/side', stub: '—' },
-    { name: 'Face pulls',                target: '2×12–15', stub: '—'  },
-    { name: 'Cable lateral raises',      target: '2×12–15', stub: '—'  },
-    { name: 'Incline DB curl',           target: '2×10–12', stub: '—'  },
-    { name: 'Overhead tricep ext.',      target: '2×10–12', stub: '—'  },
-    { name: 'Ab wheel rollout',          target: '2×8–10',  stub: 'BW' },
+    { name: 'Weighted pull-ups',     target: '3×5–6',        stub: '+20' },
+    { name: 'Chest-supported row',   target: '3×8–10',       stub: '60'  },
+    { name: 'Seated DB OHP',         target: '2×8–10',       stub: '20'  },
+    { name: 'Cable hip abduction',   target: '2×12–15/side', stub: '—'   },
+    { name: 'Face pulls',            target: '2×12–15',      stub: '—'   },
+    { name: 'Cable lateral raises',  target: '2×12–15',      stub: '—'   },
+    { name: 'Incline DB curl',       target: '2×10–12',      stub: '—'   },
+    { name: 'Overhead tricep ext.',  target: '2×10–12',      stub: '—'   },
+    { name: 'Ab wheel rollout',      target: '2×8–10',       stub: 'BW'  },
   ],
   GYM_C: [
-    { name: 'Trap bar deadlift',         target: '3×4–5',   stub: '100' },
-    { name: 'Incline DB press',          target: '3×8–10',  stub: '28'  },
-    { name: 'Bulgarian split squats',    target: '3×8–10/leg', stub: '20' },
-    { name: 'Nordic hamstring curl',     target: '2×5–8',   stub: 'BW'  },
-    { name: 'Dips',                      target: '2×8–12',  stub: 'BW'  },
-    { name: 'Leg extension',             target: '2×12–15', stub: '45'  },
-    { name: 'DB lateral raises',         target: '2×12–15', stub: '—'   },
-    { name: 'Seated calf raise',         target: '2×12–15', stub: '—'   },
-    { name: 'Cable crunch',              target: '2×15–20', stub: '—'   },
+    { name: 'Trap bar deadlift',     target: '3×4–5',        stub: '100' },
+    { name: 'Incline DB press',      target: '3×8–10',       stub: '28'  },
+    { name: 'Bulgarian split squats',target: '3×8–10/leg',   stub: '20'  },
+    { name: 'Nordic hamstring curl', target: '2×5–8',        stub: 'BW'  },
+    { name: 'Dips',                  target: '2×8–12',       stub: 'BW'  },
+    { name: 'Leg extension',         target: '2×12–15',      stub: '45'  },
+    { name: 'DB lateral raises',     target: '2×12–15',      stub: '—'   },
+    { name: 'Seated calf raise',     target: '2×12–15',      stub: '—'   },
+    { name: 'Cable crunch',          target: '2×15–20',      stub: '—'   },
   ]
 };
 
 const CYCLING_PLANS = {
   CYCLING_VO2MAX: {
-    purpose: 'Improve ability to handle steep climbs, surges, and repeated hard gravel efforts.',
-    options: [
-      '5 × 3 min hard / 3 min easy',
-      '6 × 4 min hard / 4 min easy',
-      '8–10 × 60–90 sec uphill hard',
-      '3 × 10 min: 30 sec hard / 90 sec moderate',
-    ],
+    purpose: 'Handle steep climbs, surges, and repeated hard gravel efforts.',
+    options: ['5 × 3 min hard / 3 min easy','6 × 4 min hard / 4 min easy','8–10 × 60–90 sec uphill hard','3 × 10 min: 30 sec hard / 90 sec moderate'],
     fueling: 'TKD: 15–25 g maltodextrin in water 15–30 min before hard block.'
   },
   CYCLING_THRESHOLD: {
     purpose: 'Improve sustained gravel pace and climbing power.',
-    options: [
-      '3 × 12–15 min sweet spot',
-      '4 × 8 min threshold',
-      '2 × 20 min controlled threshold',
-      '4 × 8 min low-cadence strength endurance @ 60–70 rpm',
-    ],
+    options: ['3 × 12–15 min sweet spot','4 × 8 min threshold','2 × 20 min controlled threshold','4 × 8 min low-cadence strength endurance @ 60–70 rpm'],
     fueling: 'TKD: 15–25 g maltodextrin in water 15–30 min before.'
   },
   CYCLING_LONG: {
     purpose: 'Aerobic durability, fat oxidation, technical handling, fueling practice.',
-    options: [
-      '3–5 hours mostly Z1–Z2',
-      'Optional: tempo finish or climb blocks in final hour',
-      'Optional: rough terrain / gravel handling drills',
-      'Electrolytes: 500–700 mg sodium/hr on top of baseline',
-    ],
-    fueling: 'No TKD needed for Z2. Add maltodextrin : fructose 2:1 @ 60–80 g/hr if pushing high intensity (>90 min at effort).'
+    options: ['3–5 hours mostly Z1–Z2','Optional: tempo finish or climb blocks in final hour','Optional: rough terrain / gravel handling drills','Electrolytes: 500–700 mg sodium/hr on top of baseline'],
+    fueling: 'No TKD for Z2. Add maltodextrin:fructose 2:1 @ 60–80 g/hr if pushing intensity (>90 min at effort).'
   }
+};
+
+// Calisthenics skill add-on per gym day
+const SKILL_ADDON = {
+  GYM_A: 'Push / handstand — wall handstand holds → freestanding work + pike push-ups (10–15 min, fresh).',
+  GYM_B: 'Pull — muscle-up high pulls / transitions + front-lever tuck holds (before fatigue).',
+  GYM_C: 'Core / legs — tuck L-sit → straddle + pistol-squat progression (low fatigue, technical).'
+};
+
+// Skill ladders (labels). Current level read live from calisthenics_progressions.md SKILL_STATE.
+// cat = display category; order here is the display order.
+const SKILL_LADDERS = {
+  // ── Push ──
+  planche: { name: 'Planche', cat: 'Push', goal: 'Full planche',
+    levels: ['Pseudo Push Ups','Frog Stand','Tuck Planche','Advanced Tuck Planche','Straddle Planche','Planche'] },
+  handstand_push_up: { name: 'Handstand Push Up', cat: 'Push', goal: 'Freestanding HSPU',
+    levels: ['Pike Push Up','Adv. Pike Push Up','Wall Handstand Push Up','Negative Handstand Push Up','Handstand Push Up'] },
+  one_arm_push_up: { name: 'One Arm Push Up', cat: 'Push', goal: 'One arm push up',
+    levels: ['Push Up','Diamond Push Up','Alligator Push Up','Archer Push Up','Incline One Arm Push Up','Negative One Arm Push Up','Rocky Push Up','One Arm Push Up'] },
+  one_arm_handstand: { name: 'One Arm Handstand', cat: 'Push', goal: 'One arm handstand (near-term: freestanding)',
+    levels: ['Downward Dog','Pike Hold','Wall Handstand','Adv. Wall Handstand','Handstand','Diamond Handstand','Bend Straddle Handstand','Fingertip Straddle Handstand','Straddle One Arm Handstand','Diamond One Arm Handstand','One Arm Handstand'] },
+  // ── Pull ──
+  muscle_up: { name: 'Muscle Up', cat: 'Pull', goal: 'Clean muscle up',
+    levels: ['Pull Up','High Pull Up','Jumping Muscle Up','Kipping Muscle Up','Muscle Up'] },
+  front_lever: { name: 'Front Lever', cat: 'Pull', goal: 'Full front lever',
+    levels: ['Tuck Front Lever','Advanced Tuck Front Lever','One Leg Front Lever','Half Front Lever','Straddle Front Lever','Front Lever'] },
+  back_lever: { name: 'Back Lever', cat: 'Pull', goal: 'Full back lever',
+    levels: ['Skin the Cat','Tuck Back Lever','Adv. Tuck Back Lever','Straddle Back Lever','Back Lever'] },
+  one_arm_pull_up: { name: 'One Arm Pull Up', cat: 'Pull', goal: 'One arm pull up',
+    levels: ['Pull Up','Archer Pull Up','Assisted One Arm Pull Up','Negative One Arm Pull Up','Little Assisted OAP','One Arm Pull Up'] },
+  hefesto: { name: 'Hefesto', cat: 'Pull', goal: 'Hefesto',
+    levels: ['Korean Dip','Hefesto Dip','Negative Hefesto','Hefesto Pull','Assisted Hefesto','Hefesto'] },
+  // ── Core ──
+  v_sit: { name: 'V-Sit', cat: 'Core', goal: 'V-sit',
+    levels: ['Straddle Leg Raise Hold','Leg Raise Hold','Tuck L-sit','Straddle L-Sit','L-sit','Tuck V-Sit','Straddle V-Sit','V-Sit'] },
+  dragon_flag: { name: 'Dragon Flag', cat: 'Core', goal: 'Dragon flag',
+    levels: ['Tuck Reverse Crunch','Reverse Crunch','Tuck Dragon Flag','Half Dragon Flag','One Leg Dragon Flag','Straddle Dragon Flag','Dragon Flag'] },
+  human_flag: { name: 'Human Flag', cat: 'Core', goal: 'Human flag',
+    levels: ['Hanging Side Bend','Angle Flag','Low Flag','Vertical Tuck Flag','Vertical Flag','Negative Flag','Straddle Flag','Human Flag'] },
+  // ── Legs ──
+  pistol_squat: { name: 'Pistol Squat', cat: 'Legs', goal: 'Pistol squat',
+    levels: ['Deep Squat','Bulgarian Squat','Archer Squat','Bench Pistol Squat','Assisted Pistol Squat','Rolling Pistol Squat','Elevated Pistol Squat','Pistol Squat'] },
+  shrimp_squat: { name: 'Shrimp Squat', cat: 'Legs', goal: 'Shrimp squat',
+    levels: ['Reverse Lunge','Supported Shrimp Squat','No Arm Shrimp Squat','One Arm Shrimp Squat','Shrimp Squat'] }
 };
 
 // ─────────────────────────────────────────────
 // STATE
 // ─────────────────────────────────────────────
-let logContent = '';
-let logSha     = '';
-let lastLoads  = {}; // { exerciseName: 'load string' }
-let todayType  = '';
-let accentClass = '';
+let logContent = '', logSha = '', lastLoads = {}, todayType = '', accentClass = '';
+let skillState = {};
 
 // ─────────────────────────────────────────────
-// TOKEN MANAGEMENT
+// TOKEN
 // ─────────────────────────────────────────────
 function getToken() { return localStorage.getItem('gh_token') || ''; }
-
 function saveToken() {
   const v = document.getElementById('token-input').value.trim();
   if (!v) { showToast('Enter a token first', 'error'); return; }
@@ -577,122 +417,170 @@ function saveToken() {
   document.getElementById('token-modal').classList.add('hidden');
   init();
 }
-
 function showTokenModal() {
   document.getElementById('token-input').value = getToken();
   document.getElementById('token-modal').classList.remove('hidden');
 }
 
-// ─────────────────────────────────────────────
-// CARD TOGGLE
-// ─────────────────────────────────────────────
 function toggleCard(bodyId, chevId) {
-  const b = document.getElementById(bodyId);
-  const c = document.getElementById(chevId);
-  b.classList.toggle('hidden');
-  c.classList.toggle('open');
+  document.getElementById(bodyId).classList.toggle('hidden');
+  document.getElementById(chevId).classList.toggle('open');
+}
+
+function showView(view) {
+  document.getElementById('view-training').style.display = view === 'training' ? 'block' : 'none';
+  document.getElementById('view-skills').style.display   = view === 'skills'   ? 'block' : 'none';
+  document.getElementById('tab-training').classList.toggle('active', view === 'training');
+  document.getElementById('tab-skills').classList.toggle('active', view === 'skills');
 }
 
 // ─────────────────────────────────────────────
 // GITHUB API
 // ─────────────────────────────────────────────
 async function ghFetch(path, opts = {}) {
-  const token = getToken();
   const res = await fetch(`https://api.github.com/repos/${REPO}/${path}`, {
-    headers: {
-      'Authorization': `token ${token}`,
-      'Accept': 'application/vnd.github.v3+json',
-      ...opts.headers
-    },
+    headers: { 'Authorization': `token ${getToken()}`, 'Accept': 'application/vnd.github.v3+json', ...opts.headers },
     ...opts
   });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `GitHub API ${res.status}`);
-  }
+  if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err.message || `GitHub API ${res.status}`); }
   return res.json();
 }
-
 async function fetchLog() {
   const data = await ghFetch(`contents/${FILE}`);
-  logSha     = data.sha;
-  logContent = atob(data.content.replace(/\n/g, ''));
+  logSha = data.sha;
+  logContent = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
   return logContent;
 }
-
+async function fetchSkillState() {
+  try {
+    const data = await ghFetch(`contents/${SKILL_FILE}`);
+    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    const block = text.match(/SKILL_STATE[\s\S]*?-->/);
+    skillState = {};
+    if (block) {
+      block[0].split('\n').forEach(line => {
+        const m = line.match(/^\s*(\w+):\s*(\d+)\s*\/\s*(\d+)/);
+        if (m) skillState[m[1]] = { cur: +m[2], max: +m[3] };
+      });
+    }
+  } catch (e) { skillState = {}; }
+}
 async function commitLog(newContent) {
   const encoded = btoa(unescape(encodeURIComponent(newContent)));
   await ghFetch(`contents/${FILE}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message: `log: add session ${todayISODate()}`,
-      content: encoded,
-      sha: logSha
-    })
+    method: 'PUT', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: `log: add session ${todayISODate()}`, content: encoded, sha: logSha })
   });
 }
 
 // ─────────────────────────────────────────────
-// LOG PARSING — extract last known loads
+// LOG PARSING
 // ─────────────────────────────────────────────
+function splitEntries(content) {
+  return content.split(/\n(?=## \d{4}-\d{2}-\d{2})/)
+    .filter(e => /^## \d{4}-\d{2}-\d{2}/.test(e.trim()));
+}
 function parseLastLoads(content, sessionType) {
   const loads = {};
-  // Find the most-recent entry of this session type
-  // Entries start with: ## YYYY-MM-DD | SESSION_TYPE
-  const entries = content.split(/\n(?=## \d{4}-\d{2}-\d{2})/);
-  // Walk entries from newest (top of file after header) to find sessionType
   let found = null;
-  for (const entry of entries) {
-    const headerMatch = entry.match(/^## (\d{4}-\d{2}-\d{2})\s*\|\s*(\w+)/);
-    if (headerMatch && headerMatch[2] === sessionType) {
-      found = entry;
-      break;
-    }
+  for (const entry of splitEntries(content)) {
+    const h = entry.match(/^## (\d{4}-\d{2}-\d{2})\s*\|\s*(\w+)/);
+    if (h && h[2] === sessionType) { found = entry; break; }
   }
   if (!found) return loads;
-
-  // Parse the key lifts table
   const tableSection = found.match(/### Key lifts[\s\S]*?(?=\n###|\n---|\n## |$)/);
   if (!tableSection) return loads;
-
-  const lines = tableSection[0].split('\n');
-  for (const line of lines) {
-    // | Exercise name | Sets×Reps | Load (kg) | Notes |
+  for (const line of tableSection[0].split('\n')) {
     const cols = line.split('|').map(s => s.trim()).filter(Boolean);
-    if (cols.length >= 3 && !cols[0].startsWith('---') && cols[0] !== 'Exercise') {
-      loads[cols[0].toLowerCase()] = cols[2]; // load column
-    }
+    if (cols.length >= 3 && !cols[0].startsWith('---') && cols[0] !== 'Exercise') loads[cols[0].toLowerCase()] = cols[2];
   }
   return loads;
 }
-
-function getLoad(exerciseName) {
-  const key = exerciseName.toLowerCase();
+function getLoad(name) {
+  const key = name.toLowerCase();
   if (lastLoads[key] && lastLoads[key] !== '—') return lastLoads[key];
-  // Try partial match
   for (const [k, v] of Object.entries(lastLoads)) {
-    if (k.includes(key.split(' ')[0]) || key.includes(k.split(' ')[0])) {
-      if (v && v !== '—') return v;
-    }
+    if ((k.includes(key.split(' ')[0]) || key.includes(k.split(' ')[0])) && v && v !== '—') return v;
   }
   return null;
 }
-
-// ─────────────────────────────────────────────
-// DATE HELPERS
-// ─────────────────────────────────────────────
-function todayISODate() {
-  const d = new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,'0');
-  const dd= String(d.getDate()).padStart(2,'0');
-  return `${y}-${m}-${dd}`;
+function parseRecent(content, n) {
+  const out = [];
+  for (const entry of splitEntries(content)) {
+    const h = entry.match(/^## (\d{4}-\d{2}-\d{2})\s*\|\s*([A-Z_]+)/);
+    if (!h) continue;
+    const get = re => { const m = entry.match(re); return m ? m[1].trim() : null; };
+    out.push({
+      date: h[1], type: h[2],
+      rpe: get(/- rpe:\s*([^\n]+)/),
+      fatigue: get(/- fatigue_before:\s*([^\n]+)/),
+      hrv: get(/- hrv_status:\s*([^\n]+)/),
+      bb: get(/- body_battery:\s*([^\n]+)/),
+      sleep: get(/- sleep_score:\s*([^\n]+)/),
+    });
+    if (out.length >= n) break;
+  }
+  return out;
 }
 
-function formatDisplayDate(date) {
-  return date.toLocaleDateString('en-GB', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+// ─────────────────────────────────────────────
+// READINESS
+// ─────────────────────────────────────────────
+function computeReadiness(hrv, bb, sleep) {
+  const signals = [];
+  if (hrv)            signals.push(hrv === 'Balanced' ? 'g' : (hrv === 'Unbalanced' ? 'a' : 'r'));
+  if (bb != null)     signals.push(bb >= 60 ? 'g' : (bb >= 40 ? 'a' : 'r'));
+  if (sleep != null)  signals.push(sleep >= 70 ? 'g' : (sleep >= 50 ? 'a' : 'r'));
+  if (!signals.length) return { level: 'neutral', label: 'Log recovery to get a readiness call', note: 'Enter HRV status, Body Battery and sleep score from your watch.' };
+  if (signals.includes('r')) return { level: 'red',   label: 'Back off — recovery / easy only', note: 'Apply the fatigue-removal hierarchy. Keep movement, drop intensity.' };
+  if (signals.includes('a')) return { level: 'amber', label: 'Caution — train, trim the top end', note: 'Keep the session, cut top-end volume ~20%, hold loads.' };
+  return { level: 'green', label: 'Green light — train as planned', note: 'Recovery markers are in range. Execute the plan.' };
 }
+
+// ─────────────────────────────────────────────
+// RENDER: RECOVERY
+// ─────────────────────────────────────────────
+function renderRecovery() {
+  const body = document.getElementById('recovery-body');
+  body.innerHTML = `
+    <div id="readiness-banner" class="readiness-banner neutral">
+      <div class="readiness-dot"></div>
+      <div class="readiness-text"><strong>Log recovery to get a readiness call</strong><span>Enter values from your Garmin watch.</span></div>
+    </div>
+    <div class="recovery-inputs">
+      <div class="full">
+        <label class="form-label">HRV Status (Garmin)</label>
+        <div class="hrv-row" id="hrv-row">
+          ${['Balanced','Unbalanced','Low','Poor'].map(s =>
+            `<button class="hrv-btn" data-hrv="${s}" onclick="selectHrv(this)">${s}</button>`).join('')}
+        </div>
+      </div>
+      <div>
+        <label class="form-label">Body Battery</label>
+        <input type="number" id="rec-bb" placeholder="0–100" oninput="updateReadiness()">
+      </div>
+      <div>
+        <label class="form-label">Sleep Score</label>
+        <input type="number" id="rec-sleep" placeholder="0–100" oninput="updateReadiness()">
+      </div>
+    </div>`;
+}
+let selectedHrv = null;
+function selectHrv(btn) {
+  selectedHrv = btn.dataset.hrv;
+  document.querySelectorAll('#hrv-row .hrv-btn').forEach(b => b.className = 'hrv-btn');
+  btn.classList.add('sel-' + selectedHrv.toLowerCase());
+  updateReadiness();
+}
+function updateReadiness() {
+  const bb = numOrNull(document.getElementById('rec-bb')?.value);
+  const sleep = numOrNull(document.getElementById('rec-sleep')?.value);
+  const r = computeReadiness(selectedHrv, bb, sleep);
+  const banner = document.getElementById('readiness-banner');
+  banner.className = 'readiness-banner ' + r.level;
+  banner.querySelector('.readiness-text').innerHTML = `<strong>${r.label}</strong><span>${r.note}</span>`;
+}
+function numOrNull(v) { v = (v || '').trim(); return v === '' ? null : (isNaN(+v) ? null : +v); }
 
 // ─────────────────────────────────────────────
 // RENDER: TODAY'S PLAN
@@ -703,56 +591,34 @@ function renderPlan() {
   const isCycling = ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
 
   if (isGym) {
-    const exercises = GYM_PLAN[todayType];
-    let html = `<table class="plan-table">
-      <thead><tr>
-        <th>Exercise</th>
-        <th>Target</th>
-        <th>Last</th>
-      </tr></thead><tbody>`;
-    for (const ex of exercises) {
+    let html = `<table class="plan-table"><thead><tr><th>Exercise</th><th>Target</th><th>Last</th></tr></thead><tbody>`;
+    for (const ex of GYM_PLAN[todayType]) {
       const load = getLoad(ex.name);
-      const loadHtml = load
-        ? `<span class="last-load load-val">${load}</span>`
-        : `<span class="last-load load-stub">${ex.stub}</span>`;
-      html += `<tr>
-        <td class="exname">${ex.name}</td>
-        <td class="target">${ex.target}</td>
-        <td>${loadHtml}</td>
-      </tr>`;
+      html += `<tr><td class="exname">${ex.name}</td><td class="target">${ex.target}</td>
+        <td>${load ? `<span class="last-load load-val">${load}</span>` : `<span class="last-load load-stub">${ex.stub}</span>`}</td></tr>`;
     }
     html += `</tbody></table>`;
+    if (todayType === 'GYM_A' || todayType === 'GYM_C')
+      html += `<div class="mobility-tip" style="background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);color:#86efac;">⚡ Activation first: single-leg glute bridge 10/side · Copenhagen side plank 20–30 s/side</div>`;
+    html += `<div class="skill-tip">🤸 <strong>Skill add-on</strong> — ${SKILL_ADDON[todayType]}</div>`;
     html += `<div class="mobility-tip">🧘 10 min mobility after: hip flexors · pigeon/90-90 · couch stretch · thoracic open book · cat-cow</div>`;
-    if (todayType === 'GYM_A' || todayType === 'GYM_C') {
-      html += `<div class="mobility-tip" style="margin-top:8px;background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);color:#86efac;">⚡ Activation first: single-leg glute bridge 10/side · Copenhagen side plank 20–30 s/side</div>`;
-    }
     body.innerHTML = html;
   } else if (isCycling) {
     const plan = CYCLING_PLANS[todayType];
-    let html = `<div class="cycling-block">
-      <div class="cy-label">Purpose</div>
-      <div class="cy-value">${plan.purpose}</div>
-      <div class="cy-label">Workout Options</div>
-      <ul class="cy-interval-list">`;
-    for (const opt of plan.options) {
-      html += `<li>${opt}</li>`;
-    }
-    html += `</ul>
-      <div class="fueling-tip">⚡ <strong>Fueling</strong> — ${plan.fueling}</div>
-    </div>`;
+    let html = `<div class="cycling-block"><div class="cy-label">Purpose</div><div class="cy-value">${plan.purpose}</div>
+      <div class="cy-label">Workout Options</div><ul class="cy-interval-list">`;
+    for (const o of plan.options) html += `<li>${o}</li>`;
+    html += `</ul><div class="fueling-tip">⚡ <strong>Fueling</strong> — ${plan.fueling}</div></div>`;
     body.innerHTML = html;
   } else {
-    // REST
-    body.innerHTML = `<div class="cycling-block">
-      <div class="cy-label">Today</div>
+    body.innerHTML = `<div class="cycling-block"><div class="cy-label">Today</div>
       <div class="cy-value">Recovery — mobility, easy spin, walk, or full rest.</div>
       <ul class="cy-interval-list">
         <li>Easy aerobic: 20–40 min Z1 spin or walk</li>
         <li>Mobility: full 10-min routine</li>
         <li>Optional easy swim: 20–30 min technique</li>
-        <li>Extra sleep if fatigue is elevated</li>
-      </ul>
-    </div>`;
+        <li>Extra sleep if recovery markers are red</li>
+      </ul></div>`;
   }
 }
 
@@ -761,242 +627,199 @@ function renderPlan() {
 // ─────────────────────────────────────────────
 function renderLogForm() {
   const body = document.getElementById('log-body');
-  const isGym     = ['GYM_A','GYM_B','GYM_C'].includes(todayType);
+  const isGym = ['GYM_A','GYM_B','GYM_C'].includes(todayType);
   const isCycling = ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
-
   const accentSel = isGym ? 'selected-gym' : isCycling ? 'selected-cycle' : 'selected-rest';
 
-  // Session-type picker (allows logging a different type if needed)
-  let html = `
-    <div class="form-row">
-      <label class="form-label">Session Type</label>
-      <select id="log-session-type">`;
-  for (const t of SESSION_TYPES) {
-    html += `<option value="${t}" ${t === todayType ? 'selected' : ''}>${t.replace(/_/g,' ')}</option>`;
-  }
-  html += `</select>
-    </div>`;
+  let html = `<div class="form-row"><label class="form-label">Session Type</label><select id="log-session-type">`;
+  for (const t of SESSION_TYPES) html += `<option value="${t}" ${t === todayType ? 'selected' : ''}>${t.replace(/_/g,' ')}</option>`;
+  html += `</select></div>`;
 
-  // Fatigue score
-  html += `<div class="form-row">
-    <label class="form-label">Fatigue Before (1=fresh → 5=very tired)</label>
-    <div class="score-row" id="fatigue-row">`;
-  for (let i=1;i<=5;i++) {
-    html += `<button class="score-btn" data-group="fatigue" data-val="${i}" onclick="selectScore(this,'${accentSel}')">${i}</button>`;
-  }
+  html += `<div class="form-row"><label class="form-label">Fatigue Before (1=fresh → 5=very tired)</label><div class="score-row" id="fatigue-row">`;
+  for (let i=1;i<=5;i++) html += `<button class="score-btn" data-group="fatigue" data-val="${i}" onclick="selectScore(this,'${accentSel}')">${i}</button>`;
   html += `</div></div>`;
 
-  // Sleep score
-  html += `<div class="form-row">
-    <label class="form-label">Sleep Quality (1=poor → 5=excellent)</label>
-    <div class="score-row" id="sleep-row">`;
-  for (let i=1;i<=5;i++) {
-    html += `<button class="score-btn" data-group="sleep" data-val="${i}" onclick="selectScore(this,'${accentSel}')">${i}</button>`;
-  }
+  html += `<div class="form-row"><label class="form-label">Session RPE (1–10)</label><div class="score-row" id="rpe-row" style="flex-wrap:wrap;gap:6px;">`;
+  for (let i=1;i<=10;i++) html += `<button class="score-btn" data-group="rpe" data-val="${i}" onclick="selectScore(this,'${accentSel}')" style="min-width:42px;flex:none;">${i}</button>`;
   html += `</div></div>`;
 
-  // RPE
-  html += `<div class="form-row">
-    <label class="form-label">Session RPE (1–10)</label>
-    <div class="score-row" id="rpe-row" style="flex-wrap:wrap;gap:6px;">`;
-  for (let i=1;i<=10;i++) {
-    html += `<button class="score-btn" data-group="rpe" data-val="${i}" onclick="selectScore(this,'${accentSel}')" style="min-width:42px;flex:none;">${i}</button>`;
-  }
-  html += `</div></div>`;
+  html += `<div class="form-row"><label class="form-label">Notes</label>
+    <textarea id="log-notes" placeholder="What felt hard, what moved well, any pain/discomfort…"></textarea></div>`;
 
-  // Notes
-  html += `<div class="form-row">
-    <label class="form-label">Notes</label>
-    <textarea id="log-notes" placeholder="What felt hard, what moved well, any pain/discomfort…"></textarea>
-  </div>`;
-
-  // Gym-specific lifts table
   if (isGym) {
-    const exercises = GYM_PLAN[todayType];
-    html += `<div class="section-title">Key Lifts</div>
-    <table class="lifts-log-table">
-      <thead><tr>
-        <th>Exercise</th>
-        <th>Sets×Reps</th>
-        <th>Load (kg)</th>
-      </tr></thead><tbody>`;
-    for (const ex of exercises) {
+    html += `<div class="section-title">Key Lifts</div><table class="lifts-log-table">
+      <thead><tr><th>Exercise</th><th>Sets×Reps</th><th>Load (kg)</th></tr></thead><tbody>`;
+    for (const ex of GYM_PLAN[todayType]) {
       const load = getLoad(ex.name) || ex.stub;
-      const safeName = ex.name.replace(/[^a-z0-9]/gi,'_');
-      html += `<tr>
-        <td class="lift-name">${ex.name}<span>${ex.target}</span></td>
-        <td style="width:90px;padding-right:6px;">
-          <input type="text" class="lift-sets-input" id="sets_${safeName}" value="${ex.target}" style="width:100%;padding:7px 6px;font-size:12px;">
-        </td>
-        <td style="width:90px;">
-          <input type="text" class="load-input lift-load-input" id="load_${safeName}"
-            data-exercise="${ex.name}" value="${load !== '—' ? load : ''}" placeholder="—">
-        </td>
-      </tr>`;
+      const safe = ex.name.replace(/[^a-z0-9]/gi,'_');
+      html += `<tr><td class="lift-name">${ex.name}<span>${ex.target}</span></td>
+        <td style="width:90px;padding-right:6px;"><input type="text" id="sets_${safe}" value="${ex.target}" style="width:100%;padding:7px 6px;font-size:12px;"></td>
+        <td style="width:90px;"><input type="text" class="load-input" id="load_${safe}" data-exercise="${ex.name}" value="${load !== '—' ? load : ''}" placeholder="—"></td></tr>`;
     }
     html += `</tbody></table>`;
   }
-
-  // Cycling-specific fields
   if (isCycling) {
-    html += `<div class="section-title">Endurance Data</div>
-    <div class="endu-grid">
-      <div>
-        <label class="form-label">Duration (min)</label>
-        <input type="number" id="endu-duration" placeholder="90">
-      </div>
-      <div>
-        <label class="form-label">Avg Power (W) or Pace</label>
-        <input type="text" id="endu-power" placeholder="220W or 4:30/km">
-      </div>
-      <div>
-        <label class="form-label">Intervals Done</label>
-        <input type="text" id="endu-intervals" placeholder="4/5">
-      </div>
-      <div>
-        <label class="form-label">Terrain</label>
-        <select id="endu-terrain">
-          <option value="gravel">Gravel</option>
-          <option value="road">Road</option>
-          <option value="mixed">Mixed</option>
-          <option value="trainer">Trainer</option>
-          <option value="treadmill">Treadmill</option>
-          <option value="track">Track</option>
-        </select>
-      </div>
+    html += `<div class="section-title">Endurance Data</div><div class="endu-grid">
+      <div><label class="form-label">Duration (min)</label><input type="number" id="endu-duration" placeholder="90"></div>
+      <div><label class="form-label">Avg Power (W) or Pace</label><input type="text" id="endu-power" placeholder="220W or 4:30/km"></div>
+      <div><label class="form-label">Intervals Done</label><input type="text" id="endu-intervals" placeholder="4/5"></div>
+      <div><label class="form-label">Terrain</label><select id="endu-terrain">
+        <option value="gravel">Gravel</option><option value="road">Road</option><option value="mixed">Mixed</option>
+        <option value="trainer">Trainer</option><option value="treadmill">Treadmill</option><option value="track">Track</option></select></div>
     </div>`;
   }
 
-  // Submit
   const btnClass = isGym ? 'gym-btn' : isCycling ? 'cycle-btn' : 'rest-btn';
-  html += `<div style="margin-top:20px;">
-    <button id="submit-btn" class="${btnClass}" onclick="submitLog()">
-      Commit to Workout Log
-    </button>
-    <div id="submit-status" style="text-align:center;margin-top:10px;font-size:13px;color:var(--muted);min-height:20px;"></div>
-  </div>`;
-
+  html += `<div style="margin-top:20px;"><button id="submit-btn" class="${btnClass}" onclick="submitLog()">Commit to Workout Log</button>
+    <div id="submit-status" style="text-align:center;margin-top:10px;font-size:13px;color:var(--muted);min-height:20px;"></div></div>`;
   body.innerHTML = html;
 }
-
-// Score selector
 function selectScore(btn, accentClass) {
-  const group = btn.dataset.group;
-  document.querySelectorAll(`[data-group="${group}"]`).forEach(b => {
-    b.classList.remove('selected-gym','selected-cycle','selected-rest');
-  });
+  document.querySelectorAll(`[data-group="${btn.dataset.group}"]`).forEach(b => b.classList.remove('selected-gym','selected-cycle','selected-rest'));
   btn.classList.add(accentClass);
 }
-
 function getScore(group) {
   const el = document.querySelector(`[data-group="${group}"].selected-gym, [data-group="${group}"].selected-cycle, [data-group="${group}"].selected-rest`);
   return el ? el.dataset.val : null;
 }
 
 // ─────────────────────────────────────────────
-// BUILD MARKDOWN ENTRY
+// RENDER: RECENT
 // ─────────────────────────────────────────────
-function buildEntry() {
-  const sessionType = document.getElementById('log-session-type').value;
-  const fatigue  = getScore('fatigue') || '?';
-  const sleep    = getScore('sleep')   || '?';
-  const rpe      = getScore('rpe')     || '?';
-  const notes    = (document.getElementById('log-notes').value || '').trim();
-  const isGym    = ['GYM_A','GYM_B','GYM_C'].includes(sessionType);
-  const isCycling= ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(sessionType);
-
-  let md = `## ${todayISODate()} | ${sessionType}\n`;
-  md += `- fatigue_before: ${fatigue}/5\n`;
-  md += `- sleep: ${sleep}/5\n`;
-  md += `- rpe: ${rpe}/10\n`;
-  if (notes) md += `- notes: ${notes}\n`;
-
-  if (isGym) {
-    const exercises = GYM_PLAN[sessionType];
-    md += `\n### Key lifts\n`;
-    md += `| Exercise | Sets×Reps | Load (kg) | Notes |\n`;
-    md += `|---|---|---|---|\n`;
-    for (const ex of exercises) {
-      const safeName = ex.name.replace(/[^a-z0-9]/gi,'_');
-      const loadEl = document.getElementById(`load_${safeName}`);
-      const setsEl = document.getElementById(`sets_${safeName}`);
-      const load = loadEl ? (loadEl.value.trim() || '—') : '—';
-      const sets = setsEl ? (setsEl.value.trim() || ex.target) : ex.target;
-      md += `| ${ex.name} | ${sets} | ${load} | |\n`;
-    }
+function renderRecent() {
+  const body = document.getElementById('recent-body');
+  const rows = parseRecent(logContent, 6);
+  if (!rows.length) { body.innerHTML = `<div style="color:var(--muted);font-size:13px;">No sessions logged yet.</div>`; return; }
+  let html = `<div class="trend-list">`;
+  for (const r of rows) {
+    const md = r.date.slice(5);
+    const chips = [];
+    if (r.rpe && r.rpe !== '?') chips.push(`<span class="trend-chip">RPE ${r.rpe}</span>`);
+    if (r.fatigue && r.fatigue !== '?') chips.push(`<span class="trend-chip">F ${r.fatigue}</span>`);
+    if (r.hrv) { const c = r.hrv==='Balanced'?'chip-green':(r.hrv==='Unbalanced'?'chip-amber':'chip-red'); chips.push(`<span class="trend-chip ${c}">${r.hrv}</span>`); }
+    html += `<div class="trend-row"><span class="trend-date">${md}</span>
+      <span class="trend-type">${r.type.replace(/_/g,' ')}</span>
+      <span class="trend-metrics">${chips.join('')}</span></div>`;
   }
-
-  if (isCycling) {
-    const dur      = document.getElementById('endu-duration')?.value.trim()   || '';
-    const power    = document.getElementById('endu-power')?.value.trim()      || '';
-    const ints     = document.getElementById('endu-intervals')?.value.trim()  || '';
-    const terrain  = document.getElementById('endu-terrain')?.value           || '';
-    md += `\n### Endurance\n`;
-    if (dur)     md += `- duration: ${dur}min\n`;
-    if (power)   md += `- avg_power_or_pace: ${power}\n`;
-    if (ints)    md += `- intervals_completed: ${ints}\n`;
-    if (terrain) md += `- terrain: ${terrain}\n`;
-  }
-
-  return md;
+  html += `</div>`;
+  body.innerHTML = html;
 }
 
 // ─────────────────────────────────────────────
-// SUBMIT LOG
+// RENDER: SKILLS
 // ─────────────────────────────────────────────
+function renderSkills() {
+  const body = document.getElementById('skills-body');
+  let html = '';
+  let lastCat = null;
+  for (const [key, sk] of Object.entries(SKILL_LADDERS)) {
+    if (sk.cat !== lastCat) { html += `<div class="skill-cat">${sk.cat}</div>`; lastCat = sk.cat; }
+    const st = skillState[key] || { cur: 1, max: sk.levels.length };
+    const cur = Math.min(st.cur, sk.levels.length);
+    const pct = Math.round((cur / sk.levels.length) * 100);
+    html += `<div class="skill-block">
+      <div class="skill-head"><span class="sk-name">${sk.name}</span><span class="sk-lvl">Lvl ${cur}/${sk.levels.length}</span></div>
+      <div class="skill-goal">Goal: ${sk.goal}</div>
+      <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <ul class="ladder">`;
+    sk.levels.forEach((lab, i) => {
+      const n = i + 1;
+      const cls = n < cur ? 'done' : (n === cur ? 'current' : '');
+      const mark = n < cur ? '✓' : n;
+      html += `<li class="${cls}"><span class="dot">${n <= cur ? mark : ''}</span><span class="lab">${lab}</span></li>`;
+    });
+    html += `</ul></div>`;
+  }
+  body.innerHTML = html;
+}
+
+// ─────────────────────────────────────────────
+// BUILD ENTRY
+// ─────────────────────────────────────────────
+function buildEntry() {
+  const sessionType = document.getElementById('log-session-type').value;
+  const fatigue = getScore('fatigue');
+  const rpe = getScore('rpe');
+  const notes = (document.getElementById('log-notes').value || '').trim();
+  const bb = numOrNull(document.getElementById('rec-bb')?.value);
+  const sleep = numOrNull(document.getElementById('rec-sleep')?.value);
+  const isGym = ['GYM_A','GYM_B','GYM_C'].includes(sessionType);
+  const isCycling = ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(sessionType);
+
+  let md = `## ${todayISODate()} | ${sessionType}\n`;
+  if (selectedHrv)   md += `- hrv_status: ${selectedHrv}\n`;
+  if (bb != null)    md += `- body_battery: ${bb}\n`;
+  if (sleep != null) md += `- sleep_score: ${sleep}\n`;
+  md += `- fatigue_before: ${fatigue || '?'}/5\n`;
+  md += `- rpe: ${rpe || '?'}/10\n`;
+  if (notes) md += `- notes: ${notes}\n`;
+
+  if (isGym) {
+    md += `\n### Key lifts\n| Exercise | Sets×Reps | Load (kg) | Notes |\n|---|---|---|---|\n`;
+    for (const ex of GYM_PLAN[sessionType]) {
+      const safe = ex.name.replace(/[^a-z0-9]/gi,'_');
+      const load = (document.getElementById(`load_${safe}`)?.value || '').trim() || '—';
+      const sets = (document.getElementById(`sets_${safe}`)?.value || '').trim() || ex.target;
+      md += `| ${ex.name} | ${sets} | ${load} | |\n`;
+    }
+  }
+  if (isCycling) {
+    const dur = document.getElementById('endu-duration')?.value.trim() || '';
+    const power = document.getElementById('endu-power')?.value.trim() || '';
+    const ints = document.getElementById('endu-intervals')?.value.trim() || '';
+    const terrain = document.getElementById('endu-terrain')?.value || '';
+    md += `\n### Endurance\n`;
+    if (dur) md += `- duration: ${dur}min\n`;
+    if (power) md += `- avg_power_or_pace: ${power}\n`;
+    if (ints) md += `- intervals_completed: ${ints}\n`;
+    if (terrain) md += `- terrain: ${terrain}\n`;
+  }
+  return md;
+}
+
 async function submitLog() {
   const btn = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
-  btn.disabled = true;
-  btn.textContent = 'Committing…';
-  status.textContent = '';
-
+  btn.disabled = true; btn.textContent = 'Committing…'; status.textContent = '';
   try {
-    // Re-fetch to get latest SHA before committing
     await fetchLog();
-
     const newEntry = buildEntry();
-    // Prepend: insert after the first `---` separator (after format spec)
-    // The file structure is: header comment → template comment → --- separator → entries
     const insertPoint = logContent.indexOf('\n---\n');
     let newContent;
     if (insertPoint !== -1) {
-      const before = logContent.slice(0, insertPoint + 5); // include the \n---\n
-      const after  = logContent.slice(insertPoint + 5);
-      newContent = before + '\n' + newEntry + '\n---\n\n' + after;
+      newContent = logContent.slice(0, insertPoint + 5) + '\n' + newEntry + '\n---\n\n' + logContent.slice(insertPoint + 5);
     } else {
       newContent = logContent + '\n---\n\n' + newEntry + '\n---\n';
     }
-
     await commitLog(newContent);
-
-    // Update local state
     logContent = newContent;
-    lastLoads  = parseLastLoads(logContent, todayType);
-
+    lastLoads = parseLastLoads(logContent, todayType);
+    renderRecent();
     showToast('✓ Logged & committed', 'success');
     btn.textContent = '✓ Committed!';
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.textContent = 'Commit to Workout Log';
-    }, 3000);
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Commit to Workout Log'; }, 3000);
   } catch (err) {
     console.error(err);
     status.textContent = err.message;
     showToast('Error: ' + err.message, 'error');
-    btn.disabled = false;
-    btn.textContent = 'Commit to Workout Log';
+    btn.disabled = false; btn.textContent = 'Commit to Workout Log';
   }
 }
 
 // ─────────────────────────────────────────────
-// TOAST
+// HELPERS
 // ─────────────────────────────────────────────
+function todayISODate() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function formatDisplayDate(date) {
+  return date.toLocaleDateString('en-GB', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+}
 let toastTimer;
 function showToast(msg, type = '') {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'show ' + type;
+  t.textContent = msg; t.className = 'show ' + type;
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { t.className = ''; }, 3000);
 }
@@ -1006,49 +829,41 @@ function showToast(msg, type = '') {
 // ─────────────────────────────────────────────
 async function init() {
   const today = new Date();
-  const dow   = today.getDay();
-  todayType   = DAY_SESSION[dow] || 'REST';
+  todayType = DAY_SESSION[today.getDay()] || 'REST';
+  const isGym = ['GYM_A','GYM_B','GYM_C'].includes(todayType);
+  const isCycling = ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
+  accentClass = isGym ? 'selected-gym' : isCycling ? 'selected-cycle' : 'selected-rest';
 
-  const isGym    = ['GYM_A','GYM_B','GYM_C'].includes(todayType);
-  const isCycling= ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
-  accentClass    = isGym ? 'selected-gym' : isCycling ? 'selected-cycle' : 'selected-rest';
-
-  // Header
   document.getElementById('date-line').textContent = formatDisplayDate(today);
   const badge = document.getElementById('session-badge');
   badge.textContent = todayType.replace(/_/g,' ');
   badge.className = 'session-badge ' + (isGym ? 'badge-gym' : isCycling ? 'badge-cycle' : 'badge-rest');
-
   document.title = `${todayType.replace(/_/g,' ')} — Training Dashboard`;
 
-  // Check token
-  if (!getToken()) {
-    document.getElementById('loader').style.display = 'none';
-    showTokenModal();
-    return;
-  }
+  if (!getToken()) { document.getElementById('loader').style.display = 'none'; showTokenModal(); return; }
 
   try {
     document.getElementById('loader').style.display = 'block';
-    document.getElementById('content').style.display = 'none';
-
+    document.getElementById('view-training').style.display = 'none';
     await fetchLog();
+    await fetchSkillState();
     lastLoads = parseLastLoads(logContent, todayType);
 
     document.getElementById('loader').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
+    document.getElementById('view-training').style.display = 'block';
 
+    renderRecovery();
     renderPlan();
     renderLogForm();
+    renderRecent();
+    renderSkills();
   } catch (err) {
     document.getElementById('loader').innerHTML =
-      `<div style="color:var(--danger)">Failed to load log: ${err.message}</div>
+      `<div style="color:var(--danger)">Failed to load: ${err.message}</div>
        <div style="margin-top:12px;color:var(--muted);font-size:13px;">Check your GitHub token and try again.</div>
        <button onclick="showTokenModal()" style="margin-top:16px;padding:10px 20px;background:var(--surface2);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:14px;cursor:pointer;">Update Token</button>`;
   }
 }
-
-// Start
 init();
 </script>
 </body>

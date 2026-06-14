@@ -20,6 +20,14 @@
 | Saturday | Long gravel ride |
 | Sunday | Recovery, mobility, easy spin/swim/walk, optional easy run |
 
+### Fatigue-stacking guardrails
+
+Cycling is priority #1, so gym legs must not blunt the two key conflict points:
+
+- **Mon (squat) → Tue (VO2max):** keep Monday lower-body at RPE ≤ 8, no leg accessories to failure. If Tuesday's interval power is down, Monday squats went too hard.
+- **Fri (hinge + single-leg) → Sat (long ride):** the biggest conflict. Keep Friday's trap-bar deadlift submaximal in volume (quality singles/doubles within the rep range, not grinders) and don't chase leg-accessory burn. If legs are still heavy Saturday, cut deadlift volume — **not** the long ride.
+- Don't combine a hard leg gym day, a hard cycling day, and the long ride within ~48 h without an easy day between.
+
 ## Cycling Training Types
 
 ### VO2max / Hill Repeats
@@ -103,17 +111,23 @@ Frequency:
 - Low fatigue
 - High technical quality
 
-Priority skills:
-1. Handstand
-2. Muscle-up
-3. Front lever basics
-4. Planche lean / straight-arm strength
-5. L-sit / compression
+14 skills are tracked in `calisthenics_progressions.md` (ladders + current level). That is far too many to progress at once on 3×/week — actively train ~5 **primary** skills, let the rest sit as "tracked, not trained," and avoid stacking three straight-arm holds (planche + front lever + back lever) in the same block.
 
-Example allocation:
-- Monday: handstand + planche lean
-- Wednesday: muscle-up + front lever
-- Friday: support holds + core compression
+Primary skills (train now — all near a milestone):
+1. Muscle Up (4/5) — clean the kip → strict
+2. Handstand line: One Arm Handstand (4/11) + Handstand Push Up (3/5) — freestanding handstand, then full wall HSPU
+3. Front Lever (2/6) — chosen straight-arm pull (park planche + back lever to avoid stacking)
+4. Dragon Flag (5/7) — one rung from full
+5. Shrimp Squat (4/5) — finish the single-leg set
+
+Secondary (light touch when fresh): V-Sit.
+Parked (tracked only): Planche, Back Lever, One Arm Pull Up, One Arm Push Up, Human Flag, Hefesto. Promote one when a primary graduates.
+Mastered (maintenance only): Pistol Squat — a few quality reps/leg in warm-ups, don't chase it.
+
+Example allocation (skills **before** gym fatigue, never to failure):
+- Monday (Gym A): One Arm Handstand (adv. wall → freestanding) + Wall HSPU; a few shrimp-squat reps in warm-up (keep leg fatigue low)
+- Wednesday (Gym B): Muscle Up (kip → strict) + Front Lever (adv. tuck → one leg)
+- Friday (Gym C): Dragon Flag (one leg → straddle) + V-Sit (tuck L-sit → straddle)
 
 ## Mobility
 
@@ -144,6 +158,16 @@ Every 4th week:
 - Extra mobility and sleep
 
 ## Fatigue Rules
+
+**Objective morning readiness (from Garmin — logged in `workout_log.md`):**
+
+| Readiness | Trigger | Action |
+|---|---|---|
+| 🟢 Green | HRV Balanced **and** Body Battery ≥ 60 **and** sleep score ≥ 70 | Train as planned |
+| 🟡 Amber | HRV Unbalanced **or** Body Battery 40–59 **or** sleep 50–69 | Keep session, cut top-end volume ~20%, hold loads |
+| 🔴 Red | HRV Low/Poor **or** Body Battery < 40 **or** sleep < 50, **or** 2+ amber days running | Easy/recovery only; apply removal hierarchy below |
+
+Objective markers override how you *feel* when they conflict — especially before VO2max, threshold, or heavy compound days.
 
 **Removal order when overloaded:**
 1. Optional run
