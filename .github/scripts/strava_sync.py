@@ -16,7 +16,7 @@ import requests
 CLIENT_ID     = os.environ["STRAVA_CLIENT_ID"]
 CLIENT_SECRET = os.environ["STRAVA_CLIENT_SECRET"]
 REFRESH_TOKEN = os.environ["STRAVA_REFRESH_TOKEN"]
-LOG_FILE      = "workout_log.md"
+LOG_FILE      = "people/denis/workout_log.md"
 
 # ── Day-of-week → default cycling session type (weekday() 0=Monday) ──────────
 CYCLING_BY_DOW = {
