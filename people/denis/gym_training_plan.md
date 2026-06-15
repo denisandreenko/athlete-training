@@ -1,6 +1,6 @@
 # Gym Training Plan (Strength / Hypertrophy)
 
-**Split:** Mon **Day A** (squat / horizontal push / vertical pull), Wed **Day B** (pull / overhead press / arms / core), Fri **Day C** (hinge / incline push / single-leg). **~59 working sets/week** across three ~50–55 min sessions (including short activation + mobility). Squat pattern and hinge pattern on **different days** to limit lumbar stress. Heavy leg days (Mon squat, Fri hinge) sit either side of cycling — see *Fatigue-stacking guardrails* in `training_framework.md`.
+**Split:** Mon **Day A** (squat / horizontal push / vertical pull), Wed **Day B** (pull / overhead press / arms / core), Fri **Day C** (hinge / incline push / single-leg). **~59 working sets/week** across three ~50–55 min sessions (including short activation + mobility). Squat pattern and hinge pattern on **different days** to limit lumbar stress. Heavy leg days (Mon squat, Fri hinge) sit either side of cycling — see *Fatigue-stacking guardrails* in `training_plan.md`.
 
 **Progress:** log loads in `workout_log.md`.
 
