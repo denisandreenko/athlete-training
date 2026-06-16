@@ -7,7 +7,8 @@
 <style>
   :root{
     --bg:#0f1115; --card:#181b22; --card2:#1f232c; --line:#2a2f3a;
-    --txt:#e6e8ec; --mut:#9aa3b2; --acc:#5db075; --acc2:#4a90d9; --warn:#d9a14a;
+    --txt:#e6e8ec; --mut:#9aa3b2;
+    --gym:#5db075; --run:#4a90d9; --warm:#d9a14a; --mob:#a78bfa; --rest:#7c8597;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;}
@@ -16,66 +17,109 @@
   .sub{color:var(--mut);font-size:13px;margin-top:2px}
   nav{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
   .tab{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:14px}
-  .tab.active{background:var(--acc);border-color:var(--acc);color:#0f1115;font-weight:600}
+  .tab.active{background:var(--gym);border-color:var(--gym);color:#0f1115;font-weight:600}
   main{padding:14px 14px 60px;max-width:760px;margin:0 auto}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+  .card-top{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+  .card-top h2{margin:0;font-size:16px;flex:1}
   .card h2{margin:0 0 4px;font-size:16px}
-  .card h3{margin:14px 0 6px;font-size:14px;color:var(--acc)}
+  .card h3{margin:14px 0 6px;font-size:14px}
+  .prog{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .reset-sm{background:none;border:1px solid var(--line);color:var(--mut);border-radius:7px;padding:3px 9px;cursor:pointer;font-size:12px;white-space:nowrap}
+  .reset-sm:active{opacity:.6}
+
+  /* section colors */
+  .c-gym{border-left-color:var(--gym)}   .c-gym .card-top h2,.c-gym h3{color:var(--gym)}
+  .c-run{border-left-color:var(--run)}   .c-run .card-top h2,.c-run h2{color:var(--run)}
+  .c-warm{border-left-color:var(--warm)} .c-warm .card-top h2{color:var(--warm)}
+  .c-mob{border-left-color:var(--mob)}   .c-mob .card-top h2,.c-mob h3{color:var(--mob)}
+  .c-rest{border-left-color:var(--rest)} .c-rest .card-top h2,.c-rest h2{color:var(--rest)}
+  .c-gym .row input{accent-color:var(--gym)}
+  .c-warm .row input{accent-color:var(--warm)}
+  .c-mob .row input{accent-color:var(--mob)}
+  .c-run .row input{accent-color:var(--run)}
+
   .mut{color:var(--mut);font-size:13px}
   table{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
   th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
   th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
   .row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
   .row:last-child{border-bottom:none}
-  .row input{width:18px;height:18px;accent-color:var(--acc);flex:none}
+  .row input{width:18px;height:18px;flex:none}
   .row label{cursor:pointer;flex:1}
-  .row .meta{color:var(--mut);font-size:12px}
-  .pill{display:inline-block;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:2px 9px;font-size:12px;color:var(--mut);margin:2px 4px 2px 0}
-  .reset{background:none;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:12px;float:right}
+  .row .meta{color:var(--mut);font-size:12px;white-space:nowrap}
+  .row.today{background:rgba(93,176,117,.10);margin:0 -16px;padding-left:16px;padding-right:16px;border-left:3px solid var(--gym)}
+  .today-banner{background:linear-gradient(90deg,rgba(93,176,117,.18),rgba(93,176,117,.04));border:1px solid rgba(93,176,117,.4);border-radius:12px;padding:12px 16px;margin-bottom:14px}
+  .today-banner .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gym);font-weight:700}
+  .today-banner .val{font-size:18px;font-weight:600;margin-top:2px}
   .hide{display:none}
-  .note{background:var(--card2);border-left:3px solid var(--warn);padding:8px 12px;border-radius:6px;color:var(--mut);font-size:13px;margin-top:8px}
+  .note{background:var(--card2);border-left:3px solid var(--warm);padding:8px 12px;border-radius:6px;color:var(--mut);font-size:13px;margin-top:8px}
 </style>
 </head>
 <body>
 <header>
   <h1>🏋 Alicja — Training</h1>
-  <div class="sub">Novice base · keto · flexible schedule · no wearable</div>
+  <div class="sub">Novice strength base · aerobic base · keto · fixed schedule</div>
 </header>
 <nav>
   <button class="tab active" data-view="week">Week</button>
-  <button class="tab" data-view="gym">Gym</button>
+  <button class="tab" data-view="gym">Gym & Mobility</button>
   <button class="tab" data-view="run">Running</button>
-  <button class="tab" data-view="mob">Mobility & Splits</button>
 </nav>
 <main>
 
   <!-- WEEK -->
   <section id="week">
-    <div class="card">
-      <h2>Weekly schedule <button class="reset" onclick="resetAll()">Reset checks</button></h2>
+    <div class="today-banner">
+      <div class="lbl">Today · <span id="today-day"></span></div>
+      <div class="val" id="today-session"></div>
+    </div>
+    <div class="card c-gym">
+      <div class="card-top">
+        <h2>Weekly schedule</h2>
+        <span class="prog" id="prog-wk"></span>
+        <button class="reset-sm" onclick="resetKey('wk')">↺ Reset</button>
+      </div>
       <p class="mut">Fixed week + a short daily mobility minimum. Gym days stay fresh; runs sit after gym but before a rest day.</p>
       <div id="week-list"></div>
     </div>
-    <div class="card">
-      <h2>Priorities</h2>
-      <span class="pill">1 · Strength base</span><span class="pill">2 · Mobility & splits</span>
-      <span class="pill">3 · Running (heart health)</span><span class="pill">4 · Recovery</span>
-      <div class="note">No wearable — check readiness by feel each morning (sleep, soreness, energy, motivation). If 2+ are poor, make it an easy day: keep mobility, drop intensity.</div>
+    <div class="card c-rest">
+      <h2>Readiness check</h2>
+      <div class="note">No wearable — check by feel each morning (sleep, soreness, energy, motivation). If 2+ are poor, make it an easy day: keep mobility, drop intensity.</div>
     </div>
   </section>
 
-  <!-- GYM -->
+  <!-- GYM & MOBILITY -->
   <section id="gym" class="hide">
-    <div class="card">
-      <h2>Session A — full body</h2>
-      <p class="mut">2–3 reps in reserve, never to failure. Warm up ~5 min first.</p>
+    <div class="card c-warm">
+      <div class="card-top">
+        <h2>Warm-up — before every gym session</h2>
+        <span class="prog" id="prog-gw"></span>
+        <button class="reset-sm" onclick="resetKey('gw')">↺</button>
+      </div>
+      <p class="mut">~5 min. Do this before Session A or B.</p>
+      <div id="gymWarm"></div>
+    </div>
+    <div class="card c-gym">
+      <div class="card-top">
+        <h2>Session A — Monday</h2>
+        <span class="prog" id="prog-ga"></span>
+        <button class="reset-sm" onclick="resetKey('ga')">↺</button>
+      </div>
+      <p class="mut">Full body · 2–3 reps in reserve, never to failure.</p>
       <div id="gymA"></div>
     </div>
-    <div class="card">
-      <h2>Session B — full body</h2>
+    <div class="card c-gym">
+      <div class="card-top">
+        <h2>Session B — Thursday</h2>
+        <span class="prog" id="prog-gb"></span>
+        <button class="reset-sm" onclick="resetKey('gb')">↺</button>
+      </div>
+      <p class="mut">Full body · 2–3 reps in reserve.</p>
       <div id="gymB"></div>
     </div>
-    <div class="card">
+    <div class="card c-gym">
       <h2>Bodyweight ladders</h2>
       <h3>Push-up</h3>
       <p class="mut">Wall → incline → <b>knee (now)</b> → negative full → full push-up</p>
@@ -83,11 +127,30 @@
       <p class="mut">Inverted row → <b>assisted (now)</b> → negative → full pull-up</p>
       <div class="note">Advance a stage only at the top of the rep range with clean form.</div>
     </div>
+    <div class="card c-mob">
+      <div class="card-top">
+        <h2>Sunday — Full Mobility & Splits</h2>
+        <span class="prog" id="prog-ms"></span>
+        <button class="reset-sm" onclick="resetKey('ms')">↺</button>
+      </div>
+      <p class="mut">~25–30 min. Stretch warm. Hold each 45–90 s, both sides evenly. <b>Strong-but-tolerable, never sharp pain.</b></p>
+      <div id="mobSunday"></div>
+      <div class="note">Track your depth in the log (e.g. "palms flat in straddle"). Finish with the PNF reps to build usable, strong range.</div>
+    </div>
   </section>
 
   <!-- RUN -->
   <section id="run" class="hide">
-    <div class="card">
+    <div class="card c-warm">
+      <div class="card-top">
+        <h2>Warm-up — before every run</h2>
+        <span class="prog" id="prog-rw"></span>
+        <button class="reset-sm" onclick="resetKey('rw')">↺</button>
+      </div>
+      <p class="mut">Easy runs: the first 5 min easy <i>is</i> the warm-up. Quality runs (Fri intervals): do the full drill list + strides first.</p>
+      <div id="runWarm"></div>
+    </div>
+    <div class="card c-run">
       <h2>Running build (has a base)</h2>
       <p class="mut">2 runs/week — Tue easy, Fri quality once progressing. ~80% easy. Already runs 4–5 km Z2.</p>
       <table>
@@ -100,27 +163,18 @@
     </div>
   </section>
 
-  <!-- MOBILITY -->
-  <section id="mob" class="hide">
-    <div class="card">
-      <h2>Daily mobility (~8–10 min)</h2>
-      <div id="mobDaily"></div>
-    </div>
-    <div class="card">
-      <h2>Splits routine (3–5×/wk)</h2>
-      <h3>Front split</h3>
-      <p class="mut">Hip-flexor → low lunge/couch → hamstrings → supported front split → full</p>
-      <h3>Middle split</h3>
-      <p class="mut">90/90 rock-backs → frog → Cossack squat → wide straddle → full</p>
-      <div class="note">Stretch warm. Strong-but-tolerable, never sharp pain. Hold 45–90 s × 2–3 rounds. Track depth in your log.</div>
-    </div>
-  </section>
-
 </main>
 <script>
   const STORE='alicja_dash_v1';
   const state=JSON.parse(localStorage.getItem(STORE)||'{}');
   function save(){localStorage.setItem(STORE,JSON.stringify(state));}
+
+  // day 0=Sun..6=Sat → session
+  const SCHEDULE={
+    1:'Gym A — full body', 2:'Easy run, Z2 4–7 km + strides', 3:'Rest + light mobility',
+    4:'Gym B — full body', 5:'Run — easy (or Fri quality)', 6:'Rest', 0:'Full mobility & splits'
+  };
+  const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
   const week=[
     ['Mon — Gym A (full body)','strength'],
@@ -130,6 +184,17 @@
     ['Fri — Run (easy → quality)','aerobic'],
     ['Sat — Rest','recovery'],
     ['Sun — Full mobility & splits','flexibility']
+  ];
+  // week index 0=Mon..6=Sun  →  JS getDay 0=Sun..6=Sat
+  const WEEK_TO_GETDAY=[1,2,3,4,5,6,0];
+
+  const gymWarm=[
+    ['Easy cardio (walk / bike)','5 min'],
+    ['Leg swings','10/side'],
+    ['Arm circles','20'],
+    ['Bodyweight squats','10'],
+    ['Band pull-aparts / scapular pulls','10'],
+    ['Glute bridges','10']
   ];
   const gymA=[
     ['Goblet / bodyweight squat','3 × 8–12'],
@@ -147,32 +212,78 @@
     ['Dead bug','2 × 8/side'],
     ['Side plank','2 × 15–30 s/side']
   ];
-  const mobDaily=[
-    ['Hip flexors',''],['Hamstrings',''],['Adductors',''],
-    ['Thoracic rotation',''],['Shoulders',''],['Ankles',''],['Deep-squat breathing','']
+  const runWarm=[
+    ['Easy jog (build pace)','5–10 min'],
+    ['Leg swings front/back','10/side'],
+    ['Lateral leg swings','10/side'],
+    ['Ankle circles + hip openers','~1 min'],
+    ['Strides (before intervals only)','4–6 × 15–20 s']
+  ];
+  const mobSunday=[
+    ['Joint circles + cat-cow','~3 min'],
+    ['Half-kneeling hip-flexor stretch','60 s/side'],
+    ['Couch stretch','60 s/side'],
+    ['Hamstring stretch (seated/standing)','60 s/side'],
+    ['90/90 hip switches + hold','8 + 45 s/side'],
+    ['Frog stretch','60–90 s'],
+    ['Cossack squats','8/side'],
+    ['Wide straddle forward fold','60–90 s'],
+    ['Supported front split (blocks)','60–90 s/side'],
+    ['Supported middle split','60–90 s'],
+    ['Pigeon pose','60 s/side'],
+    ['Thoracic open book','10/side'],
+    ['Wrist & shoulder prep','~1 min'],
+    ['PNF finisher (contract–relax in deepest split)','3 reps/side']
   ];
 
-  function render(id,items,key){
-    const el=document.getElementById(id);
-    el.innerHTML=items.map((it,i)=>{
+  // checklist registry: key → {list, elId}
+  const LISTS={
+    wk:{list:week,el:'week-list'}, gw:{list:gymWarm,el:'gymWarm'},
+    ga:{list:gymA,el:'gymA'}, gb:{list:gymB,el:'gymB'},
+    rw:{list:runWarm,el:'runWarm'}, ms:{list:mobSunday,el:'mobSunday'}
+  };
+
+  function renderList(key,todayIdx){
+    const {list,el}=LISTS[key];
+    const box=document.getElementById(el); if(!box) return;
+    box.innerHTML=list.map((it,i)=>{
       const k=key+'_'+i, on=state[k]?'checked':'';
-      return `<div class="row"><input type="checkbox" id="${k}" ${on} onchange="toggle('${k}')">`
+      const cls='row'+(todayIdx===i?' today':'');
+      return `<div class="${cls}"><input type="checkbox" id="${k}" ${on} onchange="toggle('${key}',${i})">`
         +`<label for="${k}">${it[0]}</label>`+(it[1]?`<span class="meta">${it[1]}</span>`:'')+`</div>`;
     }).join('');
+    updateProg(key);
   }
-  function toggle(k){state[k]=!state[k];save();}
-  function resetAll(){for(const k in state)delete state[k];save();renderAll();}
+  function updateProg(key){
+    const {list}=LISTS[key];
+    let c=0; for(let i=0;i<list.length;i++) if(state[key+'_'+i]) c++;
+    const span=document.getElementById('prog-'+key);
+    if(span) span.textContent=c+' / '+list.length;
+  }
+  function toggle(key,i){const k=key+'_'+i;state[k]=!state[k];save();updateProg(key);}
+  function resetKey(key){
+    const n=LISTS[key].list.length;
+    for(let i=0;i<n;i++) delete state[key+'_'+i];
+    save();
+    renderList(key, key==='wk'?weekTodayIdx():undefined);
+  }
+
+  function weekTodayIdx(){return WEEK_TO_GETDAY.indexOf(new Date().getDay());}
+
   function renderAll(){
-    render('week-list',week,'wk');
-    render('gymA',gymA,'ga');render('gymB',gymB,'gb');
-    render('mobDaily',mobDaily,'md');
+    const gd=new Date().getDay();
+    document.getElementById('today-day').textContent=DAYS[gd];
+    document.getElementById('today-session').textContent=SCHEDULE[gd];
+    renderList('wk',weekTodayIdx());
+    renderList('gw');renderList('ga');renderList('gb');
+    renderList('rw');renderList('ms');
   }
   renderAll();
 
   document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
     t.classList.add('active');
-    ['week','gym','run','mob'].forEach(v=>document.getElementById(v).classList.add('hide'));
+    ['week','gym','run'].forEach(v=>document.getElementById(v).classList.add('hide'));
     document.getElementById(t.dataset.view).classList.remove('hide');
   });
 </script>

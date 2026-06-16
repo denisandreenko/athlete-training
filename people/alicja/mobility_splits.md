@@ -33,6 +33,27 @@ Do **after** a warm-up or training. Hold each 45–90 s, 2–3 rounds, easing de
 - **Hamstrings:** active leg raises, jefferson curl (very light) for end-range strength.
 - **Active flexibility:** add gentle PNF (contract–relax) and end-range holds once a position is comfortable — this builds usable, strong range, not just passive stretch.
 
+## Sunday full session (~25–30 min)
+
+The dedicated weekly flexibility session (also shown in the dashboard). Stretch warm; hold each 45–90 s, ease deeper as you relax, both sides evenly.
+
+| # | Exercise | Duration |
+|---|---|---|
+| 1 | Joint circles (neck/shoulders/hips/ankles) + cat-cow | ~3 min |
+| 2 | Half-kneeling hip-flexor stretch | 60 s/side |
+| 3 | Couch stretch | 60 s/side |
+| 4 | Hamstring stretch (seated/standing) | 60 s/side |
+| 5 | 90/90 hip switches + hold | 8 reps + 45 s/side |
+| 6 | Frog stretch | 60–90 s |
+| 7 | Cossack squats | 8/side |
+| 8 | Wide straddle forward fold | 60–90 s |
+| 9 | Supported front split (blocks) | 60–90 s/side |
+| 10 | Supported middle split | 60–90 s |
+| 11 | Pigeon pose | 60 s/side |
+| 12 | Thoracic open book | 10/side |
+| 13 | Wrist & shoulder prep | ~1 min |
+| 14 | PNF finisher — contract–relax in deepest split | 3 reps/side |
+
 ## Progression rules
 
 - Consistency beats intensity — short daily work outperforms occasional long sessions.
