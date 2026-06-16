@@ -1,18 +1,14 @@
-# Denis — Nutrition (Ketogenic)
-
-General keto framework, per-100 g food table, TKD fueling, electrolytes, and body-composition rules are in `shared/keto_nutrition_reference.md`. This file holds Denis's daily intake, meals, and supplement doses.
+# Nutrition (Ketogenic)
 
 Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 meals/day.
 
 | Metric | Daily total |
 |--------|-------------|
-| Protein | 213 g |
-| Carbs | 36 g |
-| Fat | 227.8 g |
+| Protein | 220 g |
+| Carbs | 36.4 g |
+| Fat | 233 g |
 | Fiber | 28.4 g |
-| Calories | 3278 kcal |
-
-Body comp: 87 kg, ~11% body fat. Goal: maintain lean, athletic composition while supporting strength, hypertrophy, and cycling volume. Protein target ~1.8–2.4 g/kg/day (~157–209 g); current ~214 g is slightly above but acceptable if digestion and recovery are good.
+| Calories | 3356 kcal |
 
 ---
 
@@ -20,12 +16,12 @@ Body comp: 87 kg, ~11% body fat. Goal: maintain lean, athletic composition while
 
 | Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
 |------|-------------|-----------|---------|-----------|------|
-| Egg 55g × 4 | 27.7 | 1.5 | 20.9 | 0 | 315 |
+| Egg 55g × 5 | 34.7 | 1.9 | 26.1 | 0 | 393.3 |
 | Frozen veggies 400g | 0 | 11.6 | 2.8 | 8 | 144 |
 | Cheese 64g (4 slices) | 16 | 0 | 16.6 | 0 | 214 |
-| Olive oil 20g | 0 | 0 | 10 | 0 | 90 |
+| Olive oil 10g | 0 | 0 | 10 | 0 | 90 |
 | Butter 120g | 1 | 1 | 98 | 0 | 895 |
-| **Meal total** | **44.7** | **14.1** | **148.3** | **8** | **1658** |
+| **Meal total** | **51.7** | **14.5** | **153.5** | **8** | **1736** |
 
 ## Meal 2
 
@@ -48,21 +44,19 @@ Body comp: 87 kg, ~11% body fat. Goal: maintain lean, athletic composition while
 | Pumpkin seeds 10g | 2.5 | 1.3 | 4.6 | 0.5 | 57.7 |
 | **Meal total** | **61** | **16.1** | **43.6** | **14.8** | **738** |
 
----
-
 ## Daily supplements
 
-* **D3 + K2:** :8000 IU D3 + 200 µg K2
-* **Omega 3:** :2100 mg EPA/DHA
-* **Creatine:** :10 g
-* **Daily salt (low-sodium blend):** :NaCl 70% + KCl 30%, iodized — used for food seasoning and training water
-* **Magnesium glycinate stack:** :320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6
-* **Magnesium malate:** :200 mg (pre-training on hard days)
-* **Citrulline malate:** :6 g
-* **Beta-alanine:** :6 g
-* **Caffeine:** :200 mg
-* **Beef collagen:** :8,700 mg + vitamin C (pre-training, 30–45 min before gym or calisthenics)
-* 2 Brazil nuts
+* **D3 + K2:** ::8000 IU D3 + 200 µg K2
+* **Omega 3:** ::2100 mg EPA/DHA
+* **Creatine:** ::10 g
+* **Daily salt (low-sodium blend):** ::NaCl 70% + KCl 30%, iodized — used for food seasoning and training water
+* **Magnesium glycinate stack:** ::320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6
+* **Magnesium malate:** ::200 mg (pre-training on hard days)
+* **Citrulline malate:** ::6 g
+* **Beta-alanine:** ::6 g
+* **Caffeine:** ::200 mg
+* **Beef collagen:** ::8,700 mg + vitamin C (pre-training, 30–45 min before gym or calisthenics)
+* * 2 Brazil nuts
 
 ## Supplement timing
 
