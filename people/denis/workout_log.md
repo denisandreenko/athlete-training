@@ -44,6 +44,20 @@ READINESS RULE (assistant applies this):
 
 ---
 
+## 2026-06-16 | CYCLING_VO2MAX
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Climb Portal: Côte de la Redoute at 50% Elevation in France" · 3.2km · 84m gain · avg HR 109 · max HR 121
+
+### Endurance
+- duration: 10min
+- avg_power_or_pace: 162W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-14 | CYCLING_THRESHOLD
 - fatigue_before: ?
 - sleep: ?
