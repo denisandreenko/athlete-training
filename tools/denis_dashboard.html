@@ -591,7 +591,8 @@ function renderPlan() {
   const isCycling = ['CYCLING_VO2MAX','CYCLING_THRESHOLD','CYCLING_LONG'].includes(todayType);
 
   if (isGym) {
-    let html = `<table class="plan-table"><thead><tr><th>Exercise</th><th>Target</th><th>Last</th></tr></thead><tbody>`;
+    let html = `<div class="mobility-tip" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.25);color:#fcd34d;">🔥 Warm-up: 5 min easy cardio → dynamic prep (leg swings · arm circles · band pull-aparts) → 1–2 ramp-up sets on the first compound</div>`;
+    html += `<table class="plan-table"><thead><tr><th>Exercise</th><th>Target</th><th>Last</th></tr></thead><tbody>`;
     for (const ex of GYM_PLAN[todayType]) {
       const load = getLoad(ex.name);
       html += `<tr><td class="exname">${ex.name}</td><td class="target">${ex.target}</td>
@@ -605,7 +606,12 @@ function renderPlan() {
     body.innerHTML = html;
   } else if (isCycling) {
     const plan = CYCLING_PLANS[todayType];
-    let html = `<div class="cycling-block"><div class="cy-label">Purpose</div><div class="cy-value">${plan.purpose}</div>
+    const cyWarm = todayType === 'CYCLING_LONG'
+      ? 'hip-flexor stretch 30 s/side · leg swings front/back + lateral 10/side · deep-squat hold 60 s · single-leg glute bridge 10/side, then ease into Z2 (~10 min)'
+      : 'hip-flexor stretch 30 s/side · leg swings 10/side · 10 min easy spin building to 3 × 30 s openers before the main set';
+    let html = `<div class="cycling-block">`;
+    html += `<div class="mobility-tip" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.25);color:#fcd34d;">🔥 Warm-up: ${cyWarm}</div>`;
+    html += `<div class="cy-label">Purpose</div><div class="cy-value">${plan.purpose}</div>
       <div class="cy-label">Workout Options</div><ul class="cy-interval-list">`;
     for (const o of plan.options) html += `<li>${o}</li>`;
     html += `</ul><div class="fueling-tip">⚡ <strong>Fueling</strong> — ${plan.fueling}</div></div>`;
