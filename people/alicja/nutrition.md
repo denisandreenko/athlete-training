@@ -6,13 +6,13 @@ Diet style: ketogenic, 3 meals/day. Stats: 164 cm, 52 kg, 24 yo, ~23% body fat. 
 
 | Metric | Daily total (approx) |
 |--------|-------------|
-| Protein | ~133 g |
+| Protein | ~137 g |
 | Carbs | ~25.4 g |
-| Fat | ~112.1 g |
+| Fat | ~116.3 g |
 | Fiber | ~18 g |
-| Calories | ~1745 kcal |
+| Calories | ~1798 kcal |
 
-> This plan totals ~1,745 kcal — slightly below her ~1,850 kcal maintenance. To hit a small muscle-building surplus (~1,900 kcal) add a protein/fat source (e.g. more meat or eggs, or a little more oil/butter).
+> This plan totals ~1,798 kcal — slightly below her ~1,850 kcal maintenance. To hit a small muscle-building surplus (~1,900 kcal) add a protein/fat source (e.g. more meat or eggs, or a little more oil/butter).
 
 ---
 
@@ -22,10 +22,10 @@ Diet style: ketogenic, 3 meals/day. Stats: 164 cm, 52 kg, 24 yo, ~23% body fat. 
 |------|-------------|-----------|---------|-----------|------|
 | Eggs (3 large) 165g | 20.8 | 1.2 | 15.7 | 0 | 236 |
 | Frozen veggies 250g | 0 | 7.3 | 1.8 | 5 | 90 |
-| Cheese (2 slices) 32g | 8 | 0 | 8.3 | 0 | 107 |
+| Cheese (3 slices) 48g | 12 | 0 | 12.5 | 0 | 160 |
 | Olive oil 10g | 0 | 0 | 10 | 0 | 90 |
 | Butter 20g | 0.2 | 0.2 | 16.4 | 0 | 149 |
-| **Meal total** | **29** | **8.7** | **52.2** | **5** | **672** |
+| **Meal total** | **33** | **8.7** | **56.4** | **5** | **725** |
 
 ## Meal 2
 
