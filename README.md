@@ -28,7 +28,7 @@ athlete-training/
 │       ├── gym_training_plan.md    ← novice hypertrophy progressions
 │       ├── mobility_splits.md      ← flexibility / splits routine
 │       ├── running_plan.md         ← beginner VO2max / threshold build
-│       ├── nutrition.md            ← keto, scaled from Denis's framework
+│       ├── nutrition.md
 │       └── workout_log.md          ← manual (no wearable)
 │
 ├── tools/                          ← web dashboards / editors
