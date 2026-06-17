@@ -49,13 +49,13 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 * **D3 + K2:** 8000 IU D3 + 200 µg K2
 * **Omega 3:** 2100 mg EPA/DHA
 * **Creatine:** 10 g
-* **Daily salt (low-sodium blend):** NaCl 70% + KCl 30%, iodized — used for food seasoning and training water
-* **Magnesium glycinate stack:** 320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6
-* **Magnesium malate:** 200 mg (pre-training on hard days)
+* **Daily salt (low-sodium blend):** NaCl 70% + KCl 30%, iodized
+* **Magnesium glycinate stack:** 480 mg magnesium + 45 mg zinc + 4 mg copper + 6.3 mg B6
+* **Magnesium malate:** 200 mg
 * **Citrulline malate:** 6 g
 * **Beta-alanine:** 6 g
 * **Caffeine:** 200 mg
-* **Beef collagen:** 8,700 mg + vitamin C (pre-training, 30–45 min before gym or calisthenics)
+* **Beef collagen:** 8,700 mg + vitamin C
 * **Brazil nuts:** 2
 
 ## Supplement timing
