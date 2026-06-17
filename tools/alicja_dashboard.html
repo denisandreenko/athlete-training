@@ -64,10 +64,11 @@
   .mcell .l{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);margin-top:2px}
   .maint{margin-top:10px;font-size:14px}
   .maint b{color:var(--nut)}
-  .ntab{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+  .ntab{width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px;margin-top:4px}
   .ntab th{font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--mut);font-weight:600;padding:0 4px 6px;border-bottom:1px solid var(--line)}
   .ntab td{padding:6px 4px;border-bottom:1px solid var(--line)}
-  .ntab .r{text-align:right;color:var(--mut);white-space:nowrap}
+  .ntab td:first-child,.ntab th:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ntab .r{text-align:right;color:var(--mut);white-space:nowrap;width:54px}
   .ntab tfoot .ttl td{font-weight:700;color:var(--txt);border-bottom:none;border-top:1px solid var(--line);padding-top:7px}
   .ntab tfoot .ttl .r{color:var(--txt)}
   .supp-ro{padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
@@ -357,7 +358,7 @@
   function renderMeal(mi){
     const box=document.getElementById('meal-'+mi); if(!box)return;
     const meal=PLAN.m[mi];
-    let h=`<table class="ntab"><thead><tr><th>Item</th><th class="r">g</th><th class="r">P</th><th class="r">C</th><th class="r">F</th><th class="r">kcal</th></tr></thead><tbody>`;
+    let h=`<table class="ntab"><thead><tr><th>Item</th><th class="r">g/ml</th><th class="r">P</th><th class="r">C</th><th class="r">F</th><th class="r">kcal</th></tr></thead><tbody>`;
     meal.items.forEach(it=>{const x=calcItem(it);
       h+=`<tr><td>${esc(it.n)}</td><td class="r">${it.a}</td><td class="r">${r1(x.p)}</td><td class="r">${r1(x.c)}</td><td class="r">${r1(x.f)}</td><td class="r">${Math.round(x.k)}</td></tr>`;
     });
