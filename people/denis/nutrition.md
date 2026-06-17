@@ -4,11 +4,11 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 
 | Metric | Daily total |
 |--------|-------------|
-| Protein | 220 g |
-| Carbs | 36.4 g |
-| Fat | 233 g |
-| Fiber | 28.4 g |
-| Calories | 3356 kcal |
+| Protein | 212.6 g |
+| Carbs | 37 g |
+| Fat | 230.8 g |
+| Fiber | 27.6 g |
+| Calories | 3290 kcal |
 
 ---
 
@@ -16,47 +16,47 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 
 | Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
 |------|-------------|-----------|---------|-----------|------|
-| Egg 55g × 5 | 34.7 | 1.9 | 26.1 | 0 | 393.3 |
-| Frozen veggies 400g | 0 | 11.6 | 2.8 | 8 | 144 |
-| Cheese 64g (4 slices) | 16 | 0 | 16.6 | 0 | 214 |
-| Olive oil 10g | 0 | 0 | 10 | 0 | 90 |
-| Butter 120g | 1 | 1 | 98 | 0 | 895 |
+| Egg (5 large) | 34.7 | 1.9 | 26.1 | 0 | 393.3 |
+| Frozen veggies | 0 | 11.6 | 2.8 | 8 | 144 |
+| Cheese (4 slices) | 16 | 0 | 16.6 | 0 | 214 |
+| Olive oil | 0 | 0 | 10 | 0 | 90 |
+| Butter | 1 | 1 | 98 | 0 | 895 |
 | **Meal total** | **51.7** | **14.5** | **153.5** | **8** | **1736** |
 
 ## Meal 2
 
 | Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
 |------|-------------|-----------|---------|-----------|------|
-| Ground pork (cooked) 300g | 84 | 0 | 28 | 0 | 639 |
-| Frozen veggies 200g | 0 | 5.8 | 1.4 | 4 | 72 |
-| Sauerkraut / kimchi 50g | 0 | 0 | 0 | 1.6 | 20 |
-| Sardines 90g | 23.3 | 0 | 6.5 | 0 | 151 |
-| **Meal total** | **107.3** | **5.8** | **35.9** | **5.6** | **882** |
+| Ground pork (cooked)  | 84 | 0 | 28 | 0 | 639 |
+| Frozen veggies | 0 | 5.8 | 1.4 | 4 | 72 |
+| Sauerkraut / kimchi | 0.4 | 0.6 | 0 | 0.8 | 4.4 |
+| Sardines | 15.5 | 0 | 4.3 | 0 | 100.8 |
+| **Meal total** | **99.9** | **6.4** | **33.7** | **4.8** | **816** |
 
 ## Meal 3
 
 | Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
 |------|-------------|-----------|---------|-----------|------|
-| L-reuteri yogurt 130ml | 4.2 | 0.7 | 4.2 | 2.6 | 56 |
-| Cottage cheese 300g | 51 | 10.2 | 27 | 0 | 489 |
-| Cocoa powder 15g | 0 | 2.4 | 1.7 | 4.8 | 46 |
-| Chia 20g | 3.3 | 1.5 | 6.1 | 6.9 | 89 |
-| Pumpkin seeds 10g | 2.5 | 1.3 | 4.6 | 0.5 | 57.7 |
+| L-reuteri yogurt | 4.2 | 0.7 | 4.2 | 2.6 | 56 |
+| Cottage cheese | 51 | 10.2 | 27 | 0 | 489 |
+| Cocoa powder | 0 | 2.4 | 1.7 | 4.8 | 46 |
+| Chia | 3.3 | 1.5 | 6.1 | 6.9 | 89 |
+| Pumpkin seeds | 2.5 | 1.3 | 4.6 | 0.5 | 57.7 |
 | **Meal total** | **61** | **16.1** | **43.6** | **14.8** | **738** |
 
 ## Daily supplements
 
-* **D3 + K2:** ::8000 IU D3 + 200 µg K2
-* **Omega 3:** ::2100 mg EPA/DHA
-* **Creatine:** ::10 g
-* **Daily salt (low-sodium blend):** ::NaCl 70% + KCl 30%, iodized — used for food seasoning and training water
-* **Magnesium glycinate stack:** ::320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6
-* **Magnesium malate:** ::200 mg (pre-training on hard days)
-* **Citrulline malate:** ::6 g
-* **Beta-alanine:** ::6 g
-* **Caffeine:** ::200 mg
-* **Beef collagen:** ::8,700 mg + vitamin C (pre-training, 30–45 min before gym or calisthenics)
-* * 2 Brazil nuts
+* **D3 + K2:** :::8000 IU D3 + 200 µg K2
+* **Omega 3:** :::2100 mg EPA/DHA
+* **Creatine:** :::10 g
+* **Daily salt (low-sodium blend):** :::NaCl 70% + KCl 30%, iodized — used for food seasoning and training water
+* **Magnesium glycinate stack:** :::320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6
+* **Magnesium malate:** :::200 mg (pre-training on hard days)
+* **Citrulline malate:** :::6 g
+* **Beta-alanine:** :::6 g
+* **Caffeine:** :::200 mg
+* **Beef collagen:** :::8,700 mg + vitamin C (pre-training, 30–45 min before gym or calisthenics)
+* * * 2 Brazil nuts
 
 ## Supplement timing
 
