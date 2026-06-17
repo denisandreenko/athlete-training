@@ -57,29 +57,21 @@
   .hide{display:none}
   .note{background:var(--card2);border-left:3px solid var(--warm);padding:8px 12px;border-radius:6px;color:var(--mut);font-size:13px;margin-top:8px}
 
-  /* nutrition editor */
-  .macros{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0}
-  .mcell{text-align:center}
+  /* nutrition (read-only) */
+  .macros{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 4px}
+  .mcell{text-align:center;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:8px 4px}
   .mcell .v{font-size:17px;font-weight:700}
   .mcell .l{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);margin-top:2px}
-  .mbar{height:4px;border-radius:2px;background:var(--line);margin-top:5px;overflow:hidden}
-  .mbar>i{display:block;height:100%;border-radius:2px}
-  .over{color:#e5645f!important}
-  .nrow{display:flex;align-items:center;gap:7px;padding:7px 0;border-bottom:1px solid var(--line)}
-  .nrow:last-child{border-bottom:none}
-  .nrow .nm-in{flex:1;min-width:0;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:6px;padding:5px 6px;font-size:13px}
-  .nrow .nm-in:focus,.nrow .amt:focus{outline:none;border-color:var(--nut)}
-  .nrow .amt{width:54px;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:6px;padding:5px 6px;font-size:13px;text-align:right}
-  .nrow .unit{color:var(--mut);font-size:12px;margin-left:-3px}
-  .nrow .mc{font-size:11px;color:var(--mut);width:104px;text-align:right;white-space:nowrap}
-  .nrow .del{background:none;border:none;color:var(--mut);font-size:17px;cursor:pointer;line-height:1}
-  .nrow .mini{background:var(--card2);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:3px 7px;font-size:12px;cursor:pointer;line-height:1;white-space:nowrap}
-  .nrow .mini:active{opacity:.6}
-  .addbar{display:flex;gap:6px;margin-top:10px}
-  .addbar select{flex:1;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:6px;padding:7px}
-  .addbar button{background:var(--card2);border:1px solid var(--line);color:var(--nut);border-radius:7px;padding:7px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
-  #toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--nut);color:#0f1115;font-weight:600;padding:9px 16px;border-radius:9px;font-size:13px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:50}
-  #toast.show{opacity:1}
+  .maint{margin-top:10px;font-size:14px}
+  .maint b{color:var(--nut)}
+  .ntab{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+  .ntab th{font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--mut);font-weight:600;padding:0 4px 6px;border-bottom:1px solid var(--line)}
+  .ntab td{padding:6px 4px;border-bottom:1px solid var(--line)}
+  .ntab .r{text-align:right;color:var(--mut);white-space:nowrap}
+  .ntab tfoot .ttl td{font-weight:700;color:var(--txt);border-bottom:none;border-top:1px solid var(--line);padding-top:7px}
+  .ntab tfoot .ttl .r{color:var(--txt)}
+  .supp-ro{padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .supp-ro:last-child{border-bottom:none}
 </style>
 </head>
 <body>
@@ -192,32 +184,25 @@
   <!-- NUTRITION -->
   <section id="nut" class="hide">
     <div class="card c-nut">
-      <div class="card-top">
-        <h2>Daily totals — keto</h2>
-        <button class="reset-sm" onclick="copyNutritionMd()">⧉ Copy MD</button>
-        <button class="reset-sm" onclick="resetNutrition()">↺ Plan</button>
-      </div>
+      <h2>Daily totals — keto</h2>
       <div class="macros" id="macros"></div>
       <p class="mut" id="fiber-line"></p>
-      <div class="note">Edit grams below — macros recalc live and save on this device. Targets: 136 P · 26 C · 97 F · 1662 kcal. "Copy MD" puts updated tables on your clipboard to paste into nutrition.md.</div>
+      <div class="maint" id="maint-line"></div>
+      <div class="note" id="plan-note"></div>
     </div>
-    <div class="card c-nut"><div class="card-top"><h2>Meal 1</h2><span class="prog" id="mt-0"></span></div><div id="meal-0"></div><div class="addbar" id="add-0"></div></div>
-    <div class="card c-nut"><div class="card-top"><h2>Meal 2</h2><span class="prog" id="mt-1"></span></div><div id="meal-1"></div><div class="addbar" id="add-1"></div></div>
-    <div class="card c-nut"><div class="card-top"><h2>Meal 3</h2><span class="prog" id="mt-2"></span></div><div id="meal-2"></div><div class="addbar" id="add-2"></div></div>
+    <div class="card c-nut"><h2>Meal 1</h2><div id="meal-0"></div></div>
+    <div class="card c-nut"><h2>Meal 2</h2><div id="meal-1"></div></div>
+    <div class="card c-nut"><h2>Meal 3</h2><div id="meal-2"></div></div>
     <div class="card c-nut">
-      <div class="card-top"><h2>Supplements</h2></div>
-      <p class="mut">Edit, reorder (↑↓), or move between sections (→). Included in "Copy MD". Format: <code>Name: dose</code>.</p>
+      <h2>Supplements</h2>
       <h3 style="color:var(--nut)">Pre-workout</h3>
       <div id="supp-pre"></div>
-      <div class="addbar"><button onclick="addSupp('pre')">＋ Add pre-workout</button></div>
       <h3 style="color:var(--nut)">Daily</h3>
       <div id="supp-daily"></div>
-      <div class="addbar"><button onclick="addSupp('daily')">＋ Add daily</button></div>
     </div>
   </section>
 
 </main>
-<div id="toast"></div>
 <script>
   const STORE='alicja_dash_v1';
   const state=JSON.parse(localStorage.getItem(STORE)||'{}');
@@ -334,10 +319,10 @@
   }
   renderAll();
 
-  // ── NUTRITION (editable, local) ─────────────────────────────
-  const NUTSTORE='alicja_nutrition_v3';
+  // ── NUTRITION (read-only) ─────────────────────────────
   const r1=n=>Math.round(n*10)/10;
   const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const MAINTENANCE=1850; // kcal/day estimate — 164 cm, 52 kg, 24 yo, active
   // per 100 g: protein, carbs(net), fat, fiber, kcal
   const REFS={
     'Egg':{p:12.6,c:0.7,f:9.5,fb:0,k:143},
@@ -346,124 +331,60 @@
     'Olive oil':{p:0,c:0,f:100,fb:0,k:900},
     'Butter':{p:1,c:1,f:82,fb:0,k:746},
     'Ground pork (cooked)':{p:28,c:0,f:9.2,fb:0,k:213},
-    'Meat (cooked)':{p:27,c:0,f:15,fb:0,k:243},
     'Sardines':{p:25.9,c:0,f:7.2,fb:0,k:168},
     'Sauerkraut / kimchi':{p:1,c:1.5,f:0.1,fb:2.9,k:19},
     'Cottage cheese 9%':{p:17,c:3.4,f:9,fb:0,k:163},
     'L-reuteri yogurt':{p:3.2,c:0.5,f:3.2,fb:2,k:43},
-    'Whey protein':{p:78,c:6.8,f:7.3,fb:0,k:405},
     'Cocoa powder':{p:21,c:16,f:11,fb:32,k:307},
     'Chia seeds':{p:16.5,c:7.7,f:30.7,fb:34.4,k:443},
-    'Pumpkin seeds':{p:25,c:13,f:46,fb:5.3,k:577},
-    'Avocado':{p:2,c:1.8,f:14.7,fb:6.7,k:160}
+    'Pumpkin seeds':{p:25,c:13,f:46,fb:5.3,k:577}
   };
-  const NTARGETS={p:136,c:26,f:97,k:1662};
-  const DEFAULT_NUT={
+  const PLAN={
     m:[
       {name:'Meal 1',items:[{n:'Eggs (3 large)',r:'Egg',a:165},{n:'Frozen veggies',r:'Frozen veggies',a:250},{n:'Cheese (2 slices)',r:'Cheese (Gouda)',a:32},{n:'Olive oil',r:'Olive oil',a:5},{n:'Butter',r:'Butter',a:20}]},
       {name:'Meal 2',items:[{n:'Ground pork (cooked)',r:'Ground pork (cooked)',a:200},{n:'Frozen veggies',r:'Frozen veggies',a:200},{n:'Sardines',r:'Sardines',a:30},{n:'Sauerkraut / kimchi',r:'Sauerkraut / kimchi',a:40}]},
       {name:'Meal 3',items:[{n:'Cottage cheese 9%',r:'Cottage cheese 9%',a:200},{n:'L-reuteri yogurt',r:'L-reuteri yogurt',a:100},{n:'Cocoa powder',r:'Cocoa powder',a:12},{n:'Chia seeds',r:'Chia seeds',a:10},{n:'Pumpkin seeds',r:'Pumpkin seeds',a:5}]}
     ],
     s:{
-      pre:[
-        'Caffeine: 200 mg',
-        'Citrulline malate: 6 g',
-        'Beta-alanine: 6 g',
-        'Magnesium malate: 200 mg',
-        'Beef collagen: 8,700 mg + vitamin C'
-      ],
-      daily:[
-        'D3 + K2: 8000 IU D3 + 200 µg K2',
-        'Omega 3: ~1200 mg EPA/DHA',
-        'Creatine: 10 g',
-        'Daily salt (low-sodium blend): NaCl 70% + KCl 30%, iodized',
-        'Magnesium glycinate stack: 320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6',
-        'Brazil nuts: 2'
-      ]
+      pre:['Caffeine: 200 mg','Citrulline malate: 6 g','Beta-alanine: 6 g','Magnesium malate: 200 mg','Beef collagen: 8,700 mg + vitamin C'],
+      daily:['D3 + K2: 8000 IU D3 + 200 µg K2','Omega 3: ~1200 mg EPA/DHA','Creatine: 10 g','Daily salt (low-sodium blend): NaCl 70% + KCl 30%, iodized','Magnesium glycinate stack: 320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6','Brazil nuts: 2']
     }
   };
-  let nut=loadNut();
-  function loadNut(){try{const s=JSON.parse(localStorage.getItem(NUTSTORE));if(s&&Array.isArray(s.m)&&s.s&&Array.isArray(s.s.pre)&&Array.isArray(s.s.daily))return s;}catch(e){}return JSON.parse(JSON.stringify(DEFAULT_NUT));}
-  function saveNut(){localStorage.setItem(NUTSTORE,JSON.stringify(nut));}
-  function guessRef(name){const n=name.toLowerCase();for(const k of Object.keys(REFS))if(n.includes(k.toLowerCase()))return k;for(const k of Object.keys(REFS)){const fw=k.toLowerCase().split(' ')[0];if(fw.length>=4&&n.includes(fw))return k;}return null;}
   function calcItem(it){const r=REFS[it.r]||{p:0,c:0,f:0,fb:0,k:0};const m=(it.a||0)/100;return{p:r.p*m,c:r.c*m,f:r.f*m,fb:r.fb*m,k:r.k*m};}
   function mealTotal(meal){return meal.items.reduce((a,it)=>{const x=calcItem(it);return{p:a.p+x.p,c:a.c+x.c,f:a.f+x.f,fb:a.fb+x.fb,k:a.k+x.k};},{p:0,c:0,f:0,fb:0,k:0});}
-  function dayTotal(){return nut.m.reduce((a,meal)=>{const t=mealTotal(meal);return{p:a.p+t.p,c:a.c+t.c,f:a.f+t.f,fb:a.fb+t.fb,k:a.k+t.k};},{p:0,c:0,f:0,fb:0,k:0});}
-  function rowMc(it){const x=calcItem(it);return `${r1(x.p)}P ${r1(x.c)}C ${r1(x.f)}F · ${Math.round(x.k)}`;}
+  function dayTotal(){return PLAN.m.reduce((a,meal)=>{const t=mealTotal(meal);return{p:a.p+t.p,c:a.c+t.c,f:a.f+t.f,fb:a.fb+t.fb,k:a.k+t.k};},{p:0,c:0,f:0,fb:0,k:0});}
 
+  function renderMeal(mi){
+    const box=document.getElementById('meal-'+mi); if(!box)return;
+    const meal=PLAN.m[mi];
+    let h=`<table class="ntab"><thead><tr><th>Item</th><th class="r">g</th><th class="r">P</th><th class="r">C</th><th class="r">F</th><th class="r">kcal</th></tr></thead><tbody>`;
+    meal.items.forEach(it=>{const x=calcItem(it);
+      h+=`<tr><td>${esc(it.n)}</td><td class="r">${it.a}</td><td class="r">${r1(x.p)}</td><td class="r">${r1(x.c)}</td><td class="r">${r1(x.f)}</td><td class="r">${Math.round(x.k)}</td></tr>`;
+    });
+    const t=mealTotal(meal);
+    h+=`</tbody><tfoot><tr class="ttl"><td>Total</td><td></td><td class="r">${r1(t.p)}</td><td class="r">${r1(t.c)}</td><td class="r">${r1(t.f)}</td><td class="r">${Math.round(t.k)}</td></tr></tfoot></table>`;
+    box.innerHTML=h;
+  }
+  function renderSupps(){
+    ['pre','daily'].forEach(g=>{const el=document.getElementById('supp-'+g);if(!el)return;el.innerHTML=PLAN.s[g].map(s=>`<div class="supp-ro">${esc(s)}</div>`).join('');});
+  }
   function renderNut(){
     if(!document.getElementById('macros'))return;
-    const opts=`<option value="__m__">Enter manually…</option>`+Object.keys(REFS).map(k=>`<option value="${k}">${k}</option>`).join('');
-    nut.m.forEach((meal,mi)=>{
-      const box=document.getElementById('meal-'+mi); if(!box)return;
-      box.innerHTML=meal.items.map((it,ii)=>
-        `<div class="nrow">`
-        +`<input class="nm-in" type="text" value="${esc(it.n)}" oninput="setName(${mi},${ii},this.value)">`
-        +`<input class="amt" type="number" min="0" step="1" value="${it.a}" oninput="setAmt(${mi},${ii},this.value)"><span class="unit">g</span>`
-        +`<span class="mc" id="mc-${mi}-${ii}">${rowMc(it)}</span>`
-        +`<button class="del" title="remove" onclick="delItem(${mi},${ii})">×</button></div>`
-      ).join('');
-      document.getElementById('add-'+mi).innerHTML=`<select id="sel-${mi}">${opts}</select><button onclick="addItem(${mi})">＋ Add food</button>`;
-      refreshMeal(mi);
-    });
+    PLAN.m.forEach((_,mi)=>renderMeal(mi));
     renderSupps();
-    refreshBars();
-  }
-  function refreshRow(mi,ii){const el=document.getElementById(`mc-${mi}-${ii}`);if(el)el.textContent=rowMc(nut.m[mi].items[ii]);}
-  function refreshMeal(mi){const el=document.getElementById('mt-'+mi);if(el)el.textContent=Math.round(mealTotal(nut.m[mi]).k)+' kcal';}
-  function refreshBars(){
     const d=dayTotal();
-    const cells=[['Protein','p'],['Carbs','c'],['Fat','f'],['kcal','k']];
-    const colors={p:'#4a90d9',c:'#d9a14a',f:'#a78bfa',k:'#5db075'};
+    const cells=[['Protein','p'],['Carbs','c'],['Fat','f'],['Calories','k']];
     document.getElementById('macros').innerHTML=cells.map(([lbl,key])=>{
-      const val=key==='k'?Math.round(d.k):r1(d[key]); const tgt=NTARGETS[key];
-      const pct=Math.min(100,Math.round(d[key]/tgt*100)); const over=d[key]>tgt*1.05;
-      return `<div class="mcell"><div class="v${over?' over':''}">${val}</div><div class="l">${lbl} / ${tgt}</div>`
-        +`<div class="mbar"><i style="width:${pct}%;background:${over?'#e5645f':colors[key]}"></i></div></div>`;
+      const val=key==='k'?Math.round(d.k):r1(d[key]);
+      return `<div class="mcell"><div class="v">${val}</div><div class="l">${lbl}</div></div>`;
     }).join('');
-    document.getElementById('fiber-line').textContent=`Fiber: ${r1(d.fb)} g · edit names, grams & supplements below`;
+    document.getElementById('fiber-line').textContent=`Fiber: ${r1(d.fb)} g`;
+    document.getElementById('maint-line').innerHTML=`Maintenance target ≈ <b>${MAINTENANCE} kcal/day</b> <span class="mut">(164 cm · 52 kg · 24 yo · active)</span>`;
+    const kcal=Math.round(d.k), diff=kcal-MAINTENANCE;
+    document.getElementById('plan-note').textContent=diff<0
+      ? `This plan ≈ ${kcal} kcal — ${-diff} below maintenance (slight deficit). For muscle gain, add a protein/fat source toward ~${MAINTENANCE+100} kcal.`
+      : `This plan ≈ ${kcal} kcal — ${diff} above maintenance (small surplus, good for building muscle).`;
   }
-  function setName(mi,ii,v){const it=nut.m[mi].items[ii];it.n=v;const nr=guessRef(v);saveNut();if(nr&&nr!==it.r){it.r=nr;refreshRow(mi,ii);refreshMeal(mi);refreshBars();}}
-  function setAmt(mi,ii,v){nut.m[mi].items[ii].a=Math.max(0,parseFloat(v)||0);saveNut();refreshRow(mi,ii);refreshMeal(mi);refreshBars();}
-  function delItem(mi,ii){nut.m[mi].items.splice(ii,1);saveNut();renderNut();}
-  function addItem(mi){const v=document.getElementById('sel-'+mi).value;nut.m[mi].items.push(v==='__m__'?{n:'New food',r:null,a:100}:{n:v,r:v,a:100});saveNut();renderNut();}
-  function resetNutrition(){nut=JSON.parse(JSON.stringify(DEFAULT_NUT));saveNut();renderNut();toast('Reset to plan');}
-
-  // supplements (editable, two sections, reorderable)
-  function renderSupps(){
-    ['pre','daily'].forEach(g=>{
-      const el=document.getElementById('supp-'+g); if(!el)return;
-      el.innerHTML=nut.s[g].map((s,i)=>
-        `<div class="nrow"><input class="nm-in" type="text" value="${esc(s)}" oninput="setSupp('${g}',${i},this.value)">`
-        +`<button class="mini" title="up" onclick="moveSupp('${g}',${i},-1)">↑</button>`
-        +`<button class="mini" title="down" onclick="moveSupp('${g}',${i},1)">↓</button>`
-        +`<button class="mini" title="move section" onclick="switchSupp('${g}',${i})">${g==='pre'?'→ daily':'→ pre'}</button>`
-        +`<button class="del" title="remove" onclick="delSupp('${g}',${i})">×</button></div>`
-      ).join('');
-    });
-  }
-  function setSupp(g,i,v){nut.s[g][i]=v;saveNut();}
-  function delSupp(g,i){nut.s[g].splice(i,1);saveNut();renderSupps();}
-  function addSupp(g){nut.s[g].push('New supplement: dose');saveNut();renderSupps();}
-  function moveSupp(g,i,d){const a=nut.s[g],j=i+d;if(j<0||j>=a.length)return;const t=a[i];a[i]=a[j];a[j]=t;saveNut();renderSupps();}
-  function switchSupp(g,i){const other=g==='pre'?'daily':'pre';nut.s[other].push(nut.s[g].splice(i,1)[0]);saveNut();renderSupps();}
-
-  function copyNutritionMd(){
-    const d=dayTotal();
-    let md=`| Metric | Daily total (approx) |\n|--------|-------------|\n`;
-    md+=`| Protein | ~${r1(d.p)} g |\n| Carbs | ~${r1(d.c)} g |\n| Fat | ~${r1(d.f)} g |\n| Fiber | ~${r1(d.fb)} g |\n| Calories | ~${Math.round(d.k)} kcal |\n\n`;
-    nut.m.forEach(meal=>{
-      md+=`## ${meal.name}\n\n| Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |\n|------|-------------|-----------|---------|-----------|------|\n`;
-      meal.items.forEach(it=>{const x=calcItem(it);md+=`| ${it.n} ${it.a}g | ${r1(x.p)} | ${r1(x.c)} | ${r1(x.f)} | ${r1(x.fb)} | ${Math.round(x.k)} |\n`;});
-      const t=mealTotal(meal);
-      md+=`| **Meal total** | **${r1(t.p)}** | **${r1(t.c)}** | **${r1(t.f)}** | **${r1(t.fb)}** | **${Math.round(t.k)}** |\n\n`;
-    });
-    const suppMd=g=>nut.s[g].map(s=>{const i=s.indexOf(':');return i>-1?`* **${s.slice(0,i).trim()}:** ${s.slice(i+1).trim()}`:`* ${s}`;}).join('\n');
-    md+=`## Pre-workout supplements\n\n${suppMd('pre')}\n\n## Daily supplements\n\n${suppMd('daily')}\n`;
-    (navigator.clipboard?navigator.clipboard.writeText(md):Promise.reject()).then(()=>toast('Markdown copied'),()=>toast('Copy not allowed — select & copy manually'));
-  }
-  let toastT;
-  function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),1700);}
   renderNut();
 
   document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
