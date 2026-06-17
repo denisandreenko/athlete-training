@@ -81,7 +81,7 @@
 <body>
 <header>
   <h1>🏋 Alicja — Training</h1>
-  <div class="sub">Novice strength base · aerobic base · keto · fixed schedule</div>
+  <div class="sub" id="date-line"></div>
 </header>
 <nav>
   <button class="tab active" data-view="week">Week</button>
@@ -314,6 +314,7 @@
 
   function renderAll(){
     const gd=new Date().getDay();
+    document.getElementById('date-line').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
     document.getElementById('today-day').textContent=DAYS[gd];
     document.getElementById('today-session').textContent=SCHEDULE[gd];
     renderList('wk',weekTodayIdx());
