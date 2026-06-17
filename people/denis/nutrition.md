@@ -38,7 +38,7 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 | Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
 |------|-------------|-----------|---------|-----------|------|
 | L-reuteri yogurt | 4.2 | 0.7 | 4.2 | 2.6 | 56 |
-| Cottage cheese | 51 | 10.2 | 27 | 0 | 489 |
+| Cottage cheese 9% | 51 | 10.2 | 27 | 0 | 489 |
 | Cocoa powder | 0 | 2.4 | 1.7 | 4.8 | 46 |
 | Chia | 3.3 | 1.5 | 6.1 | 6.9 | 89 |
 | Pumpkin seeds | 2.5 | 1.3 | 4.6 | 0.5 | 57.7 |
