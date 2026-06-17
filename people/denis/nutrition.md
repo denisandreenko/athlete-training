@@ -4,11 +4,11 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 
 | Metric | Daily total |
 |--------|-------------|
-| Protein | 212.6 g |
+| Protein | 209.6 g |
 | Carbs | 37 g |
-| Fat | 230.8 g |
+| Fat | 247.8 g |
 | Fiber | 27.6 g |
-| Calories | 3290 kcal |
+| Calories | 3380 kcal |
 
 ---
 
@@ -27,11 +27,11 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 
 | Item | g/ml | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
 |------|------|-------------|-----------|---------|-----------|------|
-| Ground pork (cooked) | 300 | 84 | 0 | 28 | 0 | 639 |
+| Meat (cooked) | 300 | 81 | 0 | 45 | 0 | 729 |
 | Frozen veggies | 200 | 0 | 5.8 | 1.4 | 4 | 72 |
 | Sauerkraut / kimchi | 40 | 0.4 | 0.6 | 0 | 0.8 | 4.4 |
 | Sardines | 60 | 15.5 | 0 | 4.3 | 0 | 100.8 |
-| **Meal total** |  | **99.9** | **6.4** | **33.7** | **4.8** | **816** |
+| **Meal total** |  | **96.9** | **6.4** | **50.7** | **4.8** | **906** |
 
 ## Meal 3
 

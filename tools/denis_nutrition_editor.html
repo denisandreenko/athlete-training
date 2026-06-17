@@ -23,7 +23,7 @@
 
   /* Macro bar */
   #macro-bar { padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
-  .macro-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .macro-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
   .macro-cell { text-align: center; }
   .macro-cell .val { font-size: 17px; font-weight: 700; }
   .macro-cell .lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); margin-top: 2px; }
@@ -32,6 +32,7 @@
   .m-prot .val { color: #60a5fa; } .m-prot .bar-fill { background: #60a5fa; }
   .m-carb .val { color: #f59e0b; } .m-carb .bar-fill { background: #f59e0b; }
   .m-fat  .val { color: #c084fc; } .m-fat .bar-fill  { background: #c084fc; }
+  .m-fiber .val { color: #2dd4bf; } .m-fiber .bar-fill { background: #2dd4bf; }
   .m-kcal .val { color: #22c55e; } .m-kcal .bar-fill { background: #22c55e; }
   .over { color: var(--danger) !important; }
 
@@ -154,6 +155,11 @@
       <div class="lbl">Fat g</div>
       <div class="bar"><div class="bar-fill" id="bar-fat" style="width:0%"></div></div>
     </div>
+    <div class="macro-cell m-fiber">
+      <div class="val" id="tot-fiber">—</div>
+      <div class="lbl">Fiber g</div>
+      <div class="bar"><div class="bar-fill" id="bar-fiber" style="width:0%"></div></div>
+    </div>
     <div class="macro-cell m-kcal">
       <div class="val" id="tot-kcal">—</div>
       <div class="lbl">kcal</div>
@@ -176,7 +182,7 @@ const REPO = 'denisandreenko/athlete-training';
 const FILE = 'people/denis/nutrition.md';
 
 // Targets — match nutrition.md plan totals (people/denis/nutrition.md)
-const TARGETS = { protein: 213, carbs: 36, fat: 228, kcal: 3278 };
+const TARGETS = { protein: 213, carbs: 36, fat: 228, fiber: 28, kcal: 3278 };
 
 // Reference table per 100g — mirrors nutrition.md reference section
 const REFS = {
@@ -388,14 +394,15 @@ function mealTotals(meal) {
 function updateMacroBars() {
   const tot = meals.reduce((t, m) => {
     const mt = mealTotals(m);
-    return { protein: r1(t.protein+mt.protein), carbs: r1(t.carbs+mt.carbs), fat: r1(t.fat+mt.fat), kcal: r1(t.kcal+mt.kcal) };
-  }, { protein: 0, carbs: 0, fat: 0, kcal: 0 });
+    return { protein: r1(t.protein+mt.protein), carbs: r1(t.carbs+mt.carbs), fat: r1(t.fat+mt.fat), fiber: r1(t.fiber+(mt.fiber||0)), kcal: r1(t.kcal+mt.kcal) };
+  }, { protein: 0, carbs: 0, fat: 0, fiber: 0, kcal: 0 });
 
   const fields = [
-    ['prot', tot.protein, TARGETS.protein],
-    ['carb', tot.carbs,   TARGETS.carbs],
-    ['fat',  tot.fat,     TARGETS.fat],
-    ['kcal', tot.kcal,    TARGETS.kcal],
+    ['prot',  tot.protein, TARGETS.protein],
+    ['carb',  tot.carbs,   TARGETS.carbs],
+    ['fat',   tot.fat,     TARGETS.fat],
+    ['fiber', tot.fiber,   TARGETS.fiber],
+    ['kcal',  tot.kcal,    TARGETS.kcal],
   ];
   for (const [key, val, target] of fields) {
     const el = document.getElementById(`tot-${key}`);

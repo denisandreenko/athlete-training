@@ -6,13 +6,13 @@ Diet style: ketogenic, 3 meals/day. Stats: 164 cm, 52 kg, 24 yo, ~23% body fat. 
 
 | Metric | Daily total (approx) |
 |--------|-------------|
-| Protein | ~135.9 g |
+| Protein | ~133.9 g |
 | Carbs | ~25.8 g |
-| Fat | ~97.1 g |
+| Fat | ~108.7 g |
 | Fiber | ~19.7 g |
-| Calories | ~1662 kcal |
+| Calories | ~1722 kcal |
 
-> ⚠️ This corrected total is ~1,662 kcal — below her ~1,800 kcal maintenance. The previous "Frozen veggies 250 g" row in Meal 1 mistakenly used egg macros (+~31 g protein, +~24 g fat, +268 kcal), which inflated the day. To hit a small muscle-building surplus (~1,900 kcal, ~135–150 g protein) increase a protein/fat source — e.g. more pork or eggs, or a little more oil/butter.
+> This plan totals ~1,722 kcal — slightly below her ~1,850 kcal maintenance. To hit a small muscle-building surplus (~1,900 kcal) add a protein/fat source (e.g. more meat or eggs, or a little more oil/butter).
 
 ---
 
@@ -31,11 +31,11 @@ Diet style: ketogenic, 3 meals/day. Stats: 164 cm, 52 kg, 24 yo, ~23% body fat. 
 
 | Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
 |------|-------------|-----------|---------|-----------|------|
-| Ground pork (cooked) 200g | 56 | 0 | 18.4 | 0 | 426 |
+| Meat (cooked) 200g | 54 | 0 | 30 | 0 | 486 |
 | Frozen veggies 200g | 0 | 5.8 | 1.4 | 4 | 72 |
 | Sardines 30g | 7.8 | 0 | 2.2 | 0 | 50 |
 | Sauerkraut / kimchi 40g | 0.4 | 0.6 | 0 | 1.2 | 8 |
-| **Meal total** | **64.2** | **6.4** | **22** | **5.2** | **556** |
+| **Meal total** | **62.2** | **6.4** | **33.6** | **5.2** | **616** |
 
 ## Meal 3
 

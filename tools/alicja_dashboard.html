@@ -58,7 +58,7 @@
   .note{background:var(--card2);border-left:3px solid var(--warm);padding:8px 12px;border-radius:6px;color:var(--mut);font-size:13px;margin-top:8px}
 
   /* nutrition (read-only) */
-  .macros{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 4px}
+  .macros{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:8px;margin:8px 0 4px}
   .mcell{text-align:center;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:8px 4px}
   .mcell .v{font-size:17px;font-weight:700}
   .mcell .l{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);margin-top:2px}
@@ -187,7 +187,6 @@
     <div class="card c-nut">
       <h2>Daily totals — keto</h2>
       <div class="macros" id="macros"></div>
-      <p class="mut" id="fiber-line"></p>
       <div class="maint" id="maint-line"></div>
       <div class="note" id="plan-note"></div>
     </div>
@@ -331,7 +330,7 @@
     'Cheese (Gouda)':{p:25,c:0,f:26,fb:0,k:334},
     'Olive oil':{p:0,c:0,f:100,fb:0,k:900},
     'Butter':{p:1,c:1,f:82,fb:0,k:746},
-    'Ground pork (cooked)':{p:28,c:0,f:9.2,fb:0,k:213},
+    'Meat (cooked)':{p:27,c:0,f:15,fb:0,k:243},
     'Sardines':{p:25.9,c:0,f:7.2,fb:0,k:168},
     'Sauerkraut / kimchi':{p:1,c:1.5,f:0.1,fb:2.9,k:19},
     'Cottage cheese 9%':{p:17,c:3.4,f:9,fb:0,k:163},
@@ -343,7 +342,7 @@
   const PLAN={
     m:[
       {name:'Meal 1',items:[{n:'Eggs (3 large)',r:'Egg',a:165},{n:'Frozen veggies',r:'Frozen veggies',a:250},{n:'Cheese (2 slices)',r:'Cheese (Gouda)',a:32},{n:'Olive oil',r:'Olive oil',a:5},{n:'Butter',r:'Butter',a:20}]},
-      {name:'Meal 2',items:[{n:'Ground pork (cooked)',r:'Ground pork (cooked)',a:200},{n:'Frozen veggies',r:'Frozen veggies',a:200},{n:'Sardines',r:'Sardines',a:30},{n:'Sauerkraut / kimchi',r:'Sauerkraut / kimchi',a:40}]},
+      {name:'Meal 2',items:[{n:'Meat (cooked)',r:'Meat (cooked)',a:200},{n:'Frozen veggies',r:'Frozen veggies',a:200},{n:'Sardines',r:'Sardines',a:30},{n:'Sauerkraut / kimchi',r:'Sauerkraut / kimchi',a:40}]},
       {name:'Meal 3',items:[{n:'Cottage cheese 9%',r:'Cottage cheese 9%',a:200},{n:'L-reuteri yogurt',r:'L-reuteri yogurt',a:100},{n:'Cocoa powder',r:'Cocoa powder',a:12},{n:'Chia seeds',r:'Chia seeds',a:10},{n:'Pumpkin seeds',r:'Pumpkin seeds',a:5}]}
     ],
     s:{
@@ -374,12 +373,11 @@
     PLAN.m.forEach((_,mi)=>renderMeal(mi));
     renderSupps();
     const d=dayTotal();
-    const cells=[['Protein','p'],['Carbs','c'],['Fat','f'],['Calories','k']];
+    const cells=[['Protein','p'],['Carbs','c'],['Fat','f'],['Fiber','fb'],['Calories','k']];
     document.getElementById('macros').innerHTML=cells.map(([lbl,key])=>{
       const val=key==='k'?Math.round(d.k):r1(d[key]);
       return `<div class="mcell"><div class="v">${val}</div><div class="l">${lbl}</div></div>`;
     }).join('');
-    document.getElementById('fiber-line').textContent=`Fiber: ${r1(d.fb)} g`;
     document.getElementById('maint-line').innerHTML=`Maintenance target ≈ <b>${MAINTENANCE} kcal/day</b> <span class="mut">(164 cm · 52 kg · 24 yo · active)</span>`;
     const kcal=Math.round(d.k), diff=kcal-MAINTENANCE;
     document.getElementById('plan-note').textContent=diff<0
