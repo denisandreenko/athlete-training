@@ -14,35 +14,35 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 
 ## Meal 1
 
-| Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
-|------|-------------|-----------|---------|-----------|------|
-| Egg (5 large) | 34.7 | 1.9 | 26.1 | 0 | 393.3 |
-| Frozen veggies | 0 | 11.6 | 2.8 | 8 | 144 |
-| Cheese (4 slices) | 16 | 0 | 16.6 | 0 | 214 |
-| Olive oil | 0 | 0 | 10 | 0 | 90 |
-| Butter | 1 | 1 | 98 | 0 | 895 |
-| **Meal total** | **51.7** | **14.5** | **153.5** | **8** | **1736** |
+| Item | g/ml | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
+|------|------|-------------|-----------|---------|-----------|------|
+| Egg (5 large) | 275 | 34.7 | 1.9 | 26.1 | 0 | 393.3 |
+| Frozen veggies | 400 | 0 | 11.6 | 2.8 | 8 | 144 |
+| Cheese (4 slices) | 64 | 16 | 0 | 16.6 | 0 | 214 |
+| Olive oil | 10 | 0 | 0 | 10 | 0 | 90 |
+| Butter | 120 | 1 | 1 | 98 | 0 | 895 |
+| **Meal total** |  | **51.7** | **14.5** | **153.5** | **8** | **1736** |
 
 ## Meal 2
 
-| Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
-|------|-------------|-----------|---------|-----------|------|
-| Ground pork (cooked)  | 84 | 0 | 28 | 0 | 639 |
-| Frozen veggies | 0 | 5.8 | 1.4 | 4 | 72 |
-| Sauerkraut / kimchi | 0.4 | 0.6 | 0 | 0.8 | 4.4 |
-| Sardines | 15.5 | 0 | 4.3 | 0 | 100.8 |
-| **Meal total** | **99.9** | **6.4** | **33.7** | **4.8** | **816** |
+| Item | g/ml | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
+|------|------|-------------|-----------|---------|-----------|------|
+| Ground pork (cooked) | 300 | 84 | 0 | 28 | 0 | 639 |
+| Frozen veggies | 200 | 0 | 5.8 | 1.4 | 4 | 72 |
+| Sauerkraut / kimchi | 40 | 0.4 | 0.6 | 0 | 0.8 | 4.4 |
+| Sardines | 60 | 15.5 | 0 | 4.3 | 0 | 100.8 |
+| **Meal total** |  | **99.9** | **6.4** | **33.7** | **4.8** | **816** |
 
 ## Meal 3
 
-| Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
-|------|-------------|-----------|---------|-----------|------|
-| L-reuteri yogurt | 4.2 | 0.7 | 4.2 | 2.6 | 56 |
-| Cottage cheese 9% | 51 | 10.2 | 27 | 0 | 489 |
-| Cocoa powder | 0 | 2.4 | 1.7 | 4.8 | 46 |
-| Chia | 3.3 | 1.5 | 6.1 | 6.9 | 89 |
-| Pumpkin seeds | 2.5 | 1.3 | 4.6 | 0.5 | 57.7 |
-| **Meal total** | **61** | **16.1** | **43.6** | **14.8** | **738** |
+| Item | g/ml | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |
+|------|------|-------------|-----------|---------|-----------|------|
+| L-reuteri yogurt | 130 | 4.2 | 0.7 | 4.2 | 2.6 | 56 |
+| Cottage cheese 9% | 300 | 51 | 10.2 | 27 | 0 | 489 |
+| Cocoa powder | 15 | 0 | 2.4 | 1.7 | 4.8 | 46 |
+| Chia | 20 | 3.3 | 1.5 | 6.1 | 6.9 | 89 |
+| Pumpkin seeds | 10 | 2.5 | 1.3 | 4.6 | 0.5 | 57.7 |
+| **Meal total** |  | **61** | **16.1** | **43.6** | **14.8** | **738** |
 
 ## Daily supplements
 

@@ -289,21 +289,31 @@ function parseNutritionMd(content) {
         // Skip header row and separator rows (any number of dashes)
         if (cols[0] === 'Item' || cols[0].replace(/-/g, '') === '') continue;
         if (cols[0].startsWith('**Meal total')) continue;
-        if (cols.length >= 6) {
+        if (cols.length >= 7) {
+          // New format: Item | g/ml | P | C | F | Fiber | kcal — amount in its own column
           const name = cols[0];
-          // Try to guess amount from name (e.g. "Egg 55g × 4" → 55*4=220, "Butter 120g" → 120)
-          let amount = guessAmount(name);
-          // Try to find reference key
-          let ref = guessRefKey(name);
           currentMeal.items.push({
             name,
-            amount,
+            amount:  parseF(cols[1]) || 0,
+            protein: parseF(cols[2]),
+            carbs:   parseF(cols[3]),
+            fat:     parseF(cols[4]),
+            fiber:   parseF(cols[5]),
+            kcal:    parseF(cols[6]),
+            ref: guessRefKey(name)
+          });
+        } else if (cols.length >= 6) {
+          // Legacy format: amount embedded in the name (e.g. "Butter 120g")
+          const name = cols[0];
+          currentMeal.items.push({
+            name,
+            amount:  guessAmount(name),
             protein: parseF(cols[1]),
             carbs:   parseF(cols[2]),
             fat:     parseF(cols[3]),
             fiber:   parseF(cols[4]),
             kcal:    parseF(cols[5]),
-            ref
+            ref: guessRefKey(name)
           });
         }
       }
@@ -408,12 +418,8 @@ function render() {
     const mt = mealTotals(meal);
 
     card.innerHTML = `
-      <div class="card-header" onclick="toggleCard('meal-body-${mi}','meal-chev-${mi}')">
+      <div class="card-header" style="cursor:default;">
         <h2>${meal.name}</h2>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span class="meal-total" id="meal-total-${mi}">${Math.round(mt.kcal)} kcal · P ${mt.protein}g</span>
-          <span class="chevron open" id="meal-chev-${mi}">▼</span>
-        </div>
       </div>
       <div class="card-body" id="meal-body-${mi}">
         <table class="food-table">
@@ -445,9 +451,8 @@ function render() {
   const suppCard = document.createElement('div');
   suppCard.className = 'card';
   suppCard.innerHTML = `
-    <div class="card-header" onclick="toggleCard('supp-body','supp-chev')">
+    <div class="card-header" style="cursor:default;">
       <h2>Supplements</h2>
-      <span class="chevron open" id="supp-chev">▼</span>
     </div>
     <div class="card-body" id="supp-body">
       <div class="supp-list" id="supp-list"></div>
@@ -566,7 +571,7 @@ function addFood(mi) {
     meals[mi].items.push({ name: 'New food', amount: 100, protein: 0, carbs: 0, fat: 0, fiber: 0, kcal: 0, ref: null });
   } else {
     const ref = REFS[key];
-    meals[mi].items.push({ name: `${key} 100g`, amount: 100, protein: ref.protein, carbs: ref.carbs, fat: ref.fat, fiber: ref.fiber, kcal: ref.kcal, ref: key });
+    meals[mi].items.push({ name: key, amount: 100, protein: ref.protein, carbs: ref.carbs, fat: ref.fat, fiber: ref.fiber, kcal: ref.kcal, ref: key });
   }
   sel.value = '';
   renderMealRows(mi);
@@ -597,12 +602,12 @@ function buildNutritionMd() {
   for (const meal of meals) {
     const mt = mealTotals(meal);
     md += `## ${meal.name}\n\n`;
-    md += `| Item | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |\n`;
-    md += `|------|-------------|-----------|---------|-----------|------|\n`;
+    md += `| Item | g/ml | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) | kcal |\n`;
+    md += `|------|------|-------------|-----------|---------|-----------|------|\n`;
     for (const item of meal.items) {
-      md += `| ${item.name} | ${item.protein} | ${item.carbs} | ${item.fat} | ${item.fiber} | ${r1(item.kcal)} |\n`;
+      md += `| ${item.name} | ${item.amount} | ${item.protein} | ${item.carbs} | ${item.fat} | ${item.fiber} | ${r1(item.kcal)} |\n`;
     }
-    md += `| **Meal total** | **${mt.protein}** | **${mt.carbs}** | **${mt.fat}** | **${mt.fiber||0}** | **${Math.round(mt.kcal)}** |\n\n`;
+    md += `| **Meal total** |  | **${mt.protein}** | **${mt.carbs}** | **${mt.fat}** | **${mt.fiber||0}** | **${Math.round(mt.kcal)}** |\n\n`;
   }
 
   // Reference table — preserved verbatim from original
