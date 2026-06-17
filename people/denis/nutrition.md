@@ -46,17 +46,17 @@ Diet style: ketogenic — very low carbohydrate, high fat, adequate protein. 3 m
 
 ## Daily supplements
 
-* **D3 + K2:** :::8000 IU D3 + 200 µg K2
-* **Omega 3:** :::2100 mg EPA/DHA
-* **Creatine:** :::10 g
-* **Daily salt (low-sodium blend):** :::NaCl 70% + KCl 30%, iodized — used for food seasoning and training water
-* **Magnesium glycinate stack:** :::320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6
-* **Magnesium malate:** :::200 mg (pre-training on hard days)
-* **Citrulline malate:** :::6 g
-* **Beta-alanine:** :::6 g
-* **Caffeine:** :::200 mg
-* **Beef collagen:** :::8,700 mg + vitamin C (pre-training, 30–45 min before gym or calisthenics)
-* * * 2 Brazil nuts
+* **D3 + K2:** 8000 IU D3 + 200 µg K2
+* **Omega 3:** 2100 mg EPA/DHA
+* **Creatine:** 10 g
+* **Daily salt (low-sodium blend):** NaCl 70% + KCl 30%, iodized — used for food seasoning and training water
+* **Magnesium glycinate stack:** 320 mg magnesium + 30 mg zinc + 2 mg copper + 4.2 mg B6
+* **Magnesium malate:** 200 mg (pre-training on hard days)
+* **Citrulline malate:** 6 g
+* **Beta-alanine:** 6 g
+* **Caffeine:** 200 mg
+* **Beef collagen:** 8,700 mg + vitamin C (pre-training, 30–45 min before gym or calisthenics)
+* **Brazil nuts:** 2
 
 ## Supplement timing
 
