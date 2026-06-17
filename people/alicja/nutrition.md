@@ -6,13 +6,13 @@ Diet style: ketogenic, 3 meals/day. Stats: 164 cm, 52 kg, 24 yo, ~23% body fat. 
 
 | Metric | Daily total (approx) |
 |--------|-------------|
-| Protein | ~133.9 g |
-| Carbs | ~25.8 g |
-| Fat | ~108.7 g |
-| Fiber | ~19.7 g |
-| Calories | ~1722 kcal |
+| Protein | ~133 g |
+| Carbs | ~25.4 g |
+| Fat | ~112.1 g |
+| Fiber | ~18 g |
+| Calories | ~1745 kcal |
 
-> This plan totals ~1,722 kcal — slightly below her ~1,850 kcal maintenance. To hit a small muscle-building surplus (~1,900 kcal) add a protein/fat source (e.g. more meat or eggs, or a little more oil/butter).
+> This plan totals ~1,745 kcal — slightly below her ~1,850 kcal maintenance. To hit a small muscle-building surplus (~1,900 kcal) add a protein/fat source (e.g. more meat or eggs, or a little more oil/butter).
 
 ---
 
@@ -23,9 +23,9 @@ Diet style: ketogenic, 3 meals/day. Stats: 164 cm, 52 kg, 24 yo, ~23% body fat. 
 | Eggs (3 large) 165g | 20.8 | 1.2 | 15.7 | 0 | 236 |
 | Frozen veggies 250g | 0 | 7.3 | 1.8 | 5 | 90 |
 | Cheese (2 slices) 32g | 8 | 0 | 8.3 | 0 | 107 |
-| Olive oil 5g | 0 | 0 | 5 | 0 | 45 |
+| Olive oil 10g | 0 | 0 | 10 | 0 | 90 |
 | Butter 20g | 0.2 | 0.2 | 16.4 | 0 | 149 |
-| **Meal total** | **29** | **8.7** | **47.2** | **5** | **627** |
+| **Meal total** | **29** | **8.7** | **52.2** | **5** | **672** |
 
 ## Meal 2
 
@@ -44,9 +44,9 @@ Diet style: ketogenic, 3 meals/day. Stats: 164 cm, 52 kg, 24 yo, ~23% body fat. 
 | Cottage cheese 9% 200g | 34 | 6.8 | 18 | 0 | 326 |
 | L-reuteri yogurt 100g | 3.2 | 0.5 | 3.2 | 2 | 43 |
 | Cocoa powder 12g | 2.5 | 1.9 | 1.3 | 3.8 | 37 |
-| Chia seeds 10g | 1.7 | 0.8 | 3.1 | 3.4 | 44 |
+| Chia seeds 5g | 0.8 | 0.4 | 1.5 | 1.7 | 22 |
 | Pumpkin seeds 5g | 1.3 | 0.7 | 2.3 | 0.3 | 29 |
-| **Meal total** | **42.7** | **10.7** | **27.9** | **9.5** | **479** |
+| **Meal total** | **41.8** | **10.3** | **26.3** | **7.8** | **457** |
 
 ---
 
