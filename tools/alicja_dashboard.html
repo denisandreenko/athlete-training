@@ -62,6 +62,9 @@
   .mcell{text-align:center;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:8px 4px}
   .mcell .v{font-size:17px;font-weight:700}
   .mcell .l{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);margin-top:2px}
+  .mcell.macro .v{color:var(--run)}   .mcell.macro{border-color:rgba(74,144,217,.4)}
+  .mcell.fiber .v{color:var(--mob)}   .mcell.fiber{border-color:rgba(167,139,250,.45)}
+  .mcell.cal   .v{color:var(--gym)}   .mcell.cal{border-color:rgba(93,176,117,.45)}
   .maint{margin-top:10px;font-size:14px}
   .maint b{color:var(--nut)}
   .ntab{width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px;margin-top:4px}
@@ -373,10 +376,10 @@
     PLAN.m.forEach((_,mi)=>renderMeal(mi));
     renderSupps();
     const d=dayTotal();
-    const cells=[['Protein','p'],['Carbs','c'],['Fat','f'],['Fiber','fb'],['Calories','k']];
-    document.getElementById('macros').innerHTML=cells.map(([lbl,key])=>{
+    const cells=[['Protein','p','macro'],['Carbs','c','macro'],['Fat','f','macro'],['Fiber','fb','fiber'],['Calories','k','cal']];
+    document.getElementById('macros').innerHTML=cells.map(([lbl,key,grp])=>{
       const val=key==='k'?Math.round(d.k):r1(d[key]);
-      return `<div class="mcell"><div class="v">${val}</div><div class="l">${lbl}</div></div>`;
+      return `<div class="mcell ${grp}"><div class="v">${val}</div><div class="l">${lbl}</div></div>`;
     }).join('');
     document.getElementById('maint-line').innerHTML=`Maintenance target ≈ <b>${MAINTENANCE} kcal/day</b> <span class="mut">(164 cm · 52 kg · 24 yo · active)</span>`;
     const kcal=Math.round(d.k), diff=kcal-MAINTENANCE;
