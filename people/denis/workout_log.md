@@ -44,6 +44,20 @@ READINESS RULE (assistant applies this):
 
 ---
 
+## 2026-06-27 | CYCLING_LONG
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Morning Gravel Ride" · 76.2km · 562m gain · avg HR 123 · max HR 147
+
+### Endurance
+- duration: 183min
+- avg_power_or_pace: 125W
+- terrain: gravel
+
+---
+
+
 ## 2026-06-16 | CYCLING_VO2MAX
 - fatigue_before: ?
 - sleep: ?
