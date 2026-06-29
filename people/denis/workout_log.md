@@ -44,6 +44,20 @@ READINESS RULE (assistant applies this):
 
 ---
 
+## 2026-06-29 | CYCLING_THRESHOLD
+- fatigue_before: ?
+- sleep: ?
+- rpe: ?
+- notes: Auto-synced from Strava: "Zwift - Burn Notice" · 19.5km · 274m gain · avg HR 129 · max HR 152
+
+### Endurance
+- duration: 40min
+- avg_power_or_pace: 211W
+- terrain: trainer
+
+---
+
+
 ## 2026-06-27 | CYCLING_LONG
 - fatigue_before: ?
 - sleep: ?
