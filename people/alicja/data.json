@@ -10,7 +10,7 @@
     "Keto-compatible nutrition"
   ],
   "tracking": { "wearable": false },
-  "mesocycle": { "pattern": "5+1", "week": 1, "startedOn": "2026-07-20", "note": "Light-touch novice mesocycle, maintained by the Sunday weekly review. `week` counts COMPLETED weeks (>=3 logged sessions incl. both gym days); skipped weeks freeze the counter. Week 6 = deload: gym -1 set per exercise at same loads, both runs easy Z2, keep full mobility/splits (deload does NOT reduce mobility work). After deload, reset to 1. Everything else stays simple linear progression - no wave loading for a novice. Fatigue markers can pull the deload earlier." },
+  "mesocycle": { "pattern": "5+1", "week": 3, "startedOn": "2026-07-20", "note": "Light-touch novice mesocycle, maintained by the Sunday weekly review. `week` counts COMPLETED weeks (>=3 logged sessions incl. both gym days); skipped weeks freeze the counter. Week 6 = deload: gym -1 set per exercise at same loads, both runs easy Z2, keep full mobility/splits (deload does NOT reduce mobility work). After deload, reset to 1. Everything else stays simple linear progression - no wave loading for a novice. Fatigue markers can pull the deload earlier." },
   "files": { "workoutLog": "people/alicja/workout_log.md" },
   "dashboard": {
     "accent": "#e05fa0",
@@ -36,12 +36,12 @@
       "label": "Gym A — Full body",
       "note": "Keep 2–3 reps in reserve on every set — never to failure. Warm-up ~5 min: 5 min easy cardio (walk/bike) + leg swings 10/side, arm circles, bodyweight squats ×10, scapular pulls ×10, glute bridge ×10.",
       "exercises": [
-        { "name": "Goblet squat", "target": "3×8–12", "stub": "8", "cue": "Light DB/kettlebell held at chest; sit tall. Bodyweight squat is a valid substitution." },
+        { "name": "Goblet squat", "target": "3×8–12", "stub": "10", "cue": "Light DB/kettlebell held at chest; sit tall. Bodyweight squat is a valid substitution." },
         { "name": "Knee push-up", "target": "3×6–10", "stub": "BW", "cue": "Progress per the push-up ladder in gym_training_plan.md." },
         { "name": "Assisted pull-up", "target": "3×5–8", "stub": "2 bands (G+R)", "cue": "Band or machine; reduce assistance over time. Progress per the pull-up ladder." },
-        { "name": "Glute bridge / hip thrust", "target": "3×10–15", "stub": "10", "cue": "Squeeze glutes at the top." },
-        { "name": "Sit-ups", "target": "2×12–15", "stub": "2 kg/hand", "cue": "Controlled, no neck pull." },
-        { "name": "Plank", "target": "2×20–40 s", "stub": "BW", "cue": "Brace, flat back." }
+        { "name": "Glute bridge / hip thrust", "target": "3×10–15", "stub": "12", "cue": "Squeeze glutes at the top." },
+        { "name": "Sit-ups", "target": "2×12–15", "stub": "2.5 kg/hand", "cue": "Controlled, no neck pull." },
+        { "name": "Plank", "target": "2×30–50 s", "stub": "BW", "cue": "Brace, flat back." }
       ],
       "mobility": "Daily mobility minimum (~8–10 min) still applies."
     },
@@ -50,12 +50,12 @@
       "label": "Gym B — Full body",
       "note": "Keep 2–3 reps in reserve. Same warm-up as Gym A.",
       "exercises": [
-        { "name": "Reverse lunge", "target": "3×8/leg", "stub": "4", "cue": "Control the descent. Bodyweight before adding a light DB." },
-        { "name": "Dumbbell row", "target": "3×8–12", "stub": "5", "cue": "Pull to the ribs, no shrug. Chest-supported row is a valid substitution." },
+        { "name": "Reverse lunge", "target": "3×8/leg", "stub": "6", "cue": "Control the descent. Bodyweight before adding a light DB." },
+        { "name": "Dumbbell row", "target": "3×8–12", "stub": "8", "cue": "Pull to the ribs, no shrug. Chest-supported row is a valid substitution." },
         { "name": "Incline / knee push-up", "target": "3×6–10", "stub": "BW", "cue": "Hands elevated = easier." },
-        { "name": "DB shoulder press (seated)", "target": "2×8–12", "stub": "2.5", "cue": "Light start." },
-        { "name": "Dead bug", "target": "2×8/side", "stub": "2", "cue": "Anti-extension core." },
-        { "name": "Side plank", "target": "2×15–30 s/side", "stub": "BW", "cue": "Oblique/core." }
+        { "name": "DB shoulder press (seated)", "target": "2×8–12", "stub": "5", "cue": "Light start." },
+        { "name": "Dead bug", "target": "2×8/side", "stub": "2.5", "cue": "Anti-extension core." },
+        { "name": "Side plank", "target": "2×25–45 s/side", "stub": "BW", "cue": "Oblique/core." }
       ],
       "mobility": "Daily mobility minimum (~8–10 min) still applies."
     },
