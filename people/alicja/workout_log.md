@@ -435,9 +435,6 @@ I did a bit different exercise instead of dumbbell row because I had different m
 - soreness: 4/5
 - energy: 4/5
 - motivation: 4/5
-
-### Endurance
-- duration: 40min
-- notes: 15min/7speed stair climber, 20min/8,5speed treadmill, 5 min/1speed elliptical trainer
+- rpe: 6/10
 
 ---
