@@ -437,4 +437,8 @@ I did a bit different exercise instead of dumbbell row because I had different m
 - motivation: 4/5
 - rpe: 6/10
 
+### Endurance
+- duration: 40min
+- notes: 15min/7speed stair climber, 20 min/8,5 speed treadmill, 5 min/1speed elliptical trainer
+
 ---
