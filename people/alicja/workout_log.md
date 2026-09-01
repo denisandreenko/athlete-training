@@ -480,3 +480,16 @@ I did a bit different exercise instead of dumbbell row because I had different m
 | Plank | 40/40 | — | |
 
 ---
+
+## 2026-09-01 | RUN_EASY
+- sleep: 4/5
+- soreness: 4/5
+- energy: 5/5
+- motivation: 4/5
+- rpe: 5/10
+
+### Endurance
+- duration: 50min
+- notes: 15min/6speed stair climber, 20 min/8,5 speed treadmill, 15 min/2speed elliptical trainer
+
+---
