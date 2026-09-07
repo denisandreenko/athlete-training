@@ -519,3 +519,22 @@ I did a bit different exercise instead of dumbbell row because I had different m
 - notes: 10min easy WU → ladder 100/200/300/200/100m hard, equal easy jog between → 5min walk cooldown
 
 ---
+
+## 2026-09-07 | GYM_A
+- sleep: 5/5
+- soreness: 5/5
+- energy: 5/5
+- motivation: 5/5
+- rpe: 4/10
+
+### Key lifts
+| Exercise | Reps | Load | Notes |
+|---|---|---|---|
+| Goblet squat | 12/12/12 | 12kg | |
+| Knee push-up | 10/9/7 | BW | |
+| Assisted pull-up | 8/6/6 | 2 bands (O+R) | |
+| Glute bridge / hip thrust | 10/10/10 | 20kg | |
+| Sit-ups | 10/10 | 5kg/hand | |
+| Plank | 40/40 | — | |
+
+---
