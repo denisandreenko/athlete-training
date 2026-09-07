@@ -512,3 +512,10 @@ I did a bit different exercise instead of dumbbell row because I had different m
 | Side plank | 30/30 | — | |
 
 ---
+
+## 2026-09-04 | RUN_QUALITY
+
+### Endurance
+- notes: 10min easy WU → ladder 100/200/300/200/100m hard, equal easy jog between → 5min walk cooldown
+
+---
