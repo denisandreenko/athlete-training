@@ -10,7 +10,7 @@
     "Keto-compatible nutrition"
   ],
   "tracking": { "wearable": false },
-  "mesocycle": { "pattern": "5+1", "week": 4, "startedOn": "2026-07-20", "note": "Light-touch novice mesocycle, maintained by the Sunday weekly review. `week` counts COMPLETED weeks (>=3 logged sessions incl. both gym days); skipped weeks freeze the counter. Week 6 = deload: gym -1 set per exercise at same loads, both runs easy Z2, keep full mobility/splits (deload does NOT reduce mobility work). After deload, reset to 1. Everything else stays simple linear progression - no wave loading for a novice. Fatigue markers can pull the deload earlier." },
+  "mesocycle": { "pattern": "5+1", "week": 5, "startedOn": "2026-07-20", "note": "Light-touch novice mesocycle, maintained by the Sunday weekly review. `week` counts COMPLETED weeks (>=3 logged sessions incl. both gym days); skipped weeks freeze the counter. Week 6 = deload: gym -1 set per exercise at same loads, both runs easy Z2, keep full mobility/splits (deload does NOT reduce mobility work). After deload, reset to 1. Everything else stays simple linear progression - no wave loading for a novice. Fatigue markers can pull the deload earlier." },
   "files": { "workoutLog": "people/alicja/workout_log.md" },
   "dashboard": {
     "accent": "#e05fa0",
@@ -36,7 +36,7 @@
       "label": "Gym A — Full body",
       "note": "Keep 2–3 reps in reserve on every set — never to failure. Warm-up ~5 min: 5 min easy cardio (walk/bike) + leg swings 10/side, arm circles, bodyweight squats ×10, scapular pulls ×10, glute bridge ×10.",
       "exercises": [
-        { "name": "Goblet squat", "target": "3×8–12", "stub": "12", "cue": "Light DB/kettlebell held at chest; sit tall. Bodyweight squat is a valid substitution." },
+        { "name": "Goblet squat", "target": "3×8–12", "stub": "12.5", "cue": "Light DB/kettlebell held at chest; sit tall. Bodyweight squat is a valid substitution." },
         { "name": "Knee push-up", "target": "3×6–10", "stub": "BW", "cue": "Progress per the push-up ladder in gym_training_plan.md." },
         { "name": "Assisted pull-up", "target": "3×5–8", "stub": "2 bands (G+R)", "cue": "Band or machine; reduce assistance over time. Progress per the pull-up ladder." },
         { "name": "Glute bridge / hip thrust", "target": "3×10–15", "stub": "20", "cue": "Squeeze glutes at the top. Load only as far as all 3 sets stay inside the rep range." },
@@ -50,7 +50,7 @@
       "label": "Gym B — Full body",
       "note": "Keep 2–3 reps in reserve. Same warm-up as Gym A.",
       "exercises": [
-        { "name": "Reverse lunge", "target": "3×8/leg", "stub": "9", "cue": "Control the descent. Drop back to 5 kg and check form if the left knee complains." },
+        { "name": "Reverse lunge", "target": "3×8/leg", "stub": "10", "cue": "Control the descent. Drop back to 5 kg and check form if the left knee complains." },
         { "name": "Dumbbell row", "target": "3×8–12", "stub": "10", "cue": "Pull to the ribs, no shrug. Chest-supported row or lat pulldown is a valid substitution." },
         { "name": "Incline / knee push-up", "target": "3×6–10", "stub": "BW", "cue": "Hands elevated = easier." },
         { "name": "DB shoulder press (seated)", "target": "2×8–12", "stub": "5", "cue": "Light start." },
